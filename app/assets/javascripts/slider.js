@@ -6,7 +6,7 @@
 })(jQuery);
 
 function callGeneralSwiper() {
-    jQuery(document).find('.swiper.swiper-general').each(function () {
+    jQuery(document).find('.swiper').each(function () {
         let slider = jQuery(this);
 
         var sliderAutoplay = slider.data('autoplay');
