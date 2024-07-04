@@ -2,6 +2,18 @@
    <section class="sign-in-page">
       <div class="container-fluid">
          <div class="row">
+            <div class="col-md-6">
+               <div class="sign-in-from text-center">
+                  <a class="d-inline-flex align-items-center justify-content-center">
+                    <%= image_tag 'YuhToo.png', class: 'signin-img img-fluid rounded-3', style: 'height:180px;width:180px;' %>
+                  </a>
+                  <h2 class="logo-title font-size-30" data-setting="app_name">YuhToo</h2>
+                  <p class="font-size-16">YouTube Automation Platform</p>
+                  <p class="font-size-16">Earn money from YouTube by doing what you're doing right now! </p>
+                  <%= link_to "Sign in with Google", user_google_oauth2_omniauth_authorize_path %>
+
+               </div>
+            </div>
             <div class="col-md-6 overflow-hidden position-relative">
                <div class="bg-primary w-100 h-100 position-absolute top-0 bottom-0 start-0 end-0"></div>
                <div class="container-inside z-1">
@@ -47,18 +59,7 @@
 
                </div>
             </div>
-            <div class="col-md-6">
-               <div class="sign-in-from text-center">
-                  <a class="d-inline-flex align-items-center justify-content-center">
-                    <%= image_tag 'YuhToo.png', class: 'signin-img img-fluid rounded-3', style: 'height:180px;width:180px;' %>
-                  </a>
-                  <h2 class="logo-title font-size-30" data-setting="app_name">YuhToo</h2>
-                  <p class="font-size-16">YouTube Automation Platform</p>
-                  <p class="font-size-16">Earn money from YouTube by doing what you're doing right now! </p>
-                  <%= link_to "Sign in with Google", user_google_oauth2_omniauth_authorize_path %>
-
-               </div>
-            </div>
+            
          </div>
       </div>
    </section>
