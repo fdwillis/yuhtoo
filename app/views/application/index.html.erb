@@ -1,0 +1,216 @@
+<% unless current_user %>
+   <section class="sign-in-page">
+      <div class="container-fluid">
+         <div class="row">
+            <div class="col-md-6 overflow-hidden position-relative">
+               <div class="bg-primary w-100 h-100 position-absolute top-0 bottom-0 start-0 end-0"></div>
+               <div class="container-inside z-1">
+                  <div class="main-circle circle-small"></div>
+                  <div class="main-circle circle-medium"></div>
+                  <div class="main-circle circle-large"></div>
+                  <div class="main-circle circle-xlarge"></div>
+                  <div class="main-circle circle-xxlarge"></div>
+               </div>
+               <div class="sign-in-detail container-inside-top">
+                  <div class="swiper swiper-general overflow-hidden swiper-container-initialized swiper-container-horizontal swiper-container-pointer-events" data-slide="1" data-laptop="1" data-tab="1" data-mobile="1" data-mobile-sm="1" data-autoplay="true" data-loop="true" data-navigation="true" data-pagination="true" data-space="16">
+
+                      
+                     <ul class="swiper-wrapper list-inline m-0 p-0 " id="swiper-wrapper-14f936baf77c71b2" aria-live="off" style="transform: translate3d(-1144px, 0px, 0px); transition-duration: 100000ms !important;">
+                        <li class="swiper-slide swiper-slide-active" role="group" aria-label="1 / 5" data-swiper-slide-index="2" style="width: 556px; margin-right: 16px;">
+                           <%= image_tag '1.jpg', class: 'signin-img img-fluid mb-5 rounded-3' %>
+                           <h2 class="mt-5 text-white fw-semibold">Strength In Numbers</h2>
+                           <p class="mt-2 font-size-16 text-white mb-0">Whether you post trending video ideas or upload your own assets, both count towards our automated monitization process. Your activities are tracked &amp; earn you a share of the revenue.</p>
+                        </li>
+                        <li class="swiper-slide swiper-slide-next" role="group" aria-label="2 / 5" data-swiper-slide-index="0" style="width: 581px; margin-right: 16px;">
+                           <%= image_tag '1.jpg', class: 'signin-img img-fluid mb-5 rounded-3' %>
+                           <h2 class="mt-5 text-white fw-semibold">Novice</h2>
+                           <p class="mt-2 font-size-16 text-white mb-0">You are new to content creation, YouTube, or automation. 💙</p>
+                        </li>
+                        <li class="swiper-slide swiper-slide-next" role="group" aria-label="3 / 5" data-swiper-slide-index="1" style="width: 581px; margin-right: 16px;">
+                          <%= image_tag '1.jpg', class: 'signin-img img-fluid mb-5 rounded-3' %>
+                           <h2 class="mt-5 text-white fw-semibold">Explorer</h2>
+                           <p class="mt-2 font-size-16 text-white mb-0">You know about YouTube &amp; content creation...but automating it? 🥴</p>
+                        </li>
+                        <li class="swiper-slide swiper-slide-next" role="group" aria-label="4 / 5" data-swiper-slide-index="2" style="width: 581px; margin-right: 16px;">
+                           <%= image_tag '1.jpg', class: 'signin-img img-fluid mb-5 rounded-3' %>
+                           <h2 class="mt-5 text-white fw-semibold">Enthusiast</h2>
+                           <p class="mt-2 font-size-16 text-white mb-0">You're already into YouTube Automation or making content! 💪</p>
+                        </li>
+                        <li class="swiper-slide swiper-slide-next" role="group" aria-label="5 / 5" data-swiper-slide-index="0" style="width: 581px; margin-right: 16px;">
+                          <%= image_tag '1.jpg', class: 'signin-img img-fluid mb-5 rounded-3' %>
+                           <h2 class="mt-5 text-white fw-semibold">Creator</h2>
+                           <p class="mt-2 font-size-16 text-white mb-0">You're monetized on YouTube & scaling for revenue 💰</p>
+                        </li>
+                    </ul>
+                      
+                  <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
+
+               </div>
+            </div>
+            <div class="col-md-6">
+               <div class="sign-in-from text-center">
+                  <a class="d-inline-flex align-items-center justify-content-center">
+                    <%= image_tag 'YuhToo.png', class: 'signin-img img-fluid rounded-3', style: 'height:180px;width:180px;' %>
+                  </a>
+                  <h2 class="logo-title font-size-30" data-setting="app_name">YuhToo</h2>
+                  <p class="font-size-16">YouTube Automation Platform</p>
+                  <p class="font-size-16">Earn money from YouTube by doing what you're doing right now! </p>
+                  <%= link_to "Sign in with Google", user_google_oauth2_omniauth_authorize_path %>
+
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+
+<% else %>
+
+   <div class="iq-comingsoon mt-5 mt-lg-0 mb-n5">
+      <div class="container">
+        <div class="auto-vh-100 d-flex flex-column justify-content-center">
+          <div class="row justify-content-center">
+            <div class="col-md-8 text-center">
+                <div class="iq-comingsoon-info">
+                  <div class="row">
+                    
+                     <a class="d-inline-flex align-items-center justify-content-center">
+                       <%= image_tag 'YuhToo.png', class: 'signin-img img-fluid rounded-3', style: 'height:180px;width:180px;' %>
+                     </a>
+                  </div>
+                  <div class="row">
+                    <a href="index.html" class="d-flex justify-content-center align-items-center gap-2 iq-header-logo d-none d-lg-flex">
+                    
+                      <h3 class="logo-title d-none d-sm-block" data-setting="app_name">YuhToo</h3>
+                    </a>
+                  </div>
+                  <div class="row">
+                    <a href="<%= destroy_user_session_path %>" class="d-flex justify-content-center align-items-center gap-2 iq-header-logo d-none d-lg-flex">                  
+                      <%= link_to 'Sign Out', destroy_user_session_path, method: :delete%>
+                    </a>
+                  </div>
+                  <h2 class="mt-4 mb-1">Stay tunned, we're launching very soon</h2>
+                  <p><em><strong>Parts of YuhToo will be released to the public slowly</strong></em></p>
+                  <p>Employees: 1</p>
+
+                  <ul class="countdown row list-inline" data-date="Jul 03 2024 23:59:59">
+                    <li class="col-md-6 col-xl-3">
+                      <div class="card">
+                        <div class="card-body">
+                          <span  id="days" class="text-center" data-days=""></span>Days
+                        </div>
+                      </div>
+                    </li>
+                    <li class="col-md-6 col-xl-3">
+                      <div class="card">
+                        <div class="card-body">
+                          <span id="hours" class="text-center" data-hours=""></span>Hours
+                        </div>
+                      </div>
+                    </li>
+                    <li class="col-md-6 col-xl-3">
+                      <div class="card">
+                        <div class="card-body">
+                          <span id="minutes" class="text-center" data-minutes=""></span>Minutes
+                        </div>
+                      </div>
+                    </li>
+                    <li class="col-md-6 col-xl-3">
+                      <div class="card">
+                        <div class="card-body">
+                          <span id="seconds" class="text-center" data-seconds=""></span>Seconds
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+            </div>
+          </div>
+        </div>   
+      </div>
+    </div>
+   
+    <div class="content-inner " id="page_layout">
+      <div class="container">
+         <div class="row justify-content-center">
+            <div class="col-sm-12">
+               <div class="card position-relative inner-page-bg bg-primary" style="height: 150px;">
+                  <div class="inner-page-title">
+                     <h3 class="text-white">YuhToo Reports</h3>
+                     <p class="text-white mb-0">Updates - Logs - Thoughts</p>
+                  </div>
+               </div>
+            </div>
+               <div class="card">
+                  <div class="card-header d-flex justify-content-between">
+                     <div class="header-title">
+                        <h4 class="card-title">Random Things</h4>
+                     </div>
+                  </div>
+                  <div class="card-body pt-0">
+                     <ul class="iq-timeline ms-1">
+                        <li>
+                           <div class="timeline-dots border-info"></div>
+                           <div class="d-flex align-items-center justify-content-between">
+                              <h6 class="mb-1">Started YuhToo</h6>
+                              <small>01 July 2024</small>
+                           </div>
+                           <div class="d-inline-block w-100">
+                              <p>The term "YouTube Automation" is trending but nothing is automated yet &amp; monetization can be tiresome<br>The YuhToo platform will change that for everyone looking to make money online!</p>
+                           </div>
+                        </li>
+                     </ul>
+                  </div>
+               </div>
+            
+         </div>
+      </div>
+    </div>
+<% end %>
+
+
+<script>
+// Set the date we're counting down to
+var countDownDate = new Date("Jul 5, 2024 15:00:00").getTime();
+
+// Update the count down every 1 second
+var x = setInterval(function() {
+
+  // Get today's date and time
+  var now = new Date().getTime();
+
+  // Find the distance between now and the count down date
+  var distance = countDownDate - now;
+
+  // Time calculations for days, hours, minutes and seconds
+  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  document.getElementById("seconds").innerHTML = seconds;
+
+  // If the count down is finished, write some text
+  if (distance < 0) {
+    clearInterval(x);
+    document.getElementById("seconds").innerHTML = "EXPIRED";
+  }
+
+  document.getElementById("minutes").innerHTML = minutes;
+  if (distance < 0) {
+    clearInterval(x);
+    document.getElementById("minutes").innerHTML = "EXPIRED";
+  }
+
+  document.getElementById("hours").innerHTML = hours;
+  if (distance < 0) {
+    clearInterval(x);
+    document.getElementById("hours").innerHTML = "EXPIRED";
+  }
+
+  document.getElementById("days").innerHTML = days;
+  if (distance < 0) {
+    clearInterval(x);
+    document.getElementById("days").innerHTML = "EXPIRED";
+  }
+}, 1000);
+</script>
