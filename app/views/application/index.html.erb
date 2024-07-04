@@ -17,27 +17,22 @@
                       
                        <ul class="swiper-wrapper list-inline m-0 p-0 " id="swiper-wrapper-14f936baf77c71b2" aria-live="off" style="transform: translate3d(-1144px, 0px, 0px); transition-duration: 50000ms !important;">
                           <li class="swiper-slide swiper-slide-active" role="group" style="width: 556px; margin-right: 16px;">
-                             <%= image_tag '1.jpg', class: 'signin-img img-fluid mb-5 rounded-3' %>
                              <h2 class="mt-5 text-white fw-semibold">Strength In Numbers</h2>
                              <p class="mt-2 font-size-16 text-white mb-0">Whether you post trending video ideas or upload your own assets, both count towards our automated monitization process. Your activities are tracked &amp; earn you a share of the revenue.</p>
                           </li>
                           <li class="swiper-slide" role="group" style="width: 581px; margin-right: 16px;">
-                             <%= image_tag '1.jpg', class: 'signin-img img-fluid mb-5 rounded-3' %>
                              <h2 class="mt-5 text-white fw-semibold">Novice 😳</h2>
                              <p class="mt-2 font-size-16 text-white mb-0">You are new to content creation, YouTube, or automation.</p>
                           </li>
                           <li class="swiper-slide" role="group" style="width: 581px; margin-right: 16px;">
-                            <%= image_tag '1.jpg', class: 'signin-img img-fluid mb-5 rounded-3' %>
                              <h2 class="mt-5 text-white fw-semibold">Explorer 🧐</h2>
                              <p class="mt-2 font-size-16 text-white mb-0">You know about YouTube &amp; content creation...but automating it?</p>
                           </li>
                           <li class="swiper-slide" role="group" style="width: 581px; margin-right: 16px;">
-                             <%= image_tag '1.jpg', class: 'signin-img img-fluid mb-5 rounded-3' %>
                              <h2 class="mt-5 text-white fw-semibold">Enthusiast 😎</h2>
                              <p class="mt-2 font-size-16 text-white mb-0">You're already into YouTube Automation or making content!</p>
                           </li>
                           <li class="swiper-slide" role="group" style="width: 581px; margin-right: 16px;">
-                            <%= image_tag '1.jpg', class: 'signin-img img-fluid mb-5 rounded-3' %>
                              <h2 class="mt-5 text-white fw-semibold">Creator 🤩</h2>
                              <p class="mt-2 font-size-16 text-white mb-0">You're monetized on YouTube & scaling for revenue</p>
                           </li>
@@ -54,9 +49,10 @@
                     <%= image_tag 'YuhToo.png', class: 'signin-img img-fluid rounded-3', style: 'height:180px;width:180px;' %>
                   </a>
                   <h2 class="logo-title font-size-30" data-setting="app_name">YuhToo</h2>
-                  <p class="font-size-16">YouTube Automation Platform</p>
-                  <p class="font-size-16">Earn money from YouTube by doing what you're doing right now! </p>
-                  <%= link_to "Sign in with Google", user_google_oauth2_omniauth_authorize_path %>
+                  <p class="font-size-24">YouTube Automation Platform</p>
+                  <p class="font-size-18">Earn money from YouTube doing what you do now!</p>
+                  <p class="font-size-16">Sign in with Google</p>
+                  <%= link_to image_tag('googlelogo.png'), user_google_oauth2_omniauth_authorize_path %>
 
                </div>
             </div>
