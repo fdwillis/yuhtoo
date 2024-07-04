@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "application#index"
   get 'login', to: 'logins#new'
+  get 'privacy', to: 'application#privacy'
+  get 'terms', to: 'application#terms'
   get 'login/create', to: 'logins#create', as: :create_login
   get 'google_sign_in/callback', to: 'logins#callback', as: :callback_login
 end

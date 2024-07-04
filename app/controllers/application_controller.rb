@@ -1,6 +1,12 @@
 class ApplicationController < ActionController::Base
 	helper_method :current_user
 
+	def privacy
+	end
+
+	def terms
+	end
+
 	def index
 		
 	end

@@ -48,13 +48,86 @@
                   <a class="d-inline-flex align-items-center justify-content-center">
                     <%= image_tag 'YuhToo.png', class: 'signin-img img-fluid rounded-3', style: 'height:180px;width:180px;' %>
                   </a>
-                  <h2 class="logo-title font-size-30" data-setting="app_name">YuhToo</h2>
+                  <h2 class="logo-title font-size-30" data-setting="app_name"><a href="/">YuhToo</a></h2>
                   <p class="font-size-24">YouTube Automation Platform</p>
                   <p class="font-size-14">Get paid from YouTube doing what you do now</p>
-                  <p class="font-size-10">Continue with Google</p>
+                  <p class="font-size-10"><%= link_to "Continue with Google", user_google_oauth2_omniauth_authorize_path %></p>
                   <p class="text-center"><%= link_to image_tag('googlelogo.png'), user_google_oauth2_omniauth_authorize_path %></p>
+                  <button class="btn btn-primary mb-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#privacyPolicy" aria-controls="privacyPolicy">Privacy Policy</button><br>
+                  <button class="btn btn-secondary" type="button" data-bs-toggle="offcanvas" data-bs-target="#termsPolicy" aria-controls="termsPolicy">Terms &amp; Conditions</button>
+                  <div class="offcanvas offcanvas-bottom" tabindex="-1" id="termsPolicy" aria-labelledby="offcanvasBottomLabel">
+                      <div class="offcanvas-header">
+                          <h5 class="offcanvas-title" id="offcanvasBottomLabel">YuhToo Terms &amp; Conditions</h5>
+                          <div class="close-icon" data-bs-dismiss="offcanvas">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="24px" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                  <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                              </svg>
+                          </div>
+                      </div>
+                      <div class="offcanvas-body small">
+                          Welcome to YuhToo!
+
+                        These Terms and Conditions ("Terms") are here to explain how YuhToo works and what you agree to when you use it.
+
+                        Signing Up
+                        You need a YouTube account: To join YuhToo, you must sign up with your YouTube account.
+                        What We Do with Your YouTube Data
+                        Accessing your YouTube data: When you sign up, you let us see your YouTube data. This helps us check how you use YuhToo.
+                        No sharing: We promise not to share your YouTube data with anyone else.
+                        Using YuhToo
+                        Respect others: Be kind and respectful to other members.
+                        No bad stuff: Do not post harmful or inappropriate content.
+                        Follow the rules: You must follow these Terms and YouTube's rules too.
+                        Your Privacy
+                        Keeping your data safe: We work hard to protect your information.
+                        Cookies: We use cookies to make YuhToo better. By using YuhToo, you agree to this.
+                        Changes to These Terms
+                        Updates: We might change these Terms sometimes. If we do, we will let you know.
+                        Ending Your Membership
+                        Stop anytime: You can stop using YuhToo whenever you want.
+                        We can too: We can end your membership if you break these rules.
+                        Contact Us
+                        Questions: If you have any questions, you can email us at support@yuhtoo.com.
+                      </div>
+                  </div>
+                  <div class="offcanvas offcanvas-bottom" tabindex="-1" id="privacyPolicy" aria-labelledby="offcanvasBottomLabel">
+                      <div class="offcanvas-header">
+                          <h5 class="offcanvas-title" id="offcanvasBottomLabel">YuhToo Privacy Policy</h5>
+                          <div class="close-icon" data-bs-dismiss="offcanvas">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="24px" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                  <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                              </svg>
+                          </div>
+                      </div>
+                      <div class="offcanvas-body small">
+                          We care about your privacy and want you to know how we use your information. This policy is simple and easy to understand.
+
+                  What We Do
+
+                  You sign up for YuhToo using your YouTube account.
+                  We track your activity on YuhToo to make sure everything runs smoothly.
+                  We look at your YouTube data to check your channel stats, video stats, and ownership rights.
+                  What Information We Use
+
+                  We need access to your YouTube channel details.
+                  We look at your video views, likes, comments, and other stats.
+                  We check who owns the videos to protect your rights.
+                  What We DON'T Do
+
+                  We NEVER sell your data.
+                  We NEVER share your data with anyone else.
+                  Your Privacy Matters
+
+                  We use your data only to make YuhToo better for you.
+                  We keep your information safe and secure.
+                  Questions?
+
+                  If you have any questions, feel free to contact us anytime. We're here to help!
+                      </div>
+                  </div>
                </div>
             </div>
+            
          </div>
       </div>
    </section>
