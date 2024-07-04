@@ -61,6 +61,10 @@ group :development, :test do
   gem "debug", platforms: %i[ mri windows ]
 end
 
+group :production do
+  gem 'rails_12factor'
+end
+
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
