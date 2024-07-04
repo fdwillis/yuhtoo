@@ -53,7 +53,7 @@ function callGeneralSwiper() {
         }
         var sw_config = {
             loop: slider.data('loop'),
-            speed: 10000,
+            speed: 5000,
             spaceBetween: slider.data('space'),
             slidesPerView: slider.data('slide'),
             centeredSlides: slider.data('center'),

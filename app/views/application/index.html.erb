@@ -2,18 +2,6 @@
    <section class="sign-in-page">
       <div class="container-fluid">
          <div class="row">
-            <div class="col-md-6">
-               <div class="sign-in-from text-center">
-                  <a class="d-inline-flex align-items-center justify-content-center">
-                    <%= image_tag 'YuhToo.png', class: 'signin-img img-fluid rounded-3', style: 'height:180px;width:180px;' %>
-                  </a>
-                  <h2 class="logo-title font-size-30" data-setting="app_name">YuhToo</h2>
-                  <p class="font-size-16">YouTube Automation Platform</p>
-                  <p class="font-size-16">Earn money from YouTube by doing what you're doing right now! </p>
-                  <%= link_to "Sign in with Google", user_google_oauth2_omniauth_authorize_path %>
-
-               </div>
-            </div>
             <div class="col-md-6 overflow-hidden position-relative">
                <div class="bg-primary w-100 h-100 position-absolute top-0 bottom-0 start-0 end-0"></div>
                <div class="container-inside z-1">
@@ -27,7 +15,7 @@
                   <div class="swiper swiper-general overflow-hidden swiper-container-initialized swiper-container-horizontal swiper-container-pointer-events" data-slide="1" data-laptop="1" data-tab="1" data-mobile="1" data-mobile-sm="1" data-autoplay="true" data-loop="true" data-navigation="true" data-pagination="true" data-space="16">
 
                       
-                     <ul class="swiper-wrapper list-inline m-0 p-0 " id="swiper-wrapper-14f936baf77c71b2" aria-live="off" style="transform: translate3d(-1144px, 0px, 0px); transition-duration: 100000ms !important;">
+                     <ul class="swiper-wrapper list-inline m-0 p-0 " id="swiper-wrapper-14f936baf77c71b2" aria-live="off" style="transform: translate3d(-1144px, 0px, 0px); transition-duration: 50000ms !important;">
                         <li class="swiper-slide swiper-slide-active" role="group" aria-label="1 / 5" data-swiper-slide-index="1" style="width: 556px; margin-right: 16px;">
                            <%= image_tag '1.jpg', class: 'signin-img img-fluid mb-5 rounded-3' %>
                            <h2 class="mt-5 text-white fw-semibold">Strength In Numbers</h2>
@@ -59,7 +47,18 @@
 
                </div>
             </div>
-            
+            <div class="col-md-6">
+               <div class="sign-in-from text-center">
+                  <a class="d-inline-flex align-items-center justify-content-center">
+                    <%= image_tag 'YuhToo.png', class: 'signin-img img-fluid rounded-3', style: 'height:180px;width:180px;' %>
+                  </a>
+                  <h2 class="logo-title font-size-30" data-setting="app_name">YuhToo</h2>
+                  <p class="font-size-16">YouTube Automation Platform</p>
+                  <p class="font-size-16">Earn money from YouTube by doing what you're doing right now! </p>
+                  <%= link_to "Sign in with Google", user_google_oauth2_omniauth_authorize_path %>
+
+               </div>
+            </div>
          </div>
       </div>
    </section>
