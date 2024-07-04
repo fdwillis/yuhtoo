@@ -53,11 +53,11 @@
                   <p class="font-size-14">Get paid from YouTube doing what you do now</p>
                   <p class="font-size-10"><%= link_to "Continue with Google", user_google_oauth2_omniauth_authorize_path %></p>
                   <p class="text-center"><%= link_to image_tag('googlelogo.png'), user_google_oauth2_omniauth_authorize_path %></p>
-                  <div class="row">
-                    <button class="btn btn-primary mb-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#privacyPolicy" aria-controls="privacyPolicy">Privacy Policy</button>
+                  <div class="row col-4 offset-4">
+                    <button class="btn btn-secondary-subtle mb-1" type="button" data-bs-toggle="offcanvas" data-bs-target="#privacyPolicy" aria-controls="privacyPolicy">Privacy Policy</button>
                   </div>
-                  <div class="row">
-                    <button class="btn btn-secondary" type="button" data-bs-toggle="offcanvas" data-bs-target="#termsPolicy" aria-controls="termsPolicy">Terms &amp; Conditions</button>
+                  <div class="row col-4 offset-4">
+                    <button class="btn btn-secondary-subtle" type="button" data-bs-toggle="offcanvas" data-bs-target="#termsPolicy" aria-controls="termsPolicy">Terms &amp; Conditions</button>
                   </div>
                   <div class="offcanvas offcanvas-bottom" tabindex="-1" id="termsPolicy" aria-labelledby="offcanvasBottomLabel">
                       <div class="offcanvas-header">
