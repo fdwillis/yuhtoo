@@ -10,6 +10,8 @@ gem 'figaro'
 
 gem 'yt'
 
+gem "ffi", "< 1.17.0"
+
 gem 'listen'
 
 gem "font-awesome-rails"
