@@ -8,8 +8,9 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
         flash[:notice] = 'Signed In'
         sign_in_and_redirect @user, event: :authentication
       else
-        session['devise.google_data'] = request.env['omniauth.auth'].except('extra') # Removing extra as it can overflow some session stores
-        redirect_to '/', alert: @user.errors.full_messages.join("\n")
+        session[:user_id] = nil
+        flash[:notice] = @user['error']
+        redirect_to '/'
       end
   end
 end

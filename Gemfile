@@ -8,6 +8,8 @@ gem 'google_sign_in'
 
 gem 'figaro'
 
+gem 'yt'
+
 gem 'devise'
 
 gem 'omniauth-google-oauth2'

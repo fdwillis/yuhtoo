@@ -23,10 +23,12 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_03_212841) do
     t.datetime "remember_created_at"
     t.string "google_id"
     t.string "auth_token"
-    t.string "accessPin"
+    t.string "fresh_token"
+    t.string "accessPin", default: "free", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["auth_token"], name: "index_users_on_auth_token", unique: true
+    t.index ["fresh_token"], name: "index_users_on_fresh_token", unique: true
     t.index ["google_id"], name: "index_users_on_google_id", unique: true
     t.index ["name"], name: "index_users_on_name", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
