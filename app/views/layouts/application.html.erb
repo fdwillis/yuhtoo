@@ -33,16 +33,28 @@
     <div class="wrapper mb-0">
       <% flash.each do |type, msg| %>
         <% if type == "notice" %>
-          <div class="alert alert-success">
-            <%= msg %>
+          <div class="alert alert-success alert-dismissible d-flex align-items-center gap-2 fade show mb-3" role="alert">
+            <span class="d-flex">
+              <svg xmlns="http://www.w3.org/2000/svg" height="20" width="17.5" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#00f900" d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/></svg>
+            </span>
+           <span><%= msg %></span>
+           <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
           </div>
         <% elsif type == "alert" %>
-          <div class="alert alert-danger">
-            <%= msg %>
+          <div class="alert alert-danger alert-dismissible d-flex align-items-center gap-2 fade show mb-3" role="alert">
+            <span class="d-flex">
+              <svg xmlns="http://www.w3.org/2000/svg" height="20" width="17.5" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#00f900" d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/></svg>
+            </span>
+           <span><%= msg %></span>
+           <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
           </div>
         <% else %>
-          <div class='alert alert-<%= "#{type}" %>'>
-            <%= msg %>
+          <div class="alert alert-success alert-dismissible d-flex align-items-center gap-2 fade show mb-3" role="alert">
+            <span class="d-flex">
+              <svg xmlns="http://www.w3.org/2000/svg" height="20" width="17.5" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#00f900" d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/></svg>
+            </span>
+           <span><%= msg %></span>
+           <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
           </div>
         <% end %>
       <% end %>
