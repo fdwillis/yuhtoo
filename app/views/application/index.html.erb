@@ -65,6 +65,7 @@
                   <a class="mt-n4 d-inline-flex align-items-center justify-content-center">
                     <%= image_tag 'YuhToo.png', class: 'signin-img img-fluid rounded-3', style: 'height:180px;width:180px;' %>
                   </a>
+
                   <h2 class="logo-title font-size-30" data-setting="app_name"><a href="/">YuhToo</a></h2>
                   <p class="font-size-22">YouTube Automation Platform</p>
                   <p class="mt-2">Post on YuhuToo &amp; earn YouTube money</p>
@@ -73,8 +74,20 @@
 
                   <div class="row">
                     <button class="btn btn-secondary-subtle mb-1" type="button" data-bs-toggle="offcanvas" data-bs-target="#privacyPolicy" aria-controls="privacyPolicy">Privacy</button>
-                    <button class="btn btn-secondary-subtle" type="button" data-bs-toggle="offcanvas" data-bs-target="#termsPolicy" aria-controls="termsPolicy">Terms</button>
+                    <button class="btn mb-1 btn-secondary-subtle" type="button" data-bs-toggle="offcanvas" data-bs-target="#termsPolicy" aria-controls="termsPolicy">Terms</button>
                   </div>
+                  <div class="row">
+                    <div class="card text-white bg-primary mb-3">
+                      <div class="card-body">
+                         <h2 class="card-title text-white">YuhToo Video Library</h2>
+                    
+                            <p class="font-size-16">Discover how to maximize YouTube earnings from YouTube creators &amp; what YuhToo pays you for</p>
+                            <p class=" text-white font-size-14">"I literally get paid for sharing my ideas"<br><cite title="Source Title" class="text-white">- YuhToo Creator</cite></p>
+                            <button type="button" class="btn d-inline-flex mb-3 me-1 btn-primary">Access Library</button>
+                      </div>
+                   </div>
+                  </div>
+                     
                   <div class="offcanvas offcanvas-bottom" tabindex="-1" id="termsPolicy" aria-labelledby="offcanvasBottomLabel">
                       <div class="offcanvas-header">
                           <h5 class="offcanvas-title" id="offcanvasBottomLabel">YuhToo Terms &amp; Conditions</h5>
@@ -151,7 +164,6 @@
          </div>
       </div>
    </section>
-
 <% else %>
 
    <div class="iq-comingsoon mt-5 mt-lg-0 mb-n5">
