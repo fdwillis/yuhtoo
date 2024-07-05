@@ -55,10 +55,8 @@
                   <p class="font-size-10"><%= link_to "Continue with Google", user_google_oauth2_omniauth_authorize_path %></p>
                   <p class="text-center"><%= link_to image_tag('googlelogo.png'), user_google_oauth2_omniauth_authorize_path %></p>
 
-                  <div class="row col-6 offset-3">
+                  <div class="row">
                     <button class="btn btn-secondary-subtle mb-1" type="button" data-bs-toggle="offcanvas" data-bs-target="#privacyPolicy" aria-controls="privacyPolicy">Privacy</button>
-                  </div>
-                  <div class="row col-6 offset-3">
                     <button class="btn btn-secondary-subtle" type="button" data-bs-toggle="offcanvas" data-bs-target="#termsPolicy" aria-controls="termsPolicy">Terms</button>
                   </div>
                   <div class="offcanvas offcanvas-bottom" tabindex="-1" id="termsPolicy" aria-labelledby="offcanvasBottomLabel">
