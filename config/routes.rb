@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
+  devise_for :users, controllers: {sessions: 'application', omniauth_callbacks: 'users/omniauth_callbacks' }
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   get 'login', to: 'logins#new'
   get 'privacy', to: 'application#privacy'
   get 'terms', to: 'application#terms'
+  get 'feed', to: 'application#feed'
   get 'login/create', to: 'logins#create', as: :create_login
   get 'google_sign_in/callback', to: 'logins#callback', as: :callback_login
 end

@@ -10,6 +10,10 @@ gem 'figaro'
 
 gem 'yt'
 
+gem 'listen'
+
+gem "font-awesome-rails"
+
 gem 'devise'
 
 gem 'omniauth-google-oauth2'

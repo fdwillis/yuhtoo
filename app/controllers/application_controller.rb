@@ -1,5 +1,13 @@
 class ApplicationController < ActionController::Base
-	helper_method :current_user
+	def destroy
+		session[:user_id] = nil
+		flash['success'] = 'Signed Out'
+		redirect_to '/'
+		return
+	end
+
+	def feed
+	end
 
 	def privacy
 	end
@@ -8,7 +16,7 @@ class ApplicationController < ActionController::Base
 	end
 
 	def index
-		
+		current_user
 	end
 
 	def current_user
