@@ -16,9 +16,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_06_174549) do
 
   create_table "ideas", force: :cascade do |t|
     t.text "description"
-    t.text "images"
+    t.text "attachments"
     t.text "videos"
-    t.boolean "public"
+    t.boolean "public", default: false
     t.text "titles"
     t.text "tags"
     t.text "scripts"

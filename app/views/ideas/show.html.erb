@@ -1,0 +1,30 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @idea %>
+<%= @idea.tags %>
+
+<div>
+  <%= link_to "Edit this idea", edit_idea_path(@idea) %> |
+  <%= link_to "Back to ideas", ideas_path %>
+
+  <%= button_to "Destroy this idea", @idea, method: :delete %>
+</div>
+<% if @idea.attachments.present? %>
+	<% @idea.attachments.split(',').each do |file| %>
+			<%=  cl_image_tag(file, width: 100, height: 150, crop: "fill") %>
+	<% end %>
+<% end %>
+
+<% if @idea.videos.present? %>
+	<% @idea.videos.split(',').each do |file| %>
+			<%= cl_video_tag(file, 
+		  loop: true, controls: true,
+		  gravity: "auto",
+		  transformation: [
+		    height: 360, width: 480, crop: "pad",
+		    quality: 100, duration: "20"],
+		  fallback_content: "Your browser does not support HTML5 video tags." ) %>
+		  <%= cl_video_tag(file, aspect_ratio: "3:4", gravity: "auto:face", height: 300, crop: "auto")%>
+	<% end %>
+<% end %>
+

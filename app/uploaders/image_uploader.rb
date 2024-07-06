@@ -1,4 +1,5 @@
 class ImageUploader < CarrierWave::Uploader::Base
+  storage :file
   include Cloudinary::CarrierWave
 
   process convert: 'png'
