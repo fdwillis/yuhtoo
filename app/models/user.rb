@@ -12,6 +12,10 @@ class User < ApplicationRecord
       user = User.find_or_create_by(email: data['email'],name: data['name'])
       user.update(password: Devise.friendly_token[0,20],auth_token: access_token.credentials.token, fresh_token: access_token.extra.id_token)
       
+      unless user.uuid.present?
+         user.update(uuid: SecureRandom.uuid)
+      end
+
       user
     else
       user = {error: 'Please verify your Google account. Or choose a different email.'}

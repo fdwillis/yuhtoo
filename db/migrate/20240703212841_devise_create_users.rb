@@ -7,6 +7,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[7.1]
       t.string :email,              null: true, default: ""
       t.string :name,               null: true, default: ""
       t.string :encrypted_password, null: true, default: ""
+      t.string :uuid, null: true, default: ""
 
       ## Recoverable
       t.string   :reset_password_token
@@ -24,6 +25,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[7.1]
     end
 
     add_index :users, :auth_token,           unique: true
+    add_index :users, :uuid,           unique: true
     add_index :users, :fresh_token,           unique: true
     add_index :users, :google_id,            unique: true
     add_index :users, :name,                 unique: true

@@ -8,6 +8,10 @@ gem 'google_sign_in'
 
 gem 'figaro'
 
+gem 'cloudinary'
+
+gem 'carrierwave'
+
 gem 'yt'
 
 gem "ffi", "< 1.17.0"
