@@ -5,6 +5,7 @@ class CreateIdeas < ActiveRecord::Migration[7.1]
       t.text :attachments
       t.text :videos
       t.boolean :public, default: false
+      t.boolean :monetized, default: false
       t.text :titles
       t.text :tags
       t.text :scripts
