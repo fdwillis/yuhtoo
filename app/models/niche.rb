@@ -1,0 +1,2 @@
+class Niche < ApplicationRecord
+end
