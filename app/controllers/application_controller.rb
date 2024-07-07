@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
 	end
 
 	def feed
-		@ideas = Idea.all
+		@ideas = Idea.all.reverse
 	end
 
 	def privacy
