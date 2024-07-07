@@ -12,6 +12,7 @@
 //
 //= require swiper
 //= require jquery
+//= require lightbox2
 //= require_tree .
 
 (function (jQuery) {

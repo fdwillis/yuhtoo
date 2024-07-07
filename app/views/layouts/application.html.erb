@@ -128,8 +128,8 @@
         <div class="offcanvas-body mb-0">
           <p>Titles, tags, scripts, images, &amp; video clips</p>
           <ul>
+            <li>Describe Your Idea</li>
             <li>Attach Image &amp; Video</li>
-            <li>AI Generates Clips</li>
             <li>Experts Craft Content For You</li>
           </ul>
             <div class="row">
@@ -138,7 +138,7 @@
                     <%= form_for :idea, :url => { :controller => 'ideas', :action => "create" } do |f| %>
 
                           <div class="form-contro" rows="5" id="exampleFormControlTextarea1">
-                            <%= f.text_area :description, class: 'form-control rounded px-0', placeholder: " What should we craft for you next?" %>
+                            <%= f.text_area :description, required: true, id: 'validationDefault01', class: 'form-control rounded px-0', placeholder: " What should we craft for you next?" %>
                           </div>
                     
                       <div class="card-body bg-primary-subtle rounded-bottom-3">
@@ -178,8 +178,6 @@
                     <% end %>
                   </div>
                </div>
-               <p class="text-center">Download YOUR Clips FREE</p>
-               <p class="text-center">Available Instantly</p>
             </div>
         </div>
     </div>
@@ -197,7 +195,7 @@
               <div class="d-flex gap-3 mb-4">
                 <img src="/assets/YuhToo.png" class="img-fluid rounded-circle avatar-48 border border-2 me-3" alt="user" loading="lazy">
                 <div>
-                  <h6 class="font-size-14">Pete Sariya <span class="text-body fw-normal">voted for your<span class="text-primary fw-semibold"> color palette </h6>
+                  <h6 class="font-size-14"><span class="text-primary fw-semibold">59</span> <span class="text-body fw-normal">votes for your <span class="text-primary fw-semibold">Color Palette </h6>
                   <small class="text-body fw-500">13 min ago</small>
                 </div>
               </div>
@@ -206,8 +204,8 @@
               <div class="d-flex gap-3 mb-4">
                 <img src="/assets/YuhToo.png" class="img-fluid rounded-circle avatar-48 border border-2 me-3" alt="user" loading="lazy">
                 <div>
-                  <h6 class="font-size-14">Dima Davydov <span class="text-body fw-normal">replied to your</span>
-                    <span class="text-primary fw-semibold">comment</span>
+                  <h6 class="font-size-14"><span class="text-primary fw-semibold">19</span> <span class="text-body fw-normal">replies to your</span>
+                    <span class="text-primary fw-semibold">Comment</span>
                   </h6>
                   <small class="text-body fw-500">30 min ago</small>
                 </div>
@@ -217,15 +215,15 @@
               <div class="d-flex gap-3 mb-4">
                 <img src="/assets/YuhToo.png" class="img-fluid rounded-circle avatar-48 border border-2 me-3" alt="user" loading="lazy">
                 <div>
-                  <h6 class="font-size-14">Esther Howard <span class="text-body fw-normal">reacted to your </span>
-                    <span class="text-primary fw-semibold">post</span>.
+                  <h6 class="font-size-14"><span class="text-primary fw-semibold">900</span> <span class="text-body fw-normal">reacted to your </span>
+                    <span class="text-primary fw-semibold">Idea</span>.
                   </h6>
                   <small class="text-body fw-500">19 min ago</small>
                 </div>
               </div>
             </a>
           </div>  
-          <button type="button" class="btn btn-primary fw-500 w-100">View All Notifications</button>
+          <button type="button" class="btn btn-secondary col-12 mb-3 me-1">View All Notifications</button>
         </div>
       </div>
     </div>

@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
 	end
 
 	def feed
+		@ideas = Idea.all
 	end
 
 	def privacy

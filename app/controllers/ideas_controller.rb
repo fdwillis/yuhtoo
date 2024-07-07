@@ -29,7 +29,7 @@ class IdeasController < ApplicationController
 
     respond_to do |format|
       if @idea.save
-        format.html { redirect_to idea_url(@idea), notice: "Idea was successfully created." }
+        format.html { redirect_to '/feed', notice: "Idea was successfully created." }
         format.json { render :show, status: :created, location: @idea }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -50,7 +50,7 @@ class IdeasController < ApplicationController
             imageFilex = file.tempfile
             @couldinaryImagex = Cloudinary::Uploader.upload(imageFilex, {detection: "coco", categorization: "google_tagging", auto_tagging: 0.6, folder: 'yuhtoo-guest-images'})
             imageFiles.prepend("#{@couldinaryImagex['public_id']},")
-            xTags << "#{@couldinaryImagex['tags'].join(',')}-"
+            xTags << "#{@couldinaryImagex['tags'].join(',')}&"
           end
         
           if file.content_type.include?('video')
@@ -58,7 +58,7 @@ class IdeasController < ApplicationController
             videoFilex = file.tempfile
             @couldinaryVideox = Cloudinary::Uploader.upload(videoFilex, detection: "coco",resource_type: "video", categorization: "google_tagging", auto_tagging: 0.6, folder: 'yuhtoo-guest-videos')
             videoFiles.prepend("#{@couldinaryVideox['public_id']},")
-            xTags << "#{@couldinaryVideox['tags'].join(',')}-"
+            xTags << "#{@couldinaryVideox['tags'].join(',')}&"
           end
         end
 

@@ -8,6 +8,8 @@ gem 'google_sign_in'
 
 gem 'figaro'
 
+gem 'lightbox2'
+
 gem 'cloudinary'
 
 gem 'carrierwave'
