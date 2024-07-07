@@ -5,7 +5,7 @@
             <div class="card position-relative inner-page-bg bg-primary" style="height: 150px;">
                <div class="inner-page-title">
                   <h3 class="text-white">YuhToo Feed</h3>
-                  <p class="text-white mb-0">Ideas - Content - Community</p>
+                  <p class="text-white mb-0">Ideas - Elements - Community</p>
                </div>
             </div>
          </div>
@@ -560,11 +560,9 @@
 
                      <div class="user-post mt-4">
                         <% if idea.attachments.present? %>
-                           <% idea.attachments.split(',').each do |file| %>
-                              <a data-fslightbox="gallery" href="https://res.cloudinary.com/fdwillis/image/upload/<%= file %>" class="rounded">
-                                 <img src="https://res.cloudinary.com/fdwillis/image/upload/<%= file %>" alt="post-image" class="img-fluid rounded w-100" loading="lazy">
-                              </a>
-                           <% end %>
+                          <% idea.attachments.split(',').each do |file| %>
+                            <img src="https://res.cloudinary.com/fdwillis/image/upload/<%= file %>" alt="post-image" class="img-fluid rounded w-100" loading="lazy">
+                          <% end %>
                         <% end %>
                      </div>
                      
