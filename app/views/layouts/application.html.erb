@@ -29,6 +29,9 @@
   </head>
 
   <body>
+    <% unless Rails.env.development? ? request.original_url.downcase == ENV['demoURL'] : request.original_url.downcase == ENV['productionURL'] %>
+
+    
     <aside class="sidebar sidebar-default sidebar-base navs-rounded-all sidebar-mini" id="first-tour" data-toggle="main-sidebar" data-sidebar="responsive">
       <div class="sidebar-header d-flex align-items-center justify-content-start position-relative">
           <a href="/" class="d-flex align-items-center">
@@ -52,7 +55,9 @@
               <!-- Sidebar Menu End -->        </div>
       </div><div class="scrollbar-track scrollbar-track-x" style="display: block;"><div class="scrollbar-thumb scrollbar-thumb-x" style="width: 28.8235px; transform: translate3d(0px, 0px, 0px);"></div></div><div class="scrollbar-track scrollbar-track-y" style="display: block;"><div class="scrollbar-thumb scrollbar-thumb-y" style="height: 180.212px; transform: translate3d(0px, 0px, 0px);"></div></div></div>
       <div class="sidebar-footer"></div>
-  </aside>
+    </aside>
+
+    <% end %>
 
 
 
@@ -104,7 +109,7 @@
             <ul class="navbar-nav navbar-list">
               <li class="nav-item ">
                 <a href="/" class="d-flex align-items-center">
-                  <img src="/assets/YuhToo.png" class="img-fluid rounded-circle avatar-48 border border-2 me-3" alt="user" loading="lazy">
+                  <img src="/assets/YuhToo.png" class="img-fluid rounded-circle avatar-48  border-2 me-3" alt="user" loading="lazy">
                 </a>
               </li>
               <li class="nav-item">
