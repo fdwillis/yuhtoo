@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
 
 	def feed
 		@ideas = Idea.all.reverse
+		#list of niche ideas -> as one becomes displayed remove it from list of others for partial to build out site
 	end
 
 	def privacy
