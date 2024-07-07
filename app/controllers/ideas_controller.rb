@@ -64,6 +64,7 @@ class IdeasController < ApplicationController
 
       end
     end
+
     if videoFiles.present?
       @idea.update(videos: videoFiles)
     end

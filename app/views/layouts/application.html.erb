@@ -29,8 +29,46 @@
   </head>
 
   <body>
+    <aside class="sidebar sidebar-default sidebar-base navs-rounded-all sidebar-mini" id="first-tour" data-toggle="main-sidebar" data-sidebar="responsive">
+      <div class="sidebar-header d-flex align-items-center justify-content-start position-relative">
+          <a href="/" class="d-flex align-items-center">
+            <img src="/assets/YuhToo.png" class="img-fluid rounded-circle avatar-48 border border-2 me-3" alt="user" loading="lazy">
+          </a>
+      </div>
+      <div class="sidebar-body pt-0 data-scrollbar" data-scrollbar="true" tabindex="-1" style="overflow: hidden; outline: none;"><div class="scroll-content" style="transform: translate3d(0px, 0px, 0px);">
+          <div class="sidebar-list">
+              <!-- Sidebar Menu Start -->
+              <ul class="navbar-nav iq-main-menu" id="sidebar-menu">
+                  
+                  <li class="nav-item">
+                    <a class="nav-link menu-arrow d-flex align-items-center" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptionsx" aria-controls="offcanvasWithBothOptionsx">
+                      <svg xmlns="http://www.w3.org/2000/svg" height="32" width="28" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ff0000" d="M224 0c-17.7 0-32 14.3-32 32V51.2C119 66 64 130.6 64 208v25.4c0 45.4-15.5 89.5-43.8 124.9L5.3 377c-5.8 7.2-6.9 17.1-2.9 25.4S14.8 416 24 416H424c9.2 0 17.6-5.3 21.6-13.6s2.9-18.2-2.9-25.4l-14.9-18.6C399.5 322.9 384 278.8 384 233.4V208c0-77.4-55-142-128-156.8V32c0-17.7-14.3-32-32-32zm0 96c61.9 0 112 50.1 112 112v25.4c0 47.9 13.9 94.6 39.7 134.6H72.3C98.1 328 112 281.3 112 233.4V208c0-61.9 50.1-112 112-112zm64 352H224 160c0 17 6.7 33.3 18.7 45.3s28.3 18.7 45.3 18.7s33.3-6.7 45.3-18.7s18.7-28.3 18.7-45.3z"/></svg>
 
-    <div class="wrapper mb-0">
+                    </a>
+                  </li>
+                  
+                  
+              </ul>
+              <!-- Sidebar Menu End -->        </div>
+      </div><div class="scrollbar-track scrollbar-track-x" style="display: block;"><div class="scrollbar-thumb scrollbar-thumb-x" style="width: 28.8235px; transform: translate3d(0px, 0px, 0px);"></div></div><div class="scrollbar-track scrollbar-track-y" style="display: block;"><div class="scrollbar-thumb scrollbar-thumb-y" style="height: 180.212px; transform: translate3d(0px, 0px, 0px);"></div></div></div>
+      <div class="sidebar-footer"></div>
+  </aside>
+
+
+
+
+
+
+
+
+
+
+
+
+    <main class="main-control">
+      
+    
+    <div class="position-relative">
       <% flash.each do |type, msg| %>
         <% if type == "notice" %>
           <div class="alert alert-success alert-dismissible d-flex align-items-center gap-2 fade show mb-3" role="alert">
@@ -64,7 +102,7 @@
         <nav class="nav navbar navbar-expand-lg navbar-light iq-navbar p-lg-0">
           <div class="container-fluid navbar-inner">
             <ul class="navbar-nav navbar-list">
-              <li class="nav-item">
+              <li class="nav-item ">
                 <a href="/" class="d-flex align-items-center">
                   <img src="/assets/YuhToo.png" class="img-fluid rounded-circle avatar-48 border border-2 me-3" alt="user" loading="lazy">
                 </a>
@@ -82,12 +120,7 @@
                 </a>
               </li>
 
-              <li class="nav-item">
-                <a class="nav-link menu-arrow dropdown-toggle d-flex align-items-center" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptionsx" aria-controls="offcanvasWithBothOptionsx">
-                  <svg xmlns="http://www.w3.org/2000/svg" height="32" width="28" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ff0000" d="M224 0c-17.7 0-32 14.3-32 32V51.2C119 66 64 130.6 64 208v25.4c0 45.4-15.5 89.5-43.8 124.9L5.3 377c-5.8 7.2-6.9 17.1-2.9 25.4S14.8 416 24 416H424c9.2 0 17.6-5.3 21.6-13.6s2.9-18.2-2.9-25.4l-14.9-18.6C399.5 322.9 384 278.8 384 233.4V208c0-77.4-55-142-128-156.8V32c0-17.7-14.3-32-32-32zm0 96c61.9 0 112 50.1 112 112v25.4c0 47.9 13.9 94.6 39.7 134.6H72.3C98.1 328 112 281.3 112 233.4V208c0-61.9 50.1-112 112-112zm64 352H224 160c0 17 6.7 33.3 18.7 45.3s28.3 18.7 45.3 18.7s33.3-6.7 45.3-18.7s18.7-28.3 18.7-45.3z"/></svg>
-
-                </a>
-              </li>
+              
               <% if current_user.present? %>
                 <li class="nav-item">
                   <a class="nav-link menu-arrow dropdown-toggle d-flex align-items-center" type="button" href="/">
@@ -108,6 +141,7 @@
 
       <%= yield %>
     </div>
+    </main>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="/assets/slider.js"></script>
