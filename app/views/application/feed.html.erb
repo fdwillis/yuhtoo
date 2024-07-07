@@ -756,44 +756,23 @@
                   </div>
                   <div class="card-body pt-0">
                      <ul class="list-inline m-0 p-0">
-                        <li class="mb-3">
-                           <div class="d-flex align-items-center gap-3">
-                              <img src="/assets/YuhToo.png" alt="story-img" class="avatar-60 avatar-borderd object-cover avatar-rounded img-fluid d-inline-block">
-                              <div>
-                                 <div class="d-flex align-items-center justify-content-between gap-2">
-                                    <div>
-                                       <h5>Annette Black</h5>
+                        <% @experts.each do |expert| %>
+                           <li class="mb-3 mt-2">
+                              <div class="d-flex align-items-center gap-3">
+                                 <img src="<%= expert.image %>" alt="story-img" class="avatar-60 avatar-borderd object-cover avatar-rounded img-fluid d-inline-block">
+                                 <div>
+                                    <div class="d-flex align-items-center justify-content-between gap-2">
+                                       <div>
+                                          <h5><%= expert.name %></h5>
+                                       </div>
                                     </div>
                                  </div>
                               </div>
-                           </div>
-                        </li>
-                        <li class="mb-3">
-                           <div class="d-flex align-items-center gap-3">
-                              <img src="/assets/YuhToo.png" alt="story-img" class="avatar-60 avatar-borderd object-cover avatar-rounded img-fluid d-inline-block">
-                              <div>
-                                 <div class="d-flex align-items-center justify-content-between gap-2">
-                                    <div>
-                                       <h5>Christopher Plessis</h5>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
-                        </li>
-                        <li class="d-flex justify-content-between flex-wrap gap-2">
-                           <div class="d-flex align-items-center gap-3">
-                              <img src="/assets/YuhToo.png" alt="story-img" class="avatar-60 avatar-borderd object-cover avatar-rounded img-fluid d-inline-block">
-                              <div>
-                                 <div class="d-flex align-items-center justify-content-between gap-2">
-                                    <div>
-                                       <h5>Ellyse Perry</h5>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
-                        </li>
+                           </li>
+
+                           <a href="<%= expert.link+'?&sub_confirmation=1' %>" target='_blank' class="btn btn-primary form-control"> View Channel </a>
+                        <% end %>
                      </ul>
-                     <button type="button" disabled class="btn btn-secondary col-12 mb-3 mt-1">Coming Soon</button>
                   </div>
                </div>
                <div class="card">
