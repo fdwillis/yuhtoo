@@ -407,15 +407,15 @@
                         <div class="user-post mt-4">
                            <% if idea.attachments.present? %>
                              <% idea.attachments.split(',').each do |file| %>
-                               <img src="https://res.cloudinary.com/fdwillis/image/upload/<%= file %>" alt="post-image" class="img-fluid rounded w-100" loading="lazy">
+                               <img src="https://res.cloudinary.com/fdwillis/image/upload/<%= file %>" alt="post-image" class="img-fluid rounded w-100" style="max-width: 100%;height: auto;" loading="lazy">
                              <% end %>
                            <% end %>
                         </div>
                         <div class="user-post mt-4">
                            <% if idea.videos.present? %>
                              <% idea.videos.split(',').each do |file| %>
-                              <div class="ratio ratio-16x9">
-                                 <video autoplay muted loop class="form-control fill" loading="lazy">
+                              <div class="col-12">
+                                 <video autoplay muted loop class="" style="max-width: 100%;height: auto;" loading="lazy">
                                    <source src="https://res.cloudinary.com/fdwillis/video/upload/<%= file %>">
                                  </video>
                               </div>
@@ -430,14 +430,14 @@
                            <% if idea.attachments.present? %>
                              <% idea.attachments.split(',').each do |file| %>
                               <div class="col-6">
-                               <img src="https://res.cloudinary.com/fdwillis/image/upload/<%= file %>" alt="post-image" class="img-fluid rounded w-100" loading="lazy">
+                               <img src="https://res.cloudinary.com/fdwillis/image/upload/<%= file %>" alt="post-image" class="img-fluid rounded w-100" style="max-width: 100%;height: auto;" loading="lazy">
                               </div>
                              <% end %>
                            <% end %>
                            <% if idea.videos.present? %>
                              <% idea.videos.split(',').each do |file| %>
                               <div class="col-6">
-                                 <video autoplay muted loop class="form-control fill" loading="lazy">
+                                 <video autoplay muted loop class="" style="max-width: 100%;height: auto;" loading="lazy">
                                    <source src="https://res.cloudinary.com/fdwillis/video/upload/<%= file %>">
                                  </video>
                               </div>

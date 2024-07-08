@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+	before_action :current_user
 	def destroy
 		session[:user_id] = nil
 		flash['success'] = 'Signed Out'
