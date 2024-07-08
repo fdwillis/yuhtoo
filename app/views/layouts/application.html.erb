@@ -294,7 +294,7 @@
             </a>
           </div>  
           <% if @current_user.present? %>
-            <button type="button" class="btn btn-secondary col-12 mb-3 me-1">View All Notifications</button>
+            <button type="button" class="btn btn-secondary col-12 mb-3 me-1">Notifications Coming Soon</button>
           <% else %>
             <%= link_to "Continue with Google", user_google_oauth2_omniauth_authorize_path %>
             <%= link_to image_tag('googlelogo.png'), user_google_oauth2_omniauth_authorize_path %>
