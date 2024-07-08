@@ -7,6 +7,11 @@ class ApplicationController < ActionController::Base
 		return
 	end
 
+	def reload
+    feed
+    render :partial => "ideas/ideas"
+  end
+
 	def feed
 		@ideas = Idea.all.reverse
 		#list of niche ideas -> as one becomes displayed remove it from list of others for partial to build out site

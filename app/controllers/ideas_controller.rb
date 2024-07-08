@@ -1,5 +1,17 @@
 class IdeasController < ApplicationController
-  before_action :set_idea, only: %i[ show edit update destroy ]
+  before_action :set_idea, only: %i[like unlike show edit update destroy ]
+
+  
+
+  def unlike
+    @idea.update(likes: @idea.likes.gsub(",#{@current_user&.uuid}", ""))
+    redirect_to '/feed'
+  end
+
+  def like
+    @idea.update(likes: "#{@idea&.likes},#{params[:uuid]}")
+    redirect_to '/feed'
+  end
 
   # GET /ideas or /ideas.json
   def index

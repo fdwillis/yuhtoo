@@ -23,10 +23,14 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_07_193937) do
   end
 
   create_table "ideas", force: :cascade do |t|
+    t.string "uuid"
+    t.string "spinOffFrom"
+    t.text "likes"
     t.text "description"
     t.text "attachments"
     t.text "videos"
     t.boolean "public", default: false
+    t.boolean "monetized", default: false
     t.text "titles"
     t.text "tags"
     t.text "scripts"

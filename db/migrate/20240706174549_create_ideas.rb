@@ -3,6 +3,7 @@ class CreateIdeas < ActiveRecord::Migration[7.1]
     create_table :ideas do |t|
       t.string :uuid
       t.string :spinOffFrom
+      t.text :likes
       t.text :description
       t.text :attachments
       t.text :videos
