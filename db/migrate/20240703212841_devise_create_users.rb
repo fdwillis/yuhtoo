@@ -8,6 +8,8 @@ class DeviseCreateUsers < ActiveRecord::Migration[7.1]
       t.string :name,               null: true, default: ""
       t.string :encrypted_password, null: true, default: ""
       t.string :uuid,               null: true, default: ""
+      t.string :stripeCustomerID,               null: true, default: ""
+      t.string :stripeAccountID,               null: true, default: ""
 
       ## Recoverable
       t.string   :reset_password_token
