@@ -9,7 +9,6 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
         sign_in_and_redirect @user, event: :authentication
       else
         session[:user_id] = nil
-        sign_out(@user)
         flash[:notice] = @user['error']
         redirect_to '/'
       end
