@@ -30,19 +30,19 @@
 en:
   datetime:
     distance_in_words:
-      half_a_minute: "half a minute"
+      half_a_min: "half a min"
       less_than_x_seconds:
         one:   "1 second" # default was: "less than 1 second"
         other: "%{count} seconds" # default was: "less than %{count} seconds"
       x_seconds:
         one:   "1 second"
         other: "%{count} seconds"
-      less_than_x_minutes:
-        one:   "a minute" # default was: "less than a minute"
-        other: "%{count} minutes" # default was: "less than %{count} minutes"
-      x_minutes:
-        one:   "1 minute"
-        other: "%{count} minutes"
+      less_than_x_mins:
+        one:   "a min" # default was: "less than a min"
+        other: "%{count} mins" # default was: "less than %{count} mins"
+      x_mins:
+        one:   "1 min"
+        other: "%{count} mins"
       about_x_hours:
         one:   "1 hour" # default was: "about 1 hour"
         other: "%{count} hours" # default was: "about %{count} hours"

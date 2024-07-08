@@ -5,14 +5,13 @@
                                            </div>
                                            <div class="comment-list-user-data">
                                               <div class="d-inline-flex align-items-center gap-1 flex-wrap">
-                                                 <spna class="fw-medium small text-capitalize"><%= time_ago_in_words(comment.created_at) %> ago</spna>
+                                           <div class="comment-list-comment">
+                                                 <span class="fw-medium small text-capitalize"><%= comment&.body %><br><%= time_ago_in_words(comment.created_at) %> ago</span>
+                                           </div>
                                               </div>
                                            </div>
                                         </div>
                                         <div class="comment-list-user-comment">
-                                           <div class="comment-list-comment">
-                                              <%= comment&.body %>
-                                           </div>
                                            <div class="comment-list-action mt-2">
                                                   
                                               <ul class="list-inline m-0 p-0 d-flex align-items-center gap-2">
