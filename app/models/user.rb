@@ -2,6 +2,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable#, :trackable , :lockable#,:confirmable, :validatable
   devise :omniauthable, omniauth_providers: [:google_oauth2]
+  has_many :comments
+  has_many :replies
 
 
   def self.from_omniauth(access_token)

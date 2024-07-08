@@ -1,5 +1,5 @@
 class IdeasController < ApplicationController
-  before_action :set_idea, only: %i[like unlike show edit update destroy ]
+  before_action :set_idea, only: %i[reaction like unlike show edit update destroy ]
 
   
 
@@ -13,9 +13,15 @@ class IdeasController < ApplicationController
     redirect_to '/feed'
   end
 
+  def reaction
+    @idea.comments.find(params[:comment]).update(reactions: "#{@idea&.comments.present? ? @idea&.comments.find(params[:comment]).reactions : ''},#{params[:uuid]}")
+    @comment = @idea.comments.find(params[:comment])
+    redirect_to '/feed'
+  end
+
   # GET /ideas or /ideas.json
   def index
-    @ideas = Idea.all
+    @ideas = Idea.all.reverse
   end
 
   # GET /ideas/1 or /ideas/1.json

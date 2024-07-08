@@ -1,0 +1,6 @@
+<% if @ideas.present? %>
+  <% @ideas.flatten.each do |idea| %>
+			<%= render "ideas/idea", idea:idea, link: idea_url(idea[:id].to_i) %>   
+  <% end %>
+<% end %>
+

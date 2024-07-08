@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :comments
   root "application#index"
   devise_for :users, controllers: {sessions: 'application', omniauth_callbacks: 'users/omniauth_callbacks' }
 
@@ -10,6 +11,8 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   resources :ideas
+  get 'reaction/:id/:comment/:uuid', to: 'ideas#reaction'
+  get 'unreaction/:id/:uuid', to: 'ideas#unreaction'
   get 'like/:id/:uuid', to: 'ideas#like'
   get 'unlike/:id/:uuid', to: 'ideas#unlike'
 
