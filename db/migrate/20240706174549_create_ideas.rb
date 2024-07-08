@@ -1,6 +1,8 @@
 class CreateIdeas < ActiveRecord::Migration[7.1]
   def change
     create_table :ideas do |t|
+      t.string :uuid
+      t.string :spinOffFrom
       t.text :description
       t.text :attachments
       t.text :videos
