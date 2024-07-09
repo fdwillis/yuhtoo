@@ -13,6 +13,7 @@
 //= require swiper
 //= require jquery
 //= require lightbox2
+//= require rails-ujs
 //= require_tree .
 
 (function (jQuery) {
