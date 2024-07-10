@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
   end
 
 	def feed
-		@ideas = Idea.all.reverse
+		@ideas = Idea.find_each.sort_by(&:created_at).reverse
 		#list of niche ideas -> as one becomes displayed remove it from list of others for partial to build out site
 		@niches = Niche.all.shuffle
 		@experts = Expert.all.shuffle

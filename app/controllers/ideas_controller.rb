@@ -26,7 +26,7 @@ class IdeasController < ApplicationController
 
   # GET /ideas or /ideas.json
   def index
-    @ideas = Idea.all.reverse
+    @ideas = Idea.find_each.sort_by(&:created_at).reverse
   end
 
   # GET /ideas/1 or /ideas/1.json

@@ -26,11 +26,11 @@ class CommentsController < ApplicationController
     if @comment.save
       flash[:success] = 'Comment saved'
       # redirect_to '/feed'
-      redirect_to '/feed'
+      redirect_to request.referrer
     else
       flash[:error] = @comment.errors.messages
       # redirect_to '/feed'
-      redirect_to '/feed'
+      redirect_to request.referrer
 
     end
   end
