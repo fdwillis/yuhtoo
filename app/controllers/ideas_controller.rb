@@ -5,18 +5,23 @@ class IdeasController < ApplicationController
 
   def unlike
     @idea.update(likes: @idea.likes.gsub(",#{@current_user&.uuid}", ""))
-    redirect_to '/feed'
+    redirect_to request.referrer
   end
 
   def like
     @idea.update(likes: "#{@idea&.likes},#{params[:uuid]}")
-    redirect_to '/feed'
+    @idea
+    respond_to do |format|
+      format.html
+      format.js {render :partial => "ideas/likes", idea: @idea}
+    end
+    redirect_to @idea
   end
 
   def reaction
     @idea.comments.find(params[:comment]).update(reactions: "#{@idea&.comments.present? ? @idea&.comments.find(params[:comment]).reactions : ''},#{params[:uuid]}")
     @comment = @idea.comments.find(params[:comment])
-    redirect_to '/feed'
+    redirect_to @idea
   end
 
   # GET /ideas or /ideas.json
@@ -26,6 +31,13 @@ class IdeasController < ApplicationController
 
   # GET /ideas/1 or /ideas/1.json
   def show
+    if params['getPaid']
+      @panel = 'getPaid'
+    elsif params['comments']
+      @panel = 'comments'
+    elsif params['storyBoard']
+      @panel = 'storyBoard'
+    end
   end
 
   # GET /ideas/new
