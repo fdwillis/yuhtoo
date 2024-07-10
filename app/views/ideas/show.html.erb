@@ -15,12 +15,12 @@
 		<div class="user-post-data">
 		  <div class="d-flex align-items-center justify-content-between">
 		     <div class="w-100">
-		        <div class="d-flex align-items-center justify-content-between">
 		           <div>
 		             <p class="m-0">
 		               <%= markdown(@idea.description) %>
 		             </p>
 		           </div>
+		        <div class="d-flex align-items-center justify-content-between">
 		           <!-- storyboard payout reports dropdown -->
 		           <div class="card-post-toolbar">
 		           	<%= render "ideas/likes", idea: @idea %>
