@@ -28,6 +28,7 @@ class ApplicationController < ActionController::Base
 
 	def index
 		current_user
+		feed
 	end
 
 	def current_user
