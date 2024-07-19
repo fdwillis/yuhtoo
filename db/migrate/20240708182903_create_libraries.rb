@@ -5,4 +5,7 @@ class CreateLibraries < ActiveRecord::Migration[7.1]
       t.string :creator
       t.string :link
 
-      t.times
+      t.timestamps
+    end
+  end
+end
