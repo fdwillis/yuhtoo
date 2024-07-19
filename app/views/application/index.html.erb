@@ -159,11 +159,86 @@
       </div>
    </section>
 <% else %>
-
+  <div class="iq-comingsoon mt-5 mt-lg-0 mb-n5">
+      <div class="container">
+        <div class="auto-vh-100 d-flex flex-column justify-content-center">
+          <div class="row justify-content-center">
+            <div class="col-md-8 text-center">
+                <div class="iq-comingsoon-info">
+                  <div class="row">
+                    
+                     <a class="d-inline-flex align-items-center justify-content-center">
+                       <%= image_tag 'YuhToo.png', class: 'signin-img img-fluid rounded-3', style: 'height:180px;width:180px;' %>
+                     </a>
+                  </div>
+                  <div class="row">
+                    <a href="/" class="d-flex justify-content-center align-items-center gap-2 iq-header-logo d-none d-lg-flex">
+                    
+                      <h3 class="logo-title d-none d-sm-block" data-setting="app_name">YuhToo</h3>
+                    </a>
+                  </div>
+                  <div class="row">
+                    <a href="<%= destroy_user_session_path %>" class="d-flex justify-content-center align-items-center gap-2 iq-header-logo d-none d-lg-flex">                  
+                      <%= link_to 'Sign Out', destroy_user_session_path, method: :delete%>
+                    </a>
+                  </div>
+                  <h2 class="mt-4 mb-1">LIFETIME memberships</h2>
+                  <p><em><strong>Approaching The End</strong></em></p>
+                  <h3>Jan 1 2025</h3>
+                  
+                  <ul class="countdown row list-inline" data-date="Jan 01 2025 00:00:00">
+                    <li class="col-md-6 col-xl-3">
+                      <div class="card">
+                        <div class="card-body">
+                          <span  id="days" class="text-center" data-days=""></span>Days
+                        </div>
+                      </div>
+                    </li>
+                    <li class="col-md-6 col-xl-3">
+                      <div class="card">
+                        <div class="card-body">
+                          <span id="hours" class="text-center" data-hours=""></span>Hours
+                        </div>
+                      </div>
+                    </li>
+                    <li class="col-md-6 col-xl-3">
+                      <div class="card">
+                        <div class="card-body">
+                          <span id="minutes" class="text-center" data-minutes=""></span>Minutes
+                        </div>
+                      </div>
+                    </li>
+                    <li class="col-md-6 col-xl-3">
+                      <div class="card">
+                        <div class="card-body">
+                          <span id="seconds" class="text-center" data-seconds=""></span>Seconds
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+            </div>
+          </div>
+        </div>   
+      </div>
+  </div>
+    <div class="content-inner " id="page_layout">
+         <div class="row">
+            <div class="col-12">
+               <div class="card position-relative inner-page-bg bg-primary" style="height: 150px;">
+                  <div class="inner-page-title">
+                    <h3 class="text-white">LIFETIME Membership</h3>
+                    <p class="text-white mb-0">Get Yours Before It's Too Late</p>
+                    <button type="button" class="btn btn-secondary-subtle">Get Started</button>
+                  </div>
+               </div>
+            </div>
+          </div>
+    </div>
   <div class="iq-comingsoon mt-4">
     <ul class=" list-unstyled row mb-0">
         <li class="col-lg-3 col-md-6">
-          <a class="nav-link " type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">
+          <a class="nav-link" type="button" data-bs-toggle="modal" data-bs-target="#newIdea">
                   
 
                 
@@ -200,6 +275,9 @@
           </a>
         </li>
         <li class="col-lg-3 col-md-6">
+          <a class="nav-link" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptionsx" aria-controls="offcanvasWithBothOptionsx">
+                      
+
             <div class="card">
                 <div class="card-body">
                     <div class="points">
@@ -212,6 +290,8 @@
                     </div>
                 </div>
             </div>
+          </a>
+
         </li>
         <li class="col-lg-3 col-md-6">
             <div class="card">
@@ -360,74 +440,11 @@
   </div>
   
 
-  <div class="iq-comingsoon mt-5 mt-lg-0 mb-n5">
-      <div class="container">
-        <div class="auto-vh-100 d-flex flex-column justify-content-center">
-          <div class="row justify-content-center">
-            <div class="col-md-8 text-center">
-                <div class="iq-comingsoon-info">
-                  <div class="row">
-                    
-                     <a class="d-inline-flex align-items-center justify-content-center">
-                       <%= image_tag 'YuhToo.png', class: 'signin-img img-fluid rounded-3', style: 'height:180px;width:180px;' %>
-                     </a>
-                  </div>
-                  <div class="row">
-                    <a href="/" class="d-flex justify-content-center align-items-center gap-2 iq-header-logo d-none d-lg-flex">
-                    
-                      <h3 class="logo-title d-none d-sm-block" data-setting="app_name">YuhToo</h3>
-                    </a>
-                  </div>
-                  <div class="row">
-                    <a href="<%= destroy_user_session_path %>" class="d-flex justify-content-center align-items-center gap-2 iq-header-logo d-none d-lg-flex">                  
-                      <%= link_to 'Sign Out', destroy_user_session_path, method: :delete%>
-                    </a>
-                  </div>
-                  <h2 class="mt-4 mb-1">Stay tunned, we're launching very soon</h2>
-                  <p><em><strong>YuhToo will release slowly to ensure quality</strong></em></p>
-                  <h3>Jan 1 2025</h3>
-                  
-                  <ul class="countdown row list-inline" data-date="Jan 01 2025 00:00:00">
-                    <li class="col-md-6 col-xl-3">
-                      <div class="card">
-                        <div class="card-body">
-                          <span  id="days" class="text-center" data-days=""></span>Days
-                        </div>
-                      </div>
-                    </li>
-                    <li class="col-md-6 col-xl-3">
-                      <div class="card">
-                        <div class="card-body">
-                          <span id="hours" class="text-center" data-hours=""></span>Hours
-                        </div>
-                      </div>
-                    </li>
-                    <li class="col-md-6 col-xl-3">
-                      <div class="card">
-                        <div class="card-body">
-                          <span id="minutes" class="text-center" data-minutes=""></span>Minutes
-                        </div>
-                      </div>
-                    </li>
-                    <li class="col-md-6 col-xl-3">
-                      <div class="card">
-                        <div class="card-body">
-                          <span id="seconds" class="text-center" data-seconds=""></span>Seconds
-                        </div>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-            </div>
-          </div>
-        </div>   
-      </div>
-  </div>
+  
    
-  <div class="content-inner " id="page_layout">
-    <div class="container">
-       <div class="row justify-content-center">
-          <div class="col-sm-12">
+  <div class="content-inner mt-4 " id="page_layout">
+       <div class="row">
+          <div class="col-12">
              <div class="card position-relative inner-page-bg bg-primary" style="height: 150px;">
                 <div class="inner-page-title">
                    <h3 class="text-white">YuhToo Reports</h3>
@@ -463,7 +480,6 @@
              </div>
           
        </div>
-    </div>
   </div>
 <% end %>
 

@@ -125,17 +125,21 @@
     <script src="../assets/js/lottie.js"></script>
     <script src="../assets/js/select2.js"></script>
     <script src="../assets/js/ecommerce.js"></script> -->
-    <div class="offcanvas offcanvas-start on-rtl start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
-        <div class="offcanvas-header mb-n4">
-            <h4 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Get Paid For Your Idea</h4>
-        </div>
-        <div class="offcanvas-body mb-0">
-          <h6>Titles, tags, and scripts (images &amp; video soon)</h6>
-          <ul>
+    <div class="modal fade" id="newIdea" tabindex="-1" aria-labelledby="newIdeaLabel" style="display: none;" aria-hidden="true">
+      <div class="modal-dialog modal-fullscreen modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+               <h1 class="modal-title " id="exampleModalScrollableTitle">New Idea</h1>
+               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+               
+               </button>
+            </div>
+            <div class="modal-body">
+              <div class="card">
+                  <ul>
             <li>Describe Your Idea</li>
             <li>Chat With The Community</li>
             <li>Experts Craft Content For You</li>
-            <li>ChatGPT integration happening NOW</li>
           </ul>
             <div class="row">
                <div class="col-sm-12">
@@ -143,7 +147,7 @@
                     <%= form_for :idea, :url => { :controller => 'ideas', :action => "create" } do |f| %>
 
                           <div class="form-contro" rows="5" id="exampleFormControlTextarea1">
-                            <%= f.text_area :description, required: true, id: 'validationDefault01', class: 'form-control rounded px-0', placeholder: " Markdown as needed" %>
+                            <%= f.text_area :description, required: true, id: 'validationDefault01', class: 'form-control rounded px-0', placeholder: " Start typing here. Use markdown as needed..." %>
                           </div>
                     
                       <div class="card-body bg-primary-subtle rounded-bottom-3">
@@ -176,11 +180,7 @@
                            <div>
                             <% if @current_user.present? %>
                               <%= link_to "Markdown Cheat Sheet", 'https://github.com/lifeparticle/Markdown-Cheatsheet' %>
-                              <ul class="list-inline m-0 p-0 d-flex align-items-center">
-                                 <li>
                                     <%= f.submit 'Post', class: "btn btn-primary px-4" %>
-                                 </li>
-                              </ul>
                             <% else %>
                               <%= link_to "Continue with Google", user_google_oauth2_omniauth_authorize_path %>
                               <%= link_to image_tag('googlelogo.png'), user_google_oauth2_omniauth_authorize_path %>
@@ -192,8 +192,17 @@
                   </div>
                </div>
             </div>
-        </div>
+                 
+              </div>
+            </div>
+            <div class="modal-footer bg-primary">
+               <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+            </div>
+         </div>
+      </div>
     </div>
+
+    
 
     <div class="offcanvas offcanvas-end on-rtl start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptionsx" aria-labelledby="offcanvasWithBothOptionsLabel">
       <div class="card m-0 shadow">
