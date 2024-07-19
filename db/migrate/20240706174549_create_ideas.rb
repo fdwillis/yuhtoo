@@ -14,9 +14,4 @@ class CreateIdeas < ActiveRecord::Migration[7.1]
       t.text :scripts
       t.string :userID
       
-      t.belongs_to :user, null: false, foreign_key: true
-
-      t.timestamps
-    end
-  end
-end
+      t.belongs_to :user, null:

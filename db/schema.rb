@@ -66,6 +66,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_19_165945) do
 
   create_table "libraries", force: :cascade do |t|
     t.string "title"
+    t.string "creator"
     t.string "link"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

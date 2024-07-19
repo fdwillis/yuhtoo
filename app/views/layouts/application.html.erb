@@ -383,122 +383,62 @@
                          <div class="tab-content" id="experts87h">
                             <div class="tab-pane fade active show" id="home" role="tabpanel" aria-labelledby="home-tab">
                               <div class="row">
-                                <div class="col-sm-4 social-post">
-                                  <div class="card card-block card-stretch card-height">
-                                        <div class="user-post mt-4">
-                                           <div class="ratio ratio-16x9">
-                                              <iframe src="https://www.youtube.com/embed/oHD33oKbKh4?si=VF-Qcp-pZdzUb3RX" allowfullscreen=""></iframe>
-                                           </div>
-                                        </div>
-                                        <div class="mt-4">
-                                          <h5 class="mb-2">Gold User</h5>
-                                        </div>
-                                  </div>
-                                </div>
-                                <div class="col-sm-4 social-post">
-                                  <div class="card card-block card-stretch card-height">
-                                        <div class="user-post mt-4">
-                                           <div class="ratio ratio-16x9">
-                                              <iframe src="https://www.youtube.com/embed/oHD33oKbKh4?si=VF-Qcp-pZdzUb3RX" allowfullscreen=""></iframe>
-                                           </div>
-                                        </div>
-                                        <div class="mt-4">
-                                          <h5 class="mb-2">Gold User</h5>
-                                        </div>
-                                  </div>
-                                </div>
-                                <div class="col-sm-4 social-post">
-                                  <div class="card card-block card-stretch card-height">
-                                        <div class="user-post mt-4">
-                                           <div class="ratio ratio-16x9">
-                                              <iframe src="https://www.youtube.com/embed/oHD33oKbKh4?si=VF-Qcp-pZdzUb3RX" allowfullscreen=""></iframe>
-                                           </div>
-                                        </div>
-                                        <div class="mt-4">
-                                          <h5 class="mb-2">Gold User</h5>
-                                        </div>
-                                  </div>
-                                </div>
+                                <% @library.each do |video| %>
+                                  <% if video&.creator == 'millie' %>
+                                    <div class="col-sm-4 social-post">
+                                      <div class="card card-block card-stretch card-height">
+                                            <div class="user-post mt-4">
+                                               <div class="ratio ratio-16x9">
+                                                  <iframe src="<%= video.link %>" allowfullscreen=""></iframe>
+                                               </div>
+                                            </div>
+                                            <div class="mt-4">
+                                              <h5 class="mb-2"><%= video.title %></h5>
+                                            </div>
+                                      </div>
+                                    </div>
+                                  <% end %>
+                                <% end %>
                               </div>      
                             </div>
                             <div class="tab-pane fade" id="profile-one" role="tabpanel" aria-labelledby="profile-tab">
                               <div class="row">
-                                <div class="col-sm-4 social-post">
-                                  <div class="card card-block card-stretch card-height">
-                                        <div class="user-post mt-4">
-                                           <div class="ratio ratio-16x9">
-                                              <iframe src="https://www.youtube.com/embed/oHD33oKbKh4?si=VF-Qcp-pZdzUb3RX" allowfullscreen=""></iframe>
-                                           </div>
-                                        </div>
-                                        <div class="mt-4">
-                                          <h5 class="mb-2">Gold User</h5>
-                                        </div>
-                                  </div>
-                                </div>
-                                <div class="col-sm-4 social-post">
-                                  <div class="card card-block card-stretch card-height">
-                                        <div class="user-post mt-4">
-                                           <div class="ratio ratio-16x9">
-                                              <iframe src="https://www.youtube.com/embed/oHD33oKbKh4?si=VF-Qcp-pZdzUb3RX" allowfullscreen=""></iframe>
-                                           </div>
-                                        </div>
-                                        <div class="mt-4">
-                                          <h5 class="mb-2">Gold User</h5>
-                                        </div>
-                                  </div>
-                                </div>
-                                <div class="col-sm-4 social-post">
-                                  <div class="card card-block card-stretch card-height">
-                                        <div class="user-post mt-4">
-                                           <div class="ratio ratio-16x9">
-                                              <iframe src="https://www.youtube.com/embed/oHD33oKbKh4?si=VF-Qcp-pZdzUb3RX" allowfullscreen=""></iframe>
-                                           </div>
-                                        </div>
-                                        <div class="mt-4">
-                                          <h5 class="mb-2">Gold User</h5>
-                                        </div>
-                                  </div>
-                                </div>
+                                <% @library.each do |video| %>
+                                  <% if video&.creator == 'marcus' %>
+                                    <div class="col-sm-4 social-post">
+                                      <div class="card card-block card-stretch card-height">
+                                            <div class="user-post mt-4">
+                                               <div class="ratio ratio-16x9">
+                                                  <iframe src="<%= video.link %>" allowfullscreen=""></iframe>
+                                               </div>
+                                            </div>
+                                            <div class="mt-4">
+                                              <h5 class="mb-2"><%= video.title %></h5>
+                                            </div>
+                                      </div>
+                                    </div>
+                                  <% end %>
+                                <% end %>
                               </div>    
                             </div>
                             <div class="tab-pane fade " id="contact" role="tabpanel" aria-labelledby="contact-tab">
                               <div class="row">
-                                <div class="col-sm-4 social-post">
-                                  <div class="card card-block card-stretch card-height">
-                                        <div class="user-post mt-4">
-                                           <div class="ratio ratio-16x9">
-                                              <iframe src="https://www.youtube.com/embed/oHD33oKbKh4?si=VF-Qcp-pZdzUb3RX" allowfullscreen=""></iframe>
-                                           </div>
-                                        </div>
-                                        <div class="mt-4">
-                                          <h5 class="mb-2">Gold User</h5>
-                                        </div>
-                                  </div>
-                                </div>
-                                <div class="col-sm-4 social-post">
-                                  <div class="card card-block card-stretch card-height">
-                                        <div class="user-post mt-4">
-                                           <div class="ratio ratio-16x9">
-                                              <iframe src="https://www.youtube.com/embed/oHD33oKbKh4?si=VF-Qcp-pZdzUb3RX" allowfullscreen=""></iframe>
-                                           </div>
-                                        </div>
-                                        <div class="mt-4">
-                                          <h5 class="mb-2">Gold User</h5>
-                                        </div>
-                                  </div>
-                                </div>
-                                <div class="col-sm-4 social-post">
-                                  <div class="card card-block card-stretch card-height">
-                                        <div class="user-post mt-4">
-                                           <div class="ratio ratio-16x9">
-                                              <iframe src="https://www.youtube.com/embed/oHD33oKbKh4?si=VF-Qcp-pZdzUb3RX" allowfullscreen=""></iframe>
-                                           </div>
-                                        </div>
-                                        <div class="mt-4">
-                                          <h5 class="mb-2">Gold User</h5>
-                                        </div>
-                                  </div>
-                                </div>
+                                <% @library.each do |video| %>
+                                  <% if video&.creator == 'matt' %>
+                                    <div class="col-sm-4 social-post">
+                                      <div class="card card-block card-stretch card-height">
+                                            <div class="user-post mt-4">
+                                               <div class="ratio ratio-16x9">
+                                                  <iframe src="<%= video.link %>" allowfullscreen=""></iframe>
+                                               </div>
+                                            </div>
+                                            <div class="mt-4">
+                                              <h5 class="mb-2"><%= video.title %></h5>
+                                            </div>
+                                      </div>
+                                    </div>
+                                  <% end %>
+                                <% end %>
                               </div>    
                             </div>
                          </div>
@@ -555,162 +495,81 @@
                          <div class="tab-content" id="343eeddd">
                             <div class="tab-pane fade active show" id="all" role="tabpanel" aria-labelledby="all-tab">
                               <div class="row">
-                                <div class="col-sm-4 social-post">
-                                  <div class="card card-block card-stretch card-height">
-                                        <div class="user-post mt-4">
-                                           <div class="ratio ratio-16x9">
-                                              <iframe src="https://www.youtube.com/embed/oHD33oKbKh4?si=VF-Qcp-pZdzUb3RX" allowfullscreen=""></iframe>
-                                           </div>
-                                        </div>
-                                        <div class="mt-4">
-                                          <h5 class="mb-2">Gold User</h5>
-                                        </div>
+                                <% @library.each do |video| %>
+
+                                  <div class="col-sm-4 social-post">
+                                    <div class="card card-block card-stretch card-height">
+                                          <div class="user-post mt-4">
+                                             <div class="ratio ratio-16x9">
+                                                <iframe src="<%= video.link %>" allowfullscreen=""></iframe>
+                                             </div>
+                                          </div>
+                                          <div class="mt-4">
+                                            <h5 class="mb-2"><%= video.title %></h5>
+                                          </div>
+                                    </div>
                                   </div>
-                                </div>
-                                <div class="col-sm-4 social-post">
-                                  <div class="card card-block card-stretch card-height">
-                                        <div class="user-post mt-4">
-                                           <div class="ratio ratio-16x9">
-                                              <iframe src="https://www.youtube.com/embed/oHD33oKbKh4?si=VF-Qcp-pZdzUb3RX" allowfullscreen=""></iframe>
-                                           </div>
-                                        </div>
-                                        <div class="mt-4">
-                                          <h5 class="mb-2">Gold User</h5>
-                                        </div>
-                                  </div>
-                                </div>
-                                <div class="col-sm-4 social-post">
-                                  <div class="card card-block card-stretch card-height">
-                                        <div class="user-post mt-4">
-                                           <div class="ratio ratio-16x9">
-                                              <iframe src="https://www.youtube.com/embed/oHD33oKbKh4?si=VF-Qcp-pZdzUb3RX" allowfullscreen=""></iframe>
-                                           </div>
-                                        </div>
-                                        <div class="mt-4">
-                                          <h5 class="mb-2">Gold User</h5>
-                                        </div>
-                                  </div>
-                                </div>
+                                <% end %>
                               </div> 
                             </div>
                             <div class="tab-pane fade" id="34fwe" role="tabpanel" aria-labelledby="34fwe-tab">
                               <div class="row">
-                                <div class="col-sm-4 social-post">
-                                  <div class="card card-block card-stretch card-height">
-                                        <div class="user-post mt-4">
-                                           <div class="ratio ratio-16x9">
-                                              <iframe src="https://www.youtube.com/embed/oHD33oKbKh4?si=VF-Qcp-pZdzUb3RX" allowfullscreen=""></iframe>
-                                           </div>
-                                        </div>
-                                        <div class="mt-4">
-                                          <h5 class="mb-2">Gold User</h5>
-                                        </div>
-                                  </div>
-                                </div>
-                                <div class="col-sm-4 social-post">
-                                  <div class="card card-block card-stretch card-height">
-                                        <div class="user-post mt-4">
-                                           <div class="ratio ratio-16x9">
-                                              <iframe src="https://www.youtube.com/embed/oHD33oKbKh4?si=VF-Qcp-pZdzUb3RX" allowfullscreen=""></iframe>
-                                           </div>
-                                        </div>
-                                        <div class="mt-4">
-                                          <h5 class="mb-2">Gold User</h5>
-                                        </div>
-                                  </div>
-                                </div>
-                                <div class="col-sm-4 social-post">
-                                  <div class="card card-block card-stretch card-height">
-                                        <div class="user-post mt-4">
-                                           <div class="ratio ratio-16x9">
-                                              <iframe src="https://www.youtube.com/embed/oHD33oKbKh4?si=VF-Qcp-pZdzUb3RX" allowfullscreen=""></iframe>
-                                           </div>
-                                        </div>
-                                        <div class="mt-4">
-                                          <h5 class="mb-2">Gold User</h5>
-                                        </div>
-                                  </div>
-                                </div>
+                                <% @library.each do |video| %>
+                                  <% if video.creator == 'ytkeywords' %>
+                                    <div class="col-sm-4 social-post">
+                                      <div class="card card-block card-stretch card-height">
+                                            <div class="user-post mt-4">
+                                               <div class="ratio ratio-16x9">
+                                                  <iframe src="<%= video.link %>" allowfullscreen=""></iframe>
+                                               </div>
+                                            </div>
+                                            <div class="mt-4">
+                                              <h5 class="mb-2"><%= video.title %></h5>
+                                            </div>
+                                      </div>
+                                    </div>
+                                  <% end %>
+                                <% end %>
                               </div>   
                             </div>
                             <div class="tab-pane fade" id="3433dweww-one" role="tabpanel" aria-labelledby="3433dweww-tab">
                               <div class="row">
-                                <div class="col-sm-4 social-post">
-                                  <div class="card card-block card-stretch card-height">
-                                        <div class="user-post mt-4">
-                                           <div class="ratio ratio-16x9">
-                                              <iframe src="https://www.youtube.com/embed/oHD33oKbKh4?si=VF-Qcp-pZdzUb3RX" allowfullscreen=""></iframe>
-                                           </div>
-                                        </div>
-                                        <div class="mt-4">
-                                          <h5 class="mb-2">Gold User</h5>
-                                        </div>
-                                  </div>
-                                </div>
-                                <div class="col-sm-4 social-post">
-                                  <div class="card card-block card-stretch card-height">
-                                        <div class="user-post mt-4">
-                                           <div class="ratio ratio-16x9">
-                                              <iframe src="https://www.youtube.com/embed/oHD33oKbKh4?si=VF-Qcp-pZdzUb3RX" allowfullscreen=""></iframe>
-                                           </div>
-                                        </div>
-                                        <div class="mt-4">
-                                          <h5 class="mb-2">Gold User</h5>
-                                        </div>
-                                  </div>
-                                </div>
-                                <div class="col-sm-4 social-post">
-                                  <div class="card card-block card-stretch card-height">
-                                        <div class="user-post mt-4">
-                                           <div class="ratio ratio-16x9">
-                                              <iframe src="https://www.youtube.com/embed/oHD33oKbKh4?si=VF-Qcp-pZdzUb3RX" allowfullscreen=""></iframe>
-                                           </div>
-                                        </div>
-                                        <div class="mt-4">
-                                          <h5 class="mb-2">Gold User</h5>
-                                        </div>
-                                  </div>
-                                </div>
+                                <% @library.each do |video| %>
+                                  <% if video.creator == 'ytinspiration' %>
+                                    <div class="col-sm-4 social-post">
+                                      <div class="card card-block card-stretch card-height">
+                                            <div class="user-post mt-4">
+                                               <div class="ratio ratio-16x9">
+                                                  <iframe src="<%= video.link %>" allowfullscreen=""></iframe>
+                                               </div>
+                                            </div>
+                                            <div class="mt-4">
+                                              <h5 class="mb-2"><%= video.title %></h5>
+                                            </div>
+                                      </div>
+                                    </div>
+                                  <% end %>
+                                <% end %>
                               </div>  
                             </div>
                             <div class="tab-pane fade " id="cwecwe33e" role="tabpanel" aria-labelledby="cwecwe33e-tab">
                               <div class="row">
-                                <div class="col-sm-4 social-post">
-                                  <div class="card card-block card-stretch card-height">
-                                        <div class="user-post mt-4">
-                                           <div class="ratio ratio-16x9">
-                                              <iframe src="https://www.youtube.com/embed/oHD33oKbKh4?si=VF-Qcp-pZdzUb3RX" allowfullscreen=""></iframe>
-                                           </div>
-                                        </div>
-                                        <div class="mt-4">
-                                          <h5 class="mb-2">Gold User</h5>
-                                        </div>
-                                  </div>
-                                </div>
-                                <div class="col-sm-4 social-post">
-                                  <div class="card card-block card-stretch card-height">
-                                        <div class="user-post mt-4">
-                                           <div class="ratio ratio-16x9">
-                                              <iframe src="https://www.youtube.com/embed/oHD33oKbKh4?si=VF-Qcp-pZdzUb3RX" allowfullscreen=""></iframe>
-                                           </div>
-                                        </div>
-                                        <div class="mt-4">
-                                          <h5 class="mb-2">Gold User</h5>
-                                        </div>
-                                  </div>
-                                </div>
-                                <div class="col-sm-4 social-post">
-                                  <div class="card card-block card-stretch card-height">
-                                        <div class="user-post mt-4">
-                                           <div class="ratio ratio-16x9">
-                                              <iframe src="https://www.youtube.com/embed/oHD33oKbKh4?si=VF-Qcp-pZdzUb3RX" allowfullscreen=""></iframe>
-                                           </div>
-                                        </div>
-                                        <div class="mt-4">
-                                          <h5 class="mb-2">Gold User</h5>
-                                        </div>
-                                  </div>
-                                </div>
+                                <% @library.each do |video| %>
+                                  <% if video.creator == 'ytthumbnails' %>
+                                    <div class="col-sm-4 social-post">
+                                      <div class="card card-block card-stretch card-height">
+                                            <div class="user-post mt-4">
+                                               <div class="ratio ratio-16x9">
+                                                  <iframe src="<%= video.link %>" allowfullscreen=""></iframe>
+                                               </div>
+                                            </div>
+                                            <div class="mt-4">
+                                              <h5 class="mb-2"><%= video.title %></h5>
+                                            </div>
+                                      </div>
+                                    </div>
+                                  <% end %>
+                                <% end %>
                               </div>  
                             </div>
                          </div>
