@@ -147,7 +147,7 @@
                     <%= form_for :idea, :url => { :controller => 'ideas', :action => "create" } do |f| %>
 
                           <div class="form-contro" rows="5" id="exampleFormControlTextarea1">
-                            <%= f.text_area :description, required: true, id: 'validationDefault01', class: 'form-control rounded px-0', placeholder: " Start typing here. Use markdown as needed..." %>
+                            <%= f.text_area :description, required: true, id: 'validationDefault01', class: 'form-control rounded px-0', placeholder: " Start typing here. Use markdown as needed...", cols: 30, rows: 10  %>
                           </div>
                     
                       <div class="card-body bg-primary-subtle rounded-bottom-3">
@@ -179,8 +179,8 @@
                            </div>
                            <div>
                             <% if @current_user.present? %>
-                              <%= link_to "Markdown Cheat Sheet", 'https://github.com/lifeparticle/Markdown-Cheatsheet' %>
-                                    <%= f.submit 'Post', class: "btn btn-primary px-4" %>
+                              <%= link_to "Markdown Cheat Sheet", 'https://github.com/lifeparticle/Markdown-Cheatsheet', target: '_blank' %>
+                              <%= f.submit 'Post', class: "btn btn-primary px-4" %>
                             <% else %>
                               <%= link_to "Continue with Google", user_google_oauth2_omniauth_authorize_path %>
                               <%= link_to image_tag('googlelogo.png'), user_google_oauth2_omniauth_authorize_path %>
