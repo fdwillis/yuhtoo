@@ -53,7 +53,7 @@ class IdeasController < ApplicationController
   def create
     
 
-    @idea = Idea.new(idea_params)
+    @idea = @current_user.ideas.create(idea_params)
 
     
 

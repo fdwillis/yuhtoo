@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  comments: one
+  alertMembers: MyString
+  url: MyString
+  user: one
+  seenBy: MyString
+  alertType: MyString
+
+two:
+  comments: two
+  alertMembers: MyString
+  url: MyString
+  user: two
+  seenBy: MyString
+  alertType: MyString

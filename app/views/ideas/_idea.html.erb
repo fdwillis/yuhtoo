@@ -7,7 +7,6 @@
               <%= truncate(markdown(idea.description), length: 1000, :escape => false) { link_to "View More", idea_path(idea) } %>
 
                   </p>
-                  <%= render "ideas/likes", idea: idea %>
               <div class="d-flex align-items-center justify-content-between">
                  <div>
                   
