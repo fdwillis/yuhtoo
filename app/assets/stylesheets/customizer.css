@@ -9,7 +9,7 @@
 :root {
     --bs-primary: #ff0000;
     --bs-primary-rgb: 255,0,0;
-    --bs-primary-bg-subtle: #dcf0ff;
+    --bs-primary-bg-subtle: #ffa4a4;
     --bs-primary-border-subtle: var(--bs-primary-bg-subtle);
     --bs-link-color-rgb: var(--bs-primary-rgb);
     --bs-primary-hover-bg: #4091cc;
