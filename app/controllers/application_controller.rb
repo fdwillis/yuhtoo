@@ -39,7 +39,7 @@ class ApplicationController < ActionController::Base
 				  type: 'account_onboarding',
 				})
 			end
-		else
+		elsif session[:user_id].present?
 			accountX = Stripe::Account.create({
 			  country: 'US',
 			  email: current_user&.email,
