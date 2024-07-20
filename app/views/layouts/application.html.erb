@@ -380,12 +380,12 @@
                                 <p>Sell to your audience with a customized page</p>
 
                                 
-                                <button type="button" class="btn mb-1 <%= @current_user&.present? && (@current_user&.proofOfSales) == 0 ? 'btn-danger-subtle' : @current_user&.present? && (@current_user&.proofOfSales) >= 100000 ? 'btn-success-subtle' : 'btn-warning-subtle' %> form-control">
-                                  Proof of Sales <span class="badge <%= @current_user&.present? && (@current_user&.proofOfSales) == 0 ? 'bg-danger' : @current_user&.present? &&  (@current_user&.proofOfSales) >= 100000 ? 'bg-success' : 'bg-warning' %> ml-2"><%= number_to_currency(@current_user&.proofOfSales) %>/$100,000</span>
+                                <button type="button" class="btn mb-1 <%= @current_user&.present? && (@current_user&.proofOfSales.to_i) == 0 ? 'btn-danger-subtle' : @current_user&.present? && (@current_user&.proofOfSales.to_i) >= 100000 ? 'btn-success-subtle' : 'btn-warning-subtle' %> form-control">
+                                  Proof of Sales <span class="badge <%= @current_user&.present? && (@current_user&.proofOfSales.to_i) == 0 ? 'bg-danger' : @current_user&.present? &&  (@current_user&.proofOfSales.to_i) >= 100000 ? 'bg-success' : 'bg-warning' %> ml-2"><%= number_to_currency(@current_user&.proofOfSales.to_i) %>/$100,000</span>
                                   </button>
 
                                   <div class="progress mb-3">
-                                      <div class="progress-bar progress-bar-striped <%= @current_user&.present? && (@current_user&.proofOfSales) == 0 ? 'bg-danger' : @current_user&.present? && (@current_user&.proofOfSales) >= 100000 ? 'bg-success' : 'bg-warning' %>" role="progressbar" style="width: <%= (@current_user&.proofOfSales.to_f/100000) * 100%>%" aria-valuenow="<%= (@current_user&.proofOfSales.to_f/100000) * 100%>" aria-valuemin="0" aria-valuemax="100"></div>
+                                      <div class="progress-bar progress-bar-striped <%= @current_user&.present? && (@current_user&.proofOfSales.to_i) == 0 ? 'bg-danger' : @current_user&.present? && (@current_user&.proofOfSales.to_i) >= 100000 ? 'bg-success' : 'bg-warning' %>" role="progressbar" style="width: <%= (@current_user&.proofOfSales.to_i.to_f/100000) * 100%>%" aria-valuenow="<%= (@current_user&.proofOfSales.to_i.to_f/100000) * 100%>" aria-valuemin="0" aria-valuemax="100"></div>
                                   </div>
                              </div>
                           </div>
