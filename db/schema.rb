@@ -99,6 +99,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_19_165945) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.integer "proofOfSales"
     t.string "google_id"
     t.string "auth_token"
     t.string "fresh_token"

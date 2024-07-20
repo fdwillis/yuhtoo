@@ -18,6 +18,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[7.1]
       ## Rememberable
       t.datetime :remember_created_at
 
+      t.integer :proofOfSales
       t.string :google_id
       t.string :auth_token
       t.string :fresh_token

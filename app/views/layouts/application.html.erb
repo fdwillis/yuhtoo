@@ -29,6 +29,7 @@
   </head>
 
   <body>
+    <%=  %>
     <% unless Rails.env.development? ? request.original_url.downcase == ENV['demoURL'] : request.original_url.downcase == ENV['productionURL'] %>
 
     
@@ -159,11 +160,11 @@
                                       <h5 class="mb-2">Membership</h5>
                                       
                                       <p>Manage payment &amp; information</p>
-                                      <button type="button" class="btn mb-1 btn-success-subtle form-control">
-                                        Complete <span class="badge bg-success ml-2"><%= @current_user.payoutStatus(@current_user)[:stripeCustomerID] + 1 %>/2</span>
+                                      <button type="button" class="btn mb-1 <%= @payoutInfo[:stripeCustomerID] + 1 == 1 ? 'btn-warning-subtle' : 'btn-success-subtle' %> form-control">
+                                        Complete <span class="badge <%= @payoutInfo[:stripeCustomerID] + 1 == 1 ? 'bg-warning' : 'bg-success' %> ml-2"><%= @payoutInfo[:stripeCustomerID] + 1 %>/2</span>
                                         </button>
                                         <div class="progress mb-3">
-                                            <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: <%= (@current_user.payoutStatus(@current_user)[:stripeCustomerID]) == 1 ? 100 : 50 %>%" aria-valuenow="<%= (@current_user.payoutStatus(@current_user)[:stripeCustomerID]) == 1 ? 100 : 50 %>" aria-valuemin="0" aria-valuemax="100"></div>
+                                            <div class="progress-bar progress-bar-striped <%= @payoutInfo[:stripeCustomerID] + 1 == 1 ? 'bg-warning' : 'bg-success' %>" role="progressbar" style="width: <%= (@payoutInfo[:stripeCustomerID]) == 1 ? 100 : 50 %>%" aria-valuenow="<%= (@payoutInfo[:stripeCustomerID]) == 1 ? 100 : 50 %>" aria-valuemin="0" aria-valuemax="100"></div>
                                         </div>
                                    </div>
                                 </div>
@@ -182,11 +183,12 @@
                                     
                                     <h5 class="mb-2">Payouts</h5>
                                     <p>Access money from monetized ideas</p>
-                                      <button type="button" class="btn mb-1 btn-warning-subtle form-control">
-                                      Steps <span class="badge bg-warning ml-2"><%= (@current_user.payoutStatus(@current_user)[:stripeAccountID]) == 0 ? 1 : 2%>/2</span>
+
+                                      <button type="button" class="btn mb-1 <%= @payoutInfo[:stripeAccountID] + 1 == 1 ? 'btn-warning-subtle' : 'btn-success-subtle' %> form-control">
+                                      Steps <span class="badge <%= @payoutInfo[:stripeAccountID] + 1 == 1 ? 'bg-warning' : 'bg-success' %> ml-2"><%= (@payoutInfo[:stripeAccountID]) == 0 ? 1 : 2%>/2</span>
                                       </button>
                                       <div class="progress mb-3">
-                                          <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: <%= (@current_user.payoutStatus(@current_user)[:stripeAccountID]) == 0 ? 50 : 100%>%" aria-valuenow="<%= (@current_user.payoutStatus(@current_user)[:stripeAccountID]) == 0 ? 50 : 100%>" aria-valuemin="0" aria-valuemax="100"></div>
+                                          <div class="progress-bar progress-bar-striped <%= @payoutInfo[:stripeAccountID] + 1 == 1 ? 'bg-warning' : 'bg-success' %>" role="progressbar" style="width: <%= (@payoutInfo[:stripeAccountID]) == 0 ? 50 : 100%>%" aria-valuenow="<%= (@payoutInfo[:stripeAccountID]) == 0 ? 50 : 100%>" aria-valuemin="0" aria-valuemax="100"></div>
                                       </div>
                                  </div>
                               </div>
@@ -201,12 +203,13 @@
                                        <svg class="avatar-80 rounded" xmlns="http://www.w3.org/2000/svg" height="32" width="32" viewBox="0 0 512 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ff0000" d="M448 32l-86.1 0-1 1-127 127 92.1 0 1-1L453.8 32.3c-1.9-.2-3.8-.3-5.8-.3zm64 128l0-64c0-15.1-5.3-29.1-14-40l-104 104L512 160zM294.1 32l-92.1 0-1 1L73.9 160l92.1 0 1-1 127-127zM64 32C28.7 32 0 60.7 0 96l0 64 6.1 0 1-1 127-127L64 32zM512 192L0 192 0 416c0 35.3 28.7 64 64 64l384 0c35.3 0 64-28.7 64-64l0-224z"/></svg>
                                     </div>
                                     <h5 class="mb-2">Eligibility</h5>
+
                                     <p>Moderator approved comments</p>
-                                    <button type="button" class="btn mb-1 btn-danger-subtle form-control">
-                                      Comments <span class="badge bg-danger ml-2">0/100</span>
+                                    <button type="button" class="btn mb-1 <%= @current_user&.comments&.size == 0 ? 'btn-danger-subtle' : @current_user&.comments&.size >= 100  ? 'btn-success-subtle' : 'btn-warning-subtle' %> form-control">
+                                      Comments <span class="badge <%= @current_user&.comments&.size == 0 ? 'bg-danger' : @current_user&.comments&.size >= 100  ? 'bg-success' : 'bg-warning' %> ml-2"><%= @current_user&.comments&.size %>/100</span>
                                       </button>
                                       <div class="progress mb-3">
-                                          <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                          <div class="progress-bar progress-bar-striped <%= @current_user&.comments&.size == 0 ? 'bg-danger' : @current_user&.comments&.size >= 100  ? 'bg-success' : 'bg-warning' %>" role="progressbar" style="width: <%= @current_user&.comments&.size %>%" aria-valuenow="<%= @current_user&.comments&.size %>" aria-valuemin="0" aria-valuemax="100"></div>
                                       </div>
                                  </div>
                               </div>
@@ -221,11 +224,12 @@
                                     </div>
                                     <h5 class="mb-2">Status</h5>
                                      <p>Bigger payouts, gifted channels, and commerce</p>
-                                    <button type="button" class="btn mb-1 btn-warning-subtle form-control">
-                                      Steps <span class="badge bg-warning ml-2"><%= (@current_user.payoutStatus(@current_user)[:stripeCustomerID]) + (@current_user.payoutStatus(@current_user)[:stripeAccountID]) + (@current_user.payoutStatus(@current_user)[:commentCount]) %>/3</span>
+
+                                    <button type="button" class="btn mb-1 <%= (@payoutInfo[:stripeCustomerID]) + (@payoutInfo[:stripeAccountID]) + (@payoutInfo[:commentCount]) > 1 ? (@payoutInfo[:stripeCustomerID]) + (@payoutInfo[:stripeAccountID]) + (@payoutInfo[:commentCount]) == 3 ? 'btn-success-subtle' : 'btn-warning-subtle' : 'btn-danger-subtle' %> form-control">
+                                      Steps <span class="badge <%= (@payoutInfo[:stripeCustomerID]) + (@payoutInfo[:stripeAccountID]) + (@payoutInfo[:commentCount]) > 1 ? (@payoutInfo[:stripeCustomerID]) + (@payoutInfo[:stripeAccountID]) + (@payoutInfo[:commentCount]) == 3 ? 'bg-success' : 'bg-warning' : 'bg-danger' %> ml-2"><%= (@payoutInfo[:stripeCustomerID]) + (@payoutInfo[:stripeAccountID]) + (@payoutInfo[:commentCount]) %>/3</span>
                                       </button>
                                       <div class="progress mb-3">
-                                          <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: <%= (@current_user.payoutStatus(@current_user)[:stripeCustomerID]) + (@current_user.payoutStatus(@current_user)[:stripeAccountID]) + (@current_user.payoutStatus(@current_user)[:commentCount]) == 1 ? 33 : (@current_user.payoutStatus(@current_user)[:stripeCustomerID]) + (@current_user.payoutStatus(@current_user)[:stripeAccountID]) + (@current_user.payoutStatus(@current_user)[:commentCount]) == 2 ? 66 : (@current_user.payoutStatus(@current_user)[:stripeCustomerID]) + (@current_user.payoutStatus(@current_user)[:stripeAccountID]) + (@current_user.payoutStatus(@current_user)[:commentCount]) == 3 ? 100 : 0 %>%" aria-valuenow="<%= (@current_user.payoutStatus(@current_user)[:stripeCustomerID]) + (@current_user.payoutStatus(@current_user)[:stripeAccountID]) + (@current_user.payoutStatus(@current_user)[:commentCount]) == 1 ? 33 : (@current_user.payoutStatus(@current_user)[:stripeCustomerID]) + (@current_user.payoutStatus(@current_user)[:stripeAccountID]) + (@current_user.payoutStatus(@current_user)[:commentCount]) == 2 ? 66 : (@current_user.payoutStatus(@current_user)[:stripeCustomerID]) + (@current_user.payoutStatus(@current_user)[:stripeAccountID]) + (@current_user.payoutStatus(@current_user)[:commentCount]) == 3 ? 100 : 0 %>" aria-valuemin="0" aria-valuemax="100"></div>
+                                          <div class="progress-bar progress-bar-striped <%= (@payoutInfo[:stripeCustomerID]) + (@payoutInfo[:stripeAccountID]) + (@payoutInfo[:commentCount]) > 1 ? (@payoutInfo[:stripeCustomerID]) + (@payoutInfo[:stripeAccountID]) + (@payoutInfo[:commentCount]) == 3 ? 'bg-success' : 'bg-warning' : 'bg-danger' %>" role="progressbar" style="width: <%= (@payoutInfo[:stripeCustomerID]) + (@payoutInfo[:stripeAccountID]) + (@payoutInfo[:commentCount]) == 1 ? 33 : (@payoutInfo[:stripeCustomerID]) + (@payoutInfo[:stripeAccountID]) + (@payoutInfo[:commentCount]) == 2 ? 66 : (@payoutInfo[:stripeCustomerID]) + (@payoutInfo[:stripeAccountID]) + (@payoutInfo[:commentCount]) == 3 ? 100 : 0 %>%" aria-valuenow="<%= (@payoutInfo[:stripeCustomerID]) + (@payoutInfo[:stripeAccountID]) + (@payoutInfo[:commentCount]) == 1 ? 33 : (@payoutInfo[:stripeCustomerID]) + (@payoutInfo[:stripeAccountID]) + (@payoutInfo[:commentCount]) == 2 ? 66 : (@payoutInfo[:stripeCustomerID]) + (@payoutInfo[:stripeAccountID]) + (@payoutInfo[:commentCount]) == 3 ? 100 : 0 %>" aria-valuemin="0" aria-valuemax="100"></div>
                                       </div>
                                  </div>
                               </div>
@@ -334,11 +338,11 @@
                                 </div>
                                 <h5 class="mb-2">Eligibility</h5>
                                 <p>Get paid for ideas on YuhToo</p>
-                                <button type="button" class="btn mb-1 btn-success-subtle form-control">
-                                  Approved Comments <span class="badge bg-success ml-2">100/100</span>
+                                <button type="button" class="btn mb-1 <%= @current_user&.comments&.size == 0 ? 'btn-danger-subtle' : @current_user&.comments&.size >= 100  ? 'btn-success-subtle' : 'btn-warning-subtle' %> form-control">
+                                  Approved Comments <span class="badge <%= @current_user&.comments&.size == 0 ? 'bg-danger' : @current_user&.comments&.size >= 100  ? 'bg-success' : 'bg-warning' %> ml-2"><%= @current_user&.comments&.size %>/100</span>
                                   </button>
                                   <div class="progress mb-3">
-                                      <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                      <div class="progress-bar progress-bar-striped <%= @current_user&.comments&.size == 0 ? 'bg-danger' : @current_user&.comments&.size >= 100  ? 'bg-success' : 'bg-warning' %>" role="progressbar" style="width: <%= @current_user&.comments&.size %>%" aria-valuenow="<%= @current_user&.comments&.size %>" aria-valuemin="0" aria-valuemax="100"></div>
                                   </div>
                              </div>
                           </div>
@@ -353,11 +357,13 @@
                                 </div>
                                 <h5 class="mb-2">Production</h5>
                                 <p>Earn perks, upgrades, and discounts</p>
-                                  <button type="button" class="btn mb-1 btn-warning-subtle form-control">
-                                  Monetized Ideas <span class="badge bg-warning ml-2">05/10</span>
+
+                                  <button type="button" class="btn mb-1 <%= @current_user&.ideas&.where(monetized:true)&.size >= 10 ? 'btn-success-subtle' : @current_user&.ideas&.where(monetized:true)&.size == 0 ? 'btn-danger-subtle' : 'btn-warning-subtle' %> form-control">
+                                  Monetized Ideas <span class="badge <%= @current_user&.ideas&.where(monetized:true)&.size >= 10 ? 'bg-success' : @current_user&.ideas&.where(monetized:true)&.size == 0 ? 'bg-danger' : 'bg-warning' %> ml-2"><%= @current_user&.ideas&.where(monetized:true)&.size %>/10</span>
                                   </button>
                                   <div class="progress mb-3">
-                                      <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                                    
+                                      <div class="progress-bar progress-bar-striped <%= @current_user&.ideas&.where(monetized:true)&.size >= 10 ? 'bg-success' : @current_user&.ideas&.where(monetized:true)&.size == 0 ? 'bg-danger' : 'bg-warning' %>" role="progressbar" style="width: <%= @current_user.present? ? @current_user&.ideas&.where(monetized:true)&.size * 10 : 0 %>%" aria-valuenow="<%= @current_user.present? ? @current_user&.ideas&.where(monetized:true)&.size * 10 : 0 %>" aria-valuemin="0" aria-valuemax="100"></div>
                                   </div>
                              </div>
                           </div>
@@ -372,11 +378,14 @@
                                 </div>
                                 <h5 class="mb-2">Commerce</h5>
                                 <p>Sell to your audience with a customized page</p>
-                                <button type="button" class="btn mb-1 btn-danger-subtle form-control">
-                                  Proof of Sales <span class="badge bg-danger ml-2">$0/$100,000</span>
+
+                                
+                                <button type="button" class="btn mb-1 <%= (@current_user&.proofOfSales) == 0 ? 'btn-danger-subtle' : (@current_user&.proofOfSales) >= 100000 ? 'btn-success-subtle' : 'btn-warning-subtle' %> form-control">
+                                  Proof of Sales <span class="badge <%= (@current_user&.proofOfSales) == 0 ? 'bg-danger' : (@current_user&.proofOfSales) >= 100000 ? 'bg-success' : 'bg-warning' %> ml-2"><%= number_to_currency(@current_user&.proofOfSales) %>/$100,000</span>
                                   </button>
+
                                   <div class="progress mb-3">
-                                      <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                      <div class="progress-bar progress-bar-striped <%= (@current_user&.proofOfSales) == 0 ? 'bg-danger' : (@current_user&.proofOfSales) >= 100000 ? 'bg-success' : 'bg-warning' %>" role="progressbar" style="width: <%= (@current_user&.proofOfSales.to_f/100000) * 100%>%" aria-valuenow="<%= (@current_user&.proofOfSales.to_f/100000) * 100%>" aria-valuemin="0" aria-valuemax="100"></div>
                                   </div>
                              </div>
                           </div>
@@ -391,11 +400,11 @@
                                 </div>
                                 <h5 class="mb-2">Super User</h5>
                                 <p>Earn bigger payouts &amp; gifted channels</p>
-                                <button type="button" class="btn mb-1 btn-warning-subtle form-control">
-                                  Monetized Ideas <span class="badge bg-warning ml-2">05/50</span>
+                                <button type="button" class="btn mb-1 <%= @current_user&.ideas&.where(monetized:true)&.size >= 50 ? 'btn-success-subtle' : @current_user&.ideas&.where(monetized:true)&.size == 0 ? 'btn-danger-subtle' : 'btn-warning-subtle' %> form-control">
+                                  Monetized Ideas <span class="badge <%= @current_user&.ideas&.where(monetized:true)&.size >= 50 ? 'bg-success' : @current_user&.ideas&.where(monetized:true)&.size == 0 ? 'bg-danger' : 'bg-warning' %> ml-2"><%= @current_user&.ideas&.where(monetized:true)&.size %>/50</span>
                                   </button>
                                   <div class="progress mb-3">
-                                      <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+                                      <div class="progress-bar progress-bar-striped <%= @current_user&.ideas&.where(monetized:true)&.size >= 50 ? 'bg-success' : @current_user&.ideas&.where(monetized:true)&.size == 0 ? 'bg-danger' : 'bg-warning' %>" role="progressbar" style="width: <%= @current_user.present? ? @current_user&.ideas&.where(monetized:true)&.size * 2 : 0%>%" aria-valuenow="<%= @current_user.present? ? @current_user&.ideas&.where(monetized:true)&.size * 2 : 0 %>" aria-valuemin="0" aria-valuemax="100"></div>
                                   </div>
                              </div>
                           </div>
@@ -456,20 +465,22 @@
                               <div class="tab-pane fade" id="aiguy32er" role="tabpanel" aria-labelledby="aiguy32er-tab">
                                 <p>AI Guy</p>
                                 <div class="row">
-                                  <% @library.each do |video| %>
-                                    <% if video&.creator == 'aiguy' %>
-                                      <div class="col-sm-4 social-post">
-                                        <div class="card card-block card-stretch card-height">
-                                              <div class="user-post mt-4">
-                                                 <div class="ratio ratio-16x9">
-                                                    <iframe src="<%= video.link %>" allowfullscreen=""></iframe>
-                                                 </div>
-                                              </div>
-                                              <div class="mt-4">
-                                                <h5 class="mb-2"><%= video.title %></h5>
-                                              </div>
+                                  <% if @library.present? %>
+                                    <% @library.each do |video| %>
+                                      <% if video&.creator == 'aiguy' %>
+                                        <div class="col-sm-4 social-post">
+                                          <div class="card card-block card-stretch card-height">
+                                                <div class="user-post mt-4">
+                                                   <div class="ratio ratio-16x9">
+                                                      <iframe src="<%= video.link %>" allowfullscreen=""></iframe>
+                                                   </div>
+                                                </div>
+                                                <div class="mt-4">
+                                                  <h5 class="mb-2"><%= video.title %></h5>
+                                                </div>
+                                          </div>
                                         </div>
-                                      </div>
+                                      <% end %>
                                     <% end %>
                                   <% end %>
                                 </div>      
@@ -477,20 +488,22 @@
                               <div class="tab-pane fade active show" id="home" role="tabpanel" aria-labelledby="home-tab">
                                 <p>Modern Millie</p>
                                 <div class="row">
-                                  <% @library.each do |video| %>
-                                    <% if video&.creator == 'millie' %>
-                                      <div class="col-sm-4 social-post">
-                                        <div class="card card-block card-stretch card-height">
-                                              <div class="user-post mt-4">
-                                                 <div class="ratio ratio-16x9">
-                                                    <iframe src="<%= video.link %>" allowfullscreen=""></iframe>
-                                                 </div>
-                                              </div>
-                                              <div class="mt-4">
-                                                <h5 class="mb-2"><%= video.title %></h5>
-                                              </div>
+                                  <% if @library.present? %>
+                                    <% @library.each do |video| %>
+                                      <% if video&.creator == 'millie' %>
+                                        <div class="col-sm-4 social-post">
+                                          <div class="card card-block card-stretch card-height">
+                                                <div class="user-post mt-4">
+                                                   <div class="ratio ratio-16x9">
+                                                      <iframe src="<%= video.link %>" allowfullscreen=""></iframe>
+                                                   </div>
+                                                </div>
+                                                <div class="mt-4">
+                                                  <h5 class="mb-2"><%= video.title %></h5>
+                                                </div>
+                                          </div>
                                         </div>
-                                      </div>
+                                      <% end %>
                                     <% end %>
                                   <% end %>
                                 </div>      
@@ -498,20 +511,22 @@
                               <div class="tab-pane fade" id="profile-one" role="tabpanel" aria-labelledby="profile-tab">
                                 <p>Marcus Jones</p>
                                 <div class="row">
-                                  <% @library.each do |video| %>
-                                    <% if video&.creator == 'marcus' %>
-                                      <div class="col-sm-4 social-post">
-                                        <div class="card card-block card-stretch card-height">
-                                              <div class="user-post mt-4">
-                                                 <div class="ratio ratio-16x9">
-                                                    <iframe src="<%= video.link %>" allowfullscreen=""></iframe>
-                                                 </div>
-                                              </div>
-                                              <div class="mt-4">
-                                                <h5 class="mb-2"><%= video.title %></h5>
-                                              </div>
+                                  <% if @library.present? %>
+                                    <% @library.each do |video| %>
+                                      <% if video&.creator == 'marcus' %>
+                                        <div class="col-sm-4 social-post">
+                                          <div class="card card-block card-stretch card-height">
+                                                <div class="user-post mt-4">
+                                                   <div class="ratio ratio-16x9">
+                                                      <iframe src="<%= video.link %>" allowfullscreen=""></iframe>
+                                                   </div>
+                                                </div>
+                                                <div class="mt-4">
+                                                  <h5 class="mb-2"><%= video.title %></h5>
+                                                </div>
+                                          </div>
                                         </div>
-                                      </div>
+                                      <% end %>
                                     <% end %>
                                   <% end %>
                                 </div>    
@@ -519,20 +534,22 @@
                               <div class="tab-pane fade " id="contact" role="tabpanel" aria-labelledby="contact-tab">
                                 <p>Make Money Matt</p>
                                 <div class="row">
-                                  <% @library.each do |video| %>
-                                    <% if video&.creator == 'matt' %>
-                                      <div class="col-sm-4 social-post">
-                                        <div class="card card-block card-stretch card-height">
-                                              <div class="user-post mt-4">
-                                                 <div class="ratio ratio-16x9">
-                                                    <iframe src="<%= video.link %>" allowfullscreen=""></iframe>
-                                                 </div>
-                                              </div>
-                                              <div class="mt-4">
-                                                <h5 class="mb-2"><%= video.title %></h5>
-                                              </div>
+                                  <% if @library.present? %>
+                                    <% @library.each do |video| %>
+                                      <% if video&.creator == 'matt' %>
+                                        <div class="col-sm-4 social-post">
+                                          <div class="card card-block card-stretch card-height">
+                                                <div class="user-post mt-4">
+                                                   <div class="ratio ratio-16x9">
+                                                      <iframe src="<%= video.link %>" allowfullscreen=""></iframe>
+                                                   </div>
+                                                </div>
+                                                <div class="mt-4">
+                                                  <h5 class="mb-2"><%= video.title %></h5>
+                                                </div>
+                                          </div>
                                         </div>
-                                      </div>
+                                      <% end %>
                                     <% end %>
                                   <% end %>
                                 </div>    
@@ -594,27 +611,9 @@
                            <div class="tab-content" id="343eeddd">
                               <div class="tab-pane fade active show" id="all" role="tabpanel" aria-labelledby="all-tab">
                                 <div class="row">
-                                  <% @library.each do |video| %>
+                                  <% if @library.present? %>
+                                    <% @library.each do |video| %>
 
-                                    <div class="col-sm-4 social-post">
-                                      <div class="card card-block card-stretch card-height">
-                                            <div class="user-post mt-4">
-                                               <div class="ratio ratio-16x9">
-                                                  <iframe src="<%= video.link %>" allowfullscreen=""></iframe>
-                                               </div>
-                                            </div>
-                                            <div class="mt-4">
-                                              <h5 class="mb-2"><%= video.title %></h5>
-                                            </div>
-                                      </div>
-                                    </div>
-                                  <% end %>
-                                </div> 
-                              </div>
-                              <div class="tab-pane fade" id="34fwe" role="tabpanel" aria-labelledby="34fwe-tab">
-                                <div class="row">
-                                  <% @library.each do |video| %>
-                                    <% if video.creator == 'ytkeywords' %>
                                       <div class="col-sm-4 social-post">
                                         <div class="card card-block card-stretch card-height">
                                               <div class="user-post mt-4">
@@ -627,46 +626,72 @@
                                               </div>
                                         </div>
                                       </div>
+                                    <% end %>
+                                  <% end %>
+                                </div> 
+                              </div>
+                              <div class="tab-pane fade" id="34fwe" role="tabpanel" aria-labelledby="34fwe-tab">
+                                <div class="row">
+                                  <% if @library.present? %>
+                                    <% @library.each do |video| %>
+                                      <% if video.creator == 'ytkeywords' %>
+                                        <div class="col-sm-4 social-post">
+                                          <div class="card card-block card-stretch card-height">
+                                                <div class="user-post mt-4">
+                                                   <div class="ratio ratio-16x9">
+                                                      <iframe src="<%= video.link %>" allowfullscreen=""></iframe>
+                                                   </div>
+                                                </div>
+                                                <div class="mt-4">
+                                                  <h5 class="mb-2"><%= video.title %></h5>
+                                                </div>
+                                          </div>
+                                        </div>
+                                      <% end %>
                                     <% end %>
                                   <% end %>
                                 </div>   
                               </div>
                               <div class="tab-pane fade" id="3433dweww-one" role="tabpanel" aria-labelledby="3433dweww-tab">
                                 <div class="row">
-                                  <% @library.each do |video| %>
-                                    <% if video.creator == 'ytinspiration' %>
-                                      <div class="col-sm-4 social-post">
-                                        <div class="card card-block card-stretch card-height">
-                                              <div class="user-post mt-4">
-                                                 <div class="ratio ratio-16x9">
-                                                    <iframe src="<%= video.link %>" allowfullscreen=""></iframe>
-                                                 </div>
-                                              </div>
-                                              <div class="mt-4">
-                                                <h5 class="mb-2"><%= video.title %></h5>
-                                              </div>
+                                  <% if @library.present? %>
+                                    <% @library.each do |video| %>
+                                      <% if video.creator == 'ytinspiration' %>
+                                        <div class="col-sm-4 social-post">
+                                          <div class="card card-block card-stretch card-height">
+                                                <div class="user-post mt-4">
+                                                   <div class="ratio ratio-16x9">
+                                                      <iframe src="<%= video.link %>" allowfullscreen=""></iframe>
+                                                   </div>
+                                                </div>
+                                                <div class="mt-4">
+                                                  <h5 class="mb-2"><%= video.title %></h5>
+                                                </div>
+                                          </div>
                                         </div>
-                                      </div>
+                                      <% end %>
                                     <% end %>
                                   <% end %>
                                 </div>  
                               </div>
                               <div class="tab-pane fade " id="cwecwe33e" role="tabpanel" aria-labelledby="cwecwe33e-tab">
                                 <div class="row">
-                                  <% @library.each do |video| %>
-                                    <% if video.creator == 'ytthumbnails' %>
-                                      <div class="col-sm-4 social-post">
-                                        <div class="card card-block card-stretch card-height">
-                                              <div class="user-post mt-4">
-                                                 <div class="ratio ratio-16x9">
-                                                    <iframe src="<%= video.link %>" allowfullscreen=""></iframe>
-                                                 </div>
-                                              </div>
-                                              <div class="mt-4">
-                                                <h5 class="mb-2"><%= video.title %></h5>
-                                              </div>
+                                  <% if @library.present? %>
+                                    <% @library.each do |video| %>
+                                      <% if video.creator == 'ytthumbnails' %>
+                                        <div class="col-sm-4 social-post">
+                                          <div class="card card-block card-stretch card-height">
+                                                <div class="user-post mt-4">
+                                                   <div class="ratio ratio-16x9">
+                                                      <iframe src="<%= video.link %>" allowfullscreen=""></iframe>
+                                                   </div>
+                                                </div>
+                                                <div class="mt-4">
+                                                  <h5 class="mb-2"><%= video.title %></h5>
+                                                </div>
+                                          </div>
                                         </div>
-                                      </div>
+                                      <% end %>
                                     <% end %>
                                   <% end %>
                                 </div>  
@@ -1016,7 +1041,7 @@
                                   </ul>
                                </div>
                                <div>
-                                <% if @current_user.present? %>
+                                <% if @current_user&.present? %>
                                   <%= link_to "Markdown Cheat Sheet", 'https://github.com/lifeparticle/Markdown-Cheatsheet', target: '_blank' %>&nbsp;&nbsp;&nbsp;
                                   <%= f.submit 'Post', class: "btn btn-primary px-4" %>
                                 <% else %>

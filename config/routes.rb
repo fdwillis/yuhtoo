@@ -3,6 +3,14 @@ Rails.application.routes.draw do
   root "application#index"
   devise_for :users, controllers: {sessions: 'application', omniauth_callbacks: 'users/omniauth_callbacks' }
 
+  authenticated :user do
+    root 'application#index', as: :authenticated_root
+  end
+
+  unauthenticated :user do
+    root "application#index", as: :unauthenticated_root
+  end
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -11,6 +19,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   resources :ideas
+
   get 'reaction/:id/:comment/:uuid', to: 'ideas#reaction'
   get 'unreaction/:id/:uuid', to: 'ideas#unreaction'
   get 'like/:id/:uuid', to: 'ideas#like'

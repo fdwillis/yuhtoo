@@ -35,7 +35,7 @@ class User < ApplicationRecord
     end
 
 
-    return {stripeAccountID: stripeAccount, stripeCustomerID: stripeCustomer, commentCount: userX&.comments&.count  }#.where(approved: true).count
+    return {stripeAccountID: stripeAccount, stripeCustomerID: stripeCustomer, commentCount: userX&.comments&.count >= 100 ? 1 : 0  }#.where(approved: true).count
   end
 
 
