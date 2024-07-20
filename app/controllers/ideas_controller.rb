@@ -59,7 +59,7 @@ class IdeasController < ApplicationController
 
     respond_to do |format|
       if @idea.save
-        format.html { redirect_to '/', notice: "Idea was successfully created." }
+        format.html { redirect_to '/', notice: "Idea posted to The Feed" }
         format.json { render :show, status: :created, location: @idea }
       else
         format.html { render :new, status: :unprocessable_entity }
