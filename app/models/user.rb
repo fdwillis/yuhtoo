@@ -6,6 +6,38 @@ class User < ApplicationRecord
   has_many :replies
   has_many :ideas
 
+  def payoutStatus(userX)
+    liveCount = 0
+    stripeCustomer = 0
+    stripeAccount = 0
+    
+    if userX&.stripeCustomerID.present?
+      allCustomerxPlans = Stripe::Subscription.list({customer: userX&.stripeCustomerID})['data'].map(&:plan)
+      allCustomerxPlans.each do |planX|
+        if planX['active'] == true
+          stripeCustomer += 1
+        end
+      end
+    else
+      stripeCustomer = 0
+    end
+
+    if userX.stripeAccountID.present?
+      if Stripe::Account.retrieve(userX&.stripeAccountID)['requirements']['currently_due'].count == 0
+        if Stripe::Account.retrieve(userX&.stripeAccountID)['payouts_enabled']
+          stripeAccount += 1
+        else
+          stripeAccount = 0
+        end
+      else
+        stripeAccount = 0
+      end
+    end
+
+
+    return {stripeAccountID: stripeAccount, stripeCustomerID: stripeCustomer, commentCount: userX&.comments&.count  }#.where(approved: true).count
+  end
+
 
   def self.from_omniauth(access_token)
     data = access_token.info

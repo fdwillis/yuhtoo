@@ -1,5 +1,13 @@
 class ApplicationController < ActionController::Base
 	before_action :current_user
+	before_action :check_membership_session
+
+	def check_membership_session
+		if params['session'].present?
+			@current_user.update(stripeCustomerID: Stripe::Checkout::Session.retrieve(params['session'])['customer'])
+		end
+	end
+
 	def destroy
 		session[:user_id] = nil
 		flash['success'] = 'Signed Out'
@@ -19,6 +27,41 @@ class ApplicationController < ActionController::Base
 		@experts = Expert.all.shuffle
 		@library = Library.all.shuffle
 		@alert = Alert.all.shuffle
+
+		if current_user&.stripeAccountID.present?
+			if Stripe::Account.retrieve(current_user&.stripeAccountID)['payouts_enabled']
+				@stripeAccountX = Stripe::Account.create_login_link(current_user&.stripeAccountID)
+			else
+				@stripeAccountX = Stripe::AccountLink.create({
+				  account: current_user&.stripeAccountID,
+				  refresh_url: "#{request.base_url}/stripe",
+				  return_url: "#{request.original_url}",
+				  type: 'account_onboarding',
+				})
+			end
+		else
+			accountX = Stripe::Account.create({
+			  country: 'US',
+			  email: current_user&.email,
+			  controller: {
+			    fees: {payer: 'application'},
+			    losses: {payments: 'application'},
+			    stripe_dashboard: {type: 'express'},
+			  },
+			  capabilities: {
+			    bank_transfer_payments: {requested: true},
+			    cashapp_payments: {requested: true},
+			    link_payments: {requested: true},
+			    us_bank_account_ach_payments: {requested: true},
+			    card_payments: {requested: true},
+			    transfers: {requested: true},
+			  }
+			})
+
+			@current_user.update(stripeAccountID: accountX['id'])
+
+			@stripeAccountX = current_user&.stripeAccountID
+		end
 	end
 
 	def privacy
@@ -28,6 +71,17 @@ class ApplicationController < ActionController::Base
 	end
 
 	def index
+		current_user
+		feed
+		if  @current_user&.stripeCustomerID.present?
+			@stripeCustomerPortal = Stripe::BillingPortal::Session.create({
+			  customer: @current_user&.stripeCustomerID,
+			  return_url: Rails.env.development? ? ENV['demoURL'] : ENV['productionURL'],
+			})
+		end
+	end
+
+	def membership
 		current_user
 		feed
 	end

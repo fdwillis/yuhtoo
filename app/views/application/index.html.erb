@@ -164,7 +164,7 @@
       <div class="iq-comingsoon-info">
         <div class="row text-center">
           
-           <a class="d-inline-flex align-items-center justify-content-center">
+           <a class="d-inline-flex align-items-center justify-content-center" href="/">
              <%= image_tag 'YuhToo.png', class: 'signin-img img-fluid rounded-3', style: 'height:180px;width:180px;' %>
            </a>
         </div>
@@ -195,7 +195,11 @@
                    </div>
                 </div>
         </div>
-        <ul class="d-none d-xl-block countdown list-inline text-center" data-date="Jan 01 2025 00:00:00">
+        <script async src="https://js.stripe.com/v3/pricing-table.js"></script>
+                      <stripe-pricing-table customer-email="<%= @current_user&.email %>" pricing-table-id="prctbl_1PeXqTIe57Q4b5GrrkiFKxJw"
+                      publishable-key="pk_test_51PeXQcIe57Q4b5Gr1cUAvWN8ufmftqTkNrdOdXcbdJdyQwTP58dRT45qhXfXxrkYnW8QxngRi8t3rxfCn7eGALDO00hX2nA23Z">
+                      </stripe-pricing-table>
+        <!-- <ul class="d-none d-xl-block countdown list-inline text-center" data-date="Jan 01 2025 00:00:00">
           
           <div class="row">
             
@@ -229,10 +233,11 @@
               </div>
             </li>
           </div>  
-        </ul>
+        </ul> -->
       </div>
     </div>
   </div>
+
     
   <div class="iq-comingsoon mt-4 mb-4">
     <ul class=" list-unstyled row mb-0">

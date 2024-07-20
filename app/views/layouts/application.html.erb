@@ -144,45 +144,54 @@
                           </div>
                        </div>
                       </div>
+
                       <div class="row">
-                        <div class="col-lg-3 col-md-6 mt-5">
-                           <div class="card">
-                              <div class="card-body">
-                                 <div class="iq-badges text-center">
-                                    <div class="badges-icon">
-                                       
-                                       <svg xmlns="http://www.w3.org/2000/svg" height="80" width="100" viewBox="0 0 640 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ff0000" d="M72 88a56 56 0 1 1 112 0A56 56 0 1 1 72 88zM64 245.7C54 256.9 48 271.8 48 288s6 31.1 16 42.3l0-84.7zm144.4-49.3C178.7 222.7 160 261.2 160 304c0 34.3 12 65.8 32 90.5l0 21.5c0 17.7-14.3 32-32 32l-64 0c-17.7 0-32-14.3-32-32l0-26.8C26.2 371.2 0 332.7 0 288c0-61.9 50.1-112 112-112l32 0c24 0 46.2 7.5 64.4 20.3zM448 416l0-21.5c20-24.7 32-56.2 32-90.5c0-42.8-18.7-81.3-48.4-107.7C449.8 183.5 472 176 496 176l32 0c61.9 0 112 50.1 112 112c0 44.7-26.2 83.2-64 101.2l0 26.8c0 17.7-14.3 32-32 32l-64 0c-17.7 0-32-14.3-32-32zm8-328a56 56 0 1 1 112 0A56 56 0 1 1 456 88zM576 245.7l0 84.7c10-11.3 16-26.1 16-42.3s-6-31.1-16-42.3zM320 32a64 64 0 1 1 0 128 64 64 0 1 1 0-128zM240 304c0 16.2 6 31 16 42.3l0-84.7c-10 11.3-16 26.1-16 42.3zm144-42.3l0 84.7c10-11.3 16-26.1 16-42.3s-6-31.1-16-42.3zM448 304c0 44.7-26.2 83.2-64 101.2l0 42.8c0 17.7-14.3 32-32 32l-64 0c-17.7 0-32-14.3-32-32l0-42.8c-37.8-18-64-56.5-64-101.2c0-61.9 50.1-112 112-112l32 0c61.9 0 112 50.1 112 112z"/></svg>
-                                    </div>
-                                    <h5 class="mb-2">Membership</h5>
-                                    <p>Manage payment &amp; information</p>
-                                    <button type="button" class="btn mb-1 btn-success-subtle form-control">
-                                      Complete <span class="badge bg-success ml-2">3/3</span>
-                                      </button>
-                                      <div class="progress mb-3">
-                                          <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                          <div class="col-lg-3 col-md-6 mt-5">
+
+                            <a href="<%= @current_user&.stripeCustomerID.present? ? @stripeCustomerPortal['url'] : '/membership'  %>" >
+                             <div class="card">
+                                <div class="card-body">
+                                   <div class="iq-badges text-center">
+                                      <div class="badges-icon">
+                                         
+                                         <svg xmlns="http://www.w3.org/2000/svg" height="80" width="100" viewBox="0 0 640 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ff0000" d="M72 88a56 56 0 1 1 112 0A56 56 0 1 1 72 88zM64 245.7C54 256.9 48 271.8 48 288s6 31.1 16 42.3l0-84.7zm144.4-49.3C178.7 222.7 160 261.2 160 304c0 34.3 12 65.8 32 90.5l0 21.5c0 17.7-14.3 32-32 32l-64 0c-17.7 0-32-14.3-32-32l0-26.8C26.2 371.2 0 332.7 0 288c0-61.9 50.1-112 112-112l32 0c24 0 46.2 7.5 64.4 20.3zM448 416l0-21.5c20-24.7 32-56.2 32-90.5c0-42.8-18.7-81.3-48.4-107.7C449.8 183.5 472 176 496 176l32 0c61.9 0 112 50.1 112 112c0 44.7-26.2 83.2-64 101.2l0 26.8c0 17.7-14.3 32-32 32l-64 0c-17.7 0-32-14.3-32-32zm8-328a56 56 0 1 1 112 0A56 56 0 1 1 456 88zM576 245.7l0 84.7c10-11.3 16-26.1 16-42.3s-6-31.1-16-42.3zM320 32a64 64 0 1 1 0 128 64 64 0 1 1 0-128zM240 304c0 16.2 6 31 16 42.3l0-84.7c-10 11.3-16 26.1-16 42.3zm144-42.3l0 84.7c10-11.3 16-26.1 16-42.3s-6-31.1-16-42.3zM448 304c0 44.7-26.2 83.2-64 101.2l0 42.8c0 17.7-14.3 32-32 32l-64 0c-17.7 0-32-14.3-32-32l0-42.8c-37.8-18-64-56.5-64-101.2c0-61.9 50.1-112 112-112l32 0c61.9 0 112 50.1 112 112z"/></svg>
                                       </div>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
+                                      <h5 class="mb-2">Membership</h5>
+                                      
+                                      <p>Manage payment &amp; information</p>
+                                      <button type="button" class="btn mb-1 btn-success-subtle form-control">
+                                        Complete <span class="badge bg-success ml-2"><%= @current_user.payoutStatus(@current_user)[:stripeCustomerID] + 1 %>/2</span>
+                                        </button>
+                                        <div class="progress mb-3">
+                                            <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: <%= (@current_user.payoutStatus(@current_user)[:stripeCustomerID]) == 1 ? 100 : 50 %>%" aria-valuenow="<%= (@current_user.payoutStatus(@current_user)[:stripeCustomerID]) == 1 ? 100 : 50 %>" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                   </div>
+                                </div>
+                             </div>
+                            </a>
+                          </div>
                         <div class="col-lg-3 col-md-6 mt-5">
+                          <a href="<%= @current_user&.stripeAccountID.present? ? @stripeAccountX['url'] : '#'  %>?prefilled_email=<%= @current_user&.email %>" target='_blank'>
                            <div class="card">
                               <div class="card-body">
                                  <div class="iq-badges text-center">
                                     <div class="badges-icon">
                                        <svg xmlns="http://www.w3.org/2000/svg" height="80" width="80" viewBox="0 0 512 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ff0000" d="M184 48l144 0c4.4 0 8 3.6 8 8l0 40L176 96l0-40c0-4.4 3.6-8 8-8zm-56 8l0 40L64 96C28.7 96 0 124.7 0 160l0 96 192 0 128 0 192 0 0-96c0-35.3-28.7-64-64-64l-64 0 0-40c0-30.9-25.1-56-56-56L184 0c-30.9 0-56 25.1-56 56zM512 288l-192 0 0 32c0 17.7-14.3 32-32 32l-64 0c-17.7 0-32-14.3-32-32l0-32L0 288 0 416c0 35.3 28.7 64 64 64l384 0c35.3 0 64-28.7 64-64l0-128z"/></svg>
                                     </div>
+                                    
+                                    
                                     <h5 class="mb-2">Payouts</h5>
                                     <p>Access money from monetized ideas</p>
                                       <button type="button" class="btn mb-1 btn-warning-subtle form-control">
-                                      Steps <span class="badge bg-warning ml-2">05/08</span>
+                                      Steps <span class="badge bg-warning ml-2"><%= (@current_user.payoutStatus(@current_user)[:stripeAccountID]) == 0 ? 1 : 2%>/2</span>
                                       </button>
                                       <div class="progress mb-3">
-                                          <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                                          <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: <%= (@current_user.payoutStatus(@current_user)[:stripeAccountID]) == 0 ? 50 : 100%>%" aria-valuenow="<%= (@current_user.payoutStatus(@current_user)[:stripeAccountID]) == 0 ? 50 : 100%>" aria-valuemin="0" aria-valuemax="100"></div>
                                       </div>
                                  </div>
                               </div>
                            </div>
+                          </a>
                         </div>
                         <div class="col-lg-3 col-md-6 mt-5">
                            <div class="card">
@@ -213,10 +222,10 @@
                                     <h5 class="mb-2">Status</h5>
                                      <p>Bigger payouts, gifted channels, and commerce</p>
                                     <button type="button" class="btn mb-1 btn-warning-subtle form-control">
-                                      Steps <span class="badge bg-warning ml-2">01/03</span>
+                                      Steps <span class="badge bg-warning ml-2"><%= (@current_user.payoutStatus(@current_user)[:stripeCustomerID]) + (@current_user.payoutStatus(@current_user)[:stripeAccountID]) + (@current_user.payoutStatus(@current_user)[:commentCount]) %>/3</span>
                                       </button>
                                       <div class="progress mb-3">
-                                          <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: 33%" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100"></div>
+                                          <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: <%= (@current_user.payoutStatus(@current_user)[:stripeCustomerID]) + (@current_user.payoutStatus(@current_user)[:stripeAccountID]) + (@current_user.payoutStatus(@current_user)[:commentCount]) == 1 ? 33 : (@current_user.payoutStatus(@current_user)[:stripeCustomerID]) + (@current_user.payoutStatus(@current_user)[:stripeAccountID]) + (@current_user.payoutStatus(@current_user)[:commentCount]) == 2 ? 66 : (@current_user.payoutStatus(@current_user)[:stripeCustomerID]) + (@current_user.payoutStatus(@current_user)[:stripeAccountID]) + (@current_user.payoutStatus(@current_user)[:commentCount]) == 3 ? 100 : 0 %>%" aria-valuenow="<%= (@current_user.payoutStatus(@current_user)[:stripeCustomerID]) + (@current_user.payoutStatus(@current_user)[:stripeAccountID]) + (@current_user.payoutStatus(@current_user)[:commentCount]) == 1 ? 33 : (@current_user.payoutStatus(@current_user)[:stripeCustomerID]) + (@current_user.payoutStatus(@current_user)[:stripeAccountID]) + (@current_user.payoutStatus(@current_user)[:commentCount]) == 2 ? 66 : (@current_user.payoutStatus(@current_user)[:stripeCustomerID]) + (@current_user.payoutStatus(@current_user)[:stripeAccountID]) + (@current_user.payoutStatus(@current_user)[:commentCount]) == 3 ? 100 : 0 %>" aria-valuemin="0" aria-valuemax="100"></div>
                                       </div>
                                  </div>
                               </div>
@@ -1103,18 +1112,5 @@
       </div>
     </div>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-    <script type="text/javascript">
-      // var replyInterval = setInterval(function() {
-      //     $('.dynamic2').load("/reload-feed?page=<%= params['page'] %>");
-      //   }, 60000);
-
-      var reloadInterval = setInterval(function() {
-          $('.dynamic').load("/reload-feed?page=<%= params['page'] %>");
-        }, 60000);
-
-      $('#source').on('click', function(){
-             clearInterval(reloadInterval);
-         });
-    </script>
   </body>
 </html>
