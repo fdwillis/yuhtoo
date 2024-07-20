@@ -18,6 +18,7 @@ class ApplicationController < ActionController::Base
 		@niches = Niche.all.shuffle
 		@experts = Expert.all.shuffle
 		@library = Library.all.shuffle
+		@alert = Alert.all.shuffle
 	end
 
 	def privacy
