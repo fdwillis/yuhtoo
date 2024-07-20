@@ -205,11 +205,11 @@
                                     <h5 class="mb-2">Eligibility</h5>
 
                                     <p>Moderator approved comments</p>
-                                    <button type="button" class="btn mb-1 <%= @current_user&.comments&.size == 0 ? 'btn-danger-subtle' : @current_user&.comments&.size >= 100  ? 'btn-success-subtle' : 'btn-warning-subtle' %> form-control">
+                                    <button type="button" class="btn mb-1 <%= @current_user&.comments.present? && @current_user&.comments&.size == 0 ? 'btn-danger-subtle' : @current_user&.comments.present? && @current_user&.comments&.size >= 100  ? 'btn-success-subtle' : 'btn-warning-subtle' %> form-control">
                                       Comments <span class="badge <%= @current_user&.comments&.size == 0 ? 'bg-danger' : @current_user&.comments&.size >= 100  ? 'bg-success' : 'bg-warning' %> ml-2"><%= @current_user&.comments&.size %>/100</span>
                                       </button>
                                       <div class="progress mb-3">
-                                          <div class="progress-bar progress-bar-striped <%= @current_user&.comments&.size == 0 ? 'bg-danger' : @current_user&.comments&.size >= 100  ? 'bg-success' : 'bg-warning' %>" role="progressbar" style="width: <%= @current_user&.comments&.size %>%" aria-valuenow="<%= @current_user&.comments&.size %>" aria-valuemin="0" aria-valuemax="100"></div>
+                                          <div class="progress-bar progress-bar-striped <%= @current_user&.comments.present? && @current_user&.comments&.size == 0 ? 'bg-danger' : @current_user&.comments.present? && @current_user&.comments&.size >= 100  ? 'bg-success' : 'bg-warning' %>" role="progressbar" style="width: <%= @current_user&.comments&.size %>%" aria-valuenow="<%= @current_user&.comments&.size %>" aria-valuemin="0" aria-valuemax="100"></div>
                                       </div>
                                  </div>
                               </div>
