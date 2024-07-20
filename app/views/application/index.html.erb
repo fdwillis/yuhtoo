@@ -160,82 +160,83 @@
    </section>
 <% else %>
   <div class="iq-comingsoon">
-      <div class="container">
-        <div class="auto-vh-100 d-flex flex-column justify-content-center">
-          <div class="row justify-content-center">
-            <div class="col-12 text-center">
-                <div class="iq-comingsoon-info">
-                  <div class="row">
-                    
-                     <a class="d-inline-flex align-items-center justify-content-center">
-                       <%= image_tag 'YuhToo.png', class: 'signin-img img-fluid rounded-3', style: 'height:180px;width:180px;' %>
-                     </a>
-                  </div>
-                  <div class="row">
-                    <a href="/" class="d-flex justify-content-center align-items-center gap-2 iq-header-logo d-none d-lg-flex">
-                    
-                      <h3 class="logo-title d-none d-sm-block" data-setting="app_name">YuhToo</h3>
-                    </a>
-                  </div>
-                  <div class="row">
-                    <a href="<%= destroy_user_session_path %>" class="d-flex justify-content-center align-items-center gap-2 iq-header-logo d-none d-lg-flex">                  
-                      <%= link_to 'Sign Out', destroy_user_session_path, method: :delete%>
-                    </a>
-                  </div>
-                  <h2 class="mt-4 mb-1">LIFETIME memberships</h2>
-                  <p><em><strong>Approaching The End</strong></em></p>
-                  <h3>Jan 1 2025</h3>
+    <div class="row justify-content-center">
+      <div class="iq-comingsoon-info">
+        <div class="row text-center">
+          
+           <a class="d-inline-flex align-items-center justify-content-center">
+             <%= image_tag 'YuhToo.png', class: 'signin-img img-fluid rounded-3', style: 'height:180px;width:180px;' %>
+           </a>
+        </div>
+        <div class="row text-center">
+          <a href="/" class="d-flex justify-content-center align-items-center gap-2 iq-header-logo d-none d-lg-flex">
+          
+            <h3 class="logo-title d-none d-sm-block" data-setting="app_name">YuhToo</h3>
+          </a>
+        </div>
+        <div class="row text-center">
+          <a href="<%= destroy_user_session_path %>" class="d-flex justify-content-center align-items-center gap-2 iq-header-logo d-none d-lg-flex">                  
+            <%= link_to 'Sign Out', destroy_user_session_path, method: :delete%>
+          </a>
+        </div>
+        <h2 class="mt-4 mb-1 text-center">Welcome to YuhToo</h2>
+        <p class="text-center"><em><strong>YouTube Automation Platform &amp; Community</strong></em></p>
+        
+        
 
-                  
-                  <ul class="countdown row list-inline" data-date="Jan 01 2025 00:00:00">
-                    <li class="col-3">
-                      <div class="card">
-                        <div class="card-body">
-                          <span  id="days" class="text-center" data-days=""></span>Days
-                        </div>
+        <div class="text-left " id="page_layout">
+                <div class="col-12">
+                   <div class="card position-relative inner-page-bg bg-primary" style="height: 150px;">
+                      <div class="inner-page-body">
+                      <h4 class="text-center mb-4 text-white mt-2"><em><strong><u>Lifetime Memberships Available</u></strong></em></h4>
                       </div>
-                    </li>
-                    <li class="col-3">
-                      <div class="card">
-                        <div class="card-body">
-                          <span id="hours" class="text-center" data-hours=""></span>Hours
-                        </div>
+                      <div class="inner-page-title">
+                        <h3 class="text-white">Ending Jan 01 2025</h3>
+                        <p class="text-white mb-0">Get Yours Before It's Too Late</p>
+                        <button type="button" class="btn btn-secondary-subtle">Get Started</button>
                       </div>
-                    </li>
-                    <li class="col-3">
-                      <div class="card">
-                        <div class="card-body">
-                          <span id="minutes" class="text-center" data-minutes=""></span>Min
-                        </div>
-                      </div>
-                    </li>
-                    <li class="col-3">
-                      <div class="card">
-                        <div class="card-body">
-                          <span id="seconds" class="text-center" data-seconds=""></span>Sec
-                        </div>
-                      </div>
-                    </li>
-                  </ul>
+                   </div>
                 </div>
-            </div>
-          </div>
-        </div>   
+        </div>
+        <ul class="d-none d-xl-block countdown list-inline text-center" data-date="Jan 01 2025 00:00:00">
+          
+          <div class="row">
+            
+          
+            <li class="col-3">
+              <div class="card">
+                <div class="card-body">
+                  <span  id="days" class="text-center" data-days=""></span>Days
+                </div>
+              </div>
+            </li>
+            <li class="col-3">
+              <div class="card">
+                <div class="card-body">
+                  <span id="hours" class="text-center" data-hours=""></span>Hours
+                </div>
+              </div>
+            </li>
+            <li class="col-3">
+              <div class="card">
+                <div class="card-body">
+                  <span id="minutes" class="text-center" data-minutes=""></span>Min
+                </div>
+              </div>
+            </li>
+            <li class="col-3">
+              <div class="card">
+                <div class="card-body">
+                  <span id="seconds" class="text-center" data-seconds=""></span>Sec
+                </div>
+              </div>
+            </li>
+          </div>  
+        </ul>
       </div>
-  </div>
-    <div class="content-inner " id="page_layout">
-         <div class="row">
-            <div class="col-12">
-               <div class="card position-relative inner-page-bg bg-primary" style="height: 150px;">
-                  <div class="inner-page-title">
-                    <h3 class="text-white">LIFETIME Membership</h3>
-                    <p class="text-white mb-0">Get Yours Before It's Too Late</p>
-                    <button type="button" class="btn btn-secondary-subtle">Get Started</button>
-                  </div>
-               </div>
-            </div>
-          </div>
     </div>
+  </div>
+    
   <div class="iq-comingsoon mt-4 mb-4">
     <ul class=" list-unstyled row mb-0">
 
