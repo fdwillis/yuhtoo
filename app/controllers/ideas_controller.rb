@@ -27,6 +27,7 @@ class IdeasController < ApplicationController
   # GET /ideas or /ideas.json
   def index
     @ideas = Idea.find_each.sort_by(&:created_at).reverse
+    @library = Library.find_each.sort_by(&:created_at).shuffle
   end
 
   # GET /ideas/1 or /ideas/1.json
@@ -47,6 +48,11 @@ class IdeasController < ApplicationController
 
   # GET /ideas/1/edit
   def edit
+    unless @idea&.user == @current_user
+      flash[:alert] = 'Access Denied'
+      redirect_to '/feed'
+      return
+    end
   end
 
   # POST /ideas or /ideas.json
@@ -59,7 +65,7 @@ class IdeasController < ApplicationController
 
     respond_to do |format|
       if @idea.save
-        format.html { redirect_to '/', notice: "Idea posted to The Feed" }
+        format.html { redirect_to '/feed', notice: "Idea posted to The Feed" }
         format.json { render :show, status: :created, location: @idea }
       else
         format.html { render :new, status: :unprocessable_entity }

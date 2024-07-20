@@ -10,8 +10,45 @@
       </ul>
     </div>
   <% end %>
+  <div class="mb-4" rows="5" id="exampleFormControlTextarea1">
+                            <%= form.text_area :description, required: true, id: 'validationDefault01', class: 'form-control rounded px-0', placeholder: " Start typing here. Use markdown as needed...", cols: 30, rows: 10  %>
+                          </div>
+                        
+                          <div class="card-body bg-primary-subtle rounded-bottom-3">
+                            <div class="d-flex align-items-center justify-content-between flex-wrap">
+                               <div class="create-post-data">
+                                  <ul class="list-inline m-0 p-0 d-flex align-items-center">
+                                     <li>
+                                        <style type="text/css">
+                                          .image-upload > input
+                                          {
+                                             display: none;
+                                          }
+                                          .image-upload > label{
+                                            cursor:pointer;
+                                          }
+                                        </style>
+                                        <% if @current_user&.accessPin == 'admin' %>
+                                          <div class="image-upload">
+                                             <label for="file-input">
+                                                <svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#919191" d="M0 96C0 60.7 28.7 32 64 32H448c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96zM323.8 202.5c-4.5-6.6-11.9-10.5-19.8-10.5s-15.4 3.9-19.8 10.5l-87 127.6L170.7 297c-4.6-5.7-11.5-9-18.7-9s-14.2 3.3-18.7 9l-64 80c-5.8 7.2-6.9 17.1-2.9 25.4s12.4 13.6 21.6 13.6h96 32H424c8.9 0 17.1-4.9 21.2-12.8s3.6-17.4-1.4-24.7l-120-176zM112 192a48 48 0 1 0 0-96 48 48 0 1 0 0 96z"/></svg>
+                                                <svg xmlns="http://www.w3.org/2000/svg" height="20" width="22.5" viewBox="0 0 576 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#919191" d="M0 128C0 92.7 28.7 64 64 64H320c35.3 0 64 28.7 64 64V384c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128zM559.1 99.8c10.4 5.6 16.9 16.4 16.9 28.2V384c0 11.8-6.5 22.6-16.9 28.2s-23 5-32.9-1.6l-96-64L416 337.1V320 192 174.9l14.2-9.5 96-64c9.8-6.5 22.4-7.2 32.9-1.6z"/></svg>
+                                             </label>
+
+                                             <%= form.file_field :attachments, id:"file-input", multiple: true %>
+                                          </div>
+                                        <% end %>
+                                     </li>
+                                  </ul>
+                               </div>
+                               <div>
+                                <%= link_to "Markdown Cheat Sheet", 'https://github.com/lifeparticle/Markdown-Cheatsheet', target: '_blank' %>&nbsp;&nbsp;&nbsp;
+                                <%= form.submit 'Post', class: "btn btn-primary px-4" %>
+                                
+                               </div>
+                            </div>
+                          </div>
 
   <div>
-    <%= form.submit %>
   </div>
 <% end %>

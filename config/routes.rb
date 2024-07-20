@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   get 'unreaction/:id/:uuid', to: 'ideas#unreaction'
   get 'like/:id/:uuid', to: 'ideas#like'
   get 'unlike/:id/:uuid', to: 'ideas#unlike'
+  get 'feed', to: 'ideas#index'
 
   get 'membership', to: 'application#membership'
   get 'privacy', to: 'application#privacy'
