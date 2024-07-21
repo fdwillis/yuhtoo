@@ -55,6 +55,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_19_165945) do
     t.text "videos"
     t.boolean "public", default: false
     t.boolean "monetized", default: false
+    t.boolean "funded", default: false
     t.text "titles"
     t.text "tags"
     t.text "scripts"
