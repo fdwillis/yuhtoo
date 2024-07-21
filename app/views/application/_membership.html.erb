@@ -1,5 +1,5 @@
 <% if Rails.env.development? %>
-  <% if @current_user&.payoutStatus[:lifeTime] == 0 %>
+  <% if @current_user.present? && @current_user&.payoutStatus[:lifeTime] == 0 %>
     <a href="https://buy.stripe.com/test_3cs8yb3Ipf9YcHmfYY?prefilled_email=<%= @current_user&.email %>">
     <div class="text-left " id="page_layout">
             <div class="col-12">
@@ -23,7 +23,7 @@
 <% end %>
 <% if Rails.env.production? %>
 
-  <% if @current_user&.payoutStatus[:lifeTime] == 0 %>
+  <% if @current_user.present? && @current_user&.payoutStatus[:lifeTime] == 0 %>
     <a href="https://buy.stripe.com/dR628A0G06fBcXC288?prefilled_email=<%= @current_user&.email %>" class="mt-2">
       <div class="text-left " id="page_layout">
               <div class="col-12">

@@ -102,14 +102,17 @@ class ApplicationController < ActionController::Base
 			})
 		end
 		@payoutInfo = @current_user.present? ? @current_user.payoutStatus : {stripeAccountID: 0, stripeCustomerID: 0, commentCount: 0  }
-		
-
 	end
 
 	def membership
-		current_user
-		feed
-		index
+		if @current_user&.present?
+			current_user
+			feed
+			index
+		else
+			flash[:alert] = 'Please sign up'
+			redirect_to '/'
+		end
 	end
 
 	def current_user
