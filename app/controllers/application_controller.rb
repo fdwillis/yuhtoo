@@ -28,6 +28,10 @@ class ApplicationController < ActionController::Base
 		@library = Library.all.shuffle
 		@alert = Alert.all.shuffle
 
+		
+
+
+
 		if current_user&.stripeAccountID.present?
 			if Stripe::Account.retrieve(current_user&.stripeAccountID)['payouts_enabled']
 				@stripeAccountX = Stripe::Account.create_login_link(current_user&.stripeAccountID)
@@ -62,6 +66,17 @@ class ApplicationController < ActionController::Base
 
 			@stripeAccountX = current_user&.stripeAccountID
 		end
+
+		history = []
+
+		userIdeas = @current_user&.ideas
+		if userIdeas.size > 0
+			userIdeas.each do |ideaX|
+				history << {date: ideaX&.created_at, highlight: 'Your idea', message: ' posted to the feed' , linkURL: "/ideas/#{ideaX&.id}" }
+			end
+		end
+
+		@history = history
 	end
 
 	def privacy
@@ -80,6 +95,8 @@ class ApplicationController < ActionController::Base
 			})
 		end
 		@payoutInfo = @current_user.present? ? @current_user.payoutStatus : {stripeAccountID: 0, stripeCustomerID: 0, commentCount: 0  }
+		
+
 	end
 
 	def membership

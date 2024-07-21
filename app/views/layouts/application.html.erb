@@ -272,28 +272,40 @@
                     <div class="col-12">
                        <div class="card">
                           <div class="card-body pt-0">
-                             <ul class="iq-timeline ms-1">
-                      <li>
-                         <div class="timeline-dots border-primary"></div>
-                         <div class="d-flex align-items-center justify-content-between">
-                            <h6 class="mb-1">Launching As Is &amp; Ready For More</h6>
-                            <small>08 July 2024</small>
-                         </div>
-                         <div class="d-inline-block w-100">
-                            <p>We're preparing to launch to avoid wasting time. We will let the community tell us the most value features or what to build next instead of sitting around guessing. <br>Here are some things we know we need to fix: 1. When commenting or liking an idea, the page should not reload. 2. ChatGPT integration for titles, images, tags, and descriptions. 3. AI formatting images &amp; videos for download. 4. Feed page reloads after 60 seconds. <br>We need developers. Contact Us: <%= mail_to "team@yuhtoo.com" %></p>
-                         </div>
-                      </li>
-                      <li>
-                         <div class="timeline-dots border-success"></div>
-                         <div class="d-flex align-items-center justify-content-between">
-                            <h6 class="mb-1">Started YuhToo</h6>
-                            <small>01 July 2024</small>
-                         </div>
-                         <div class="d-inline-block w-100">
-                            <p>The term "YouTube Automation" is trending but nothing is automated yet &amp; monetization can be tiresome<br>The YuhToo platform will change that for everyone looking to make money online!</p>
-                         </div>
-                      </li>
-                   </ul>
+                            <ul class="iq-timeline ms-1">
+                              <% unless request.original_url.include?('/ideas') %>
+                                <% @history.each do |item| %>
+                                 
+                                  <li>
+                                     <div class="timeline-dots border-primary"></div>
+                                     <div class="d-flex align-items-center justify-content-between">
+                                        <h6 class="mb-1"><%= link_to item[:highlight], item[:linkURL] %><%= item[:message] %></h6>
+                                        <small><%= item[:date].strftime("%d %B %Y") %></small>
+                                     </div>
+                                  </li>
+                                <% end %>
+                              <% end %>
+                                <li>
+                                   <div class="timeline-dots border-primary"></div>
+                                   <div class="d-flex align-items-center justify-content-between">
+                                      <h6 class="mb-1">Launching As Is &amp; Ready For More</h6>
+                                      <small>08 July 2024</small>
+                                   </div>
+                                   <div class="d-inline-block w-100">
+                                      <p>We're preparing to launch to avoid wasting time. We will let the community tell us the most value features or what to build next instead of sitting around guessing. <br>Here are some things we know we need to fix: 1. When commenting or liking an idea, the page should not reload. 2. ChatGPT integration for titles, images, tags, and descriptions. 3. AI formatting images &amp; videos for download. 4. Feed page reloads after 60 seconds. <br>We need developers. Contact Us: <%= mail_to "team@yuhtoo.com" %></p>
+                                   </div>
+                                </li>
+                                <li>
+                                   <div class="timeline-dots border-primary"></div>
+                                   <div class="d-flex align-items-center justify-content-between">
+                                      <h6 class="mb-1">Started YuhToo</h6>
+                                      <small>01 July 2024</small>
+                                   </div>
+                                   <div class="d-inline-block w-100">
+                                      <p>The term "YouTube Automation" is trending but nothing is automated yet &amp; monetization can be tiresome<br>The YuhToo platform will change that for everyone looking to make money online!</p>
+                                   </div>
+                                </li>
+                            </ul>
                           </div>
                        </div>
                     </div>
