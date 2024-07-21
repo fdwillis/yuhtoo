@@ -8,6 +8,8 @@ gem 'google_sign_in'
 
 gem 'figaro'
 
+gem 'awesome_print'
+
 gem 'stripe'
 
 gem 'redcarpet'

@@ -273,7 +273,7 @@
                        <div class="card">
                           <div class="card-body pt-0">
                             <ul class="iq-timeline ms-1">
-                              <% unless request.original_url.include?('/ideas') %>
+                              <% unless request.original_url.include?('/ideas') || request.original_url.include?('/feed') %>
                                 <% @history.each do |item| %>
                                  
                                   <li>
@@ -373,7 +373,7 @@
                                 <p>Earn perks, upgrades, and discounts</p>
 
                                   <button type="button" class="btn mb-1 <%= @current_user&.ideas&.where(monetized:true)&.size.to_i >= 10 ? 'btn-success-subtle' : @current_user&.ideas&.where(monetized:true)&.size.to_i == 0 ? 'btn-danger-subtle' : 'btn-warning-subtle' %> form-control">
-                                  Monetized Ideas <span class="badge <%= @current_user&.ideas&.where(monetized:true)&.size.to_i >= 10 ? 'bg-success' : @current_user&.ideas&.where(monetized:true)&.size.to_i == 0 ? 'bg-danger' : 'bg-warning' %> ml-2"><%= @current_user&.ideas&.where(monetized:true)&.size %>/10</span>
+                                  Funded Ideas <span class="badge <%= @current_user&.ideas&.where(monetized:true)&.size.to_i >= 10 ? 'bg-success' : @current_user&.ideas&.where(monetized:true)&.size.to_i == 0 ? 'bg-danger' : 'bg-warning' %> ml-2"><%= @current_user&.ideas&.where(monetized:true)&.size %>/10</span>
                                   </button>
                                   <div class="progress mb-3">
                                     

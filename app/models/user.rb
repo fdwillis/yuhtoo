@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :omniauthable, omniauth_providers: [:google_oauth2]
   has_many :comments
   has_many :replies
-  has_many :ideas
+  has_many :ideas, dependent: :destroy
 
   def payoutStatus
     liveCount = 0

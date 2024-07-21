@@ -70,7 +70,7 @@ class ApplicationController < ActionController::Base
 		history = []
 
 		userIdeas = @current_user&.ideas
-		if userIdeas.size > 0
+		if userIdeas.present?
 			userIdeas.each do |ideaX|
 				history << {date: ideaX&.created_at, highlight: 'Your idea', message: ' posted to the feed' , linkURL: "/ideas/#{ideaX&.id}" }
 			end
