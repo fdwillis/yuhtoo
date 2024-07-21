@@ -173,20 +173,21 @@
         </div>
         <h2 class="mt-4 mb-1 text-center">Welcome to YuhToo</h2>
         <p class="text-center"><em><strong>A Community For YouTube Automation</strong></em></p>
-
-        <a href="/membership" class="mt-2">
-          <div class="text-left " id="page_layout">
-                  <div class="col-12">
-                     <div class="card position-relative inner-page-bg bg-primary" style="height: 150px;">
-                        <div class="inner-page-title">
-                          <h3 class="text-white"><em><strong><u>Members Get Paid</u></strong></em></h3>
-                          <p class="text-white mb-0">See All Plans</p>
-                          <a href="/membership" class="btn btn-secondary-subtle">Get Started</a>
-                        </div>
-                     </div>
-                  </div>
-          </div>
-        </a>
+        <% if @current_user.present? && @current_user&.payoutStatus[:lifeTime] == 0 %>
+          <a href="/membership" class="mt-2">
+            <div class="text-left " id="page_layout">
+                    <div class="col-12">
+                       <div class="card position-relative inner-page-bg bg-primary" style="height: 150px;">
+                          <div class="inner-page-title">
+                            <h3 class="text-white"><em><strong><u>Members Get Paid</u></strong></em></h3>
+                            <p class="text-white mb-0">See All Plans</p>
+                            <a href="/membership" class="btn btn-secondary-subtle">Get Started</a>
+                          </div>
+                       </div>
+                    </div>
+            </div>
+          </a>
+        <% end %>
         
         <!-- <ul class="d-none d-xl-block countdown list-inline text-center" data-date="Jan 01 2025 00:00:00">
           

@@ -15,16 +15,27 @@ class User < ApplicationRecord
     stripeAccount = 0
     
     if stripeCustomerID.present?
-      paymentIntentsX = Stripe::PaymentIntent.list({customer: stripeCustomerID})
-      paymentIntentsX.auto_paging_each do |paymentX|
-        unless paymentX['metadata']['rawAmount'].present?
-          if paymentX['amount'] == 250000 && paymentX['status'] == 'succeeded'
-            stripeCustomer += 1
-            lifeTime += 1
-          end
+      allSessions = Stripe::Checkout::Session.list({customer: stripeCustomerID})
 
+      allSessions.auto_paging_each do |sessionX|
+        session0 = Stripe::Checkout::Session.list_line_items(sessionX['id'])
+
+        if session0['data'].map{|d|d['description']}[0].downcase.include?('lifetime')
+          stripeCustomer += 1
+          lifeTime += 1
         end
       end
+
+      # paymentIntentsX = Stripe::PaymentIntent.list({customer: stripeCustomerID})
+      # paymentIntentsX.auto_paging_each do |paymentX|
+      #   unless paymentX['metadata']['rawAmount'].present?
+      #     if paymentX['amount'] == 250000 && paymentX['status'] == 'succeeded'
+      #       stripeCustomer += 1
+      #       lifeTime += 1
+      #     end
+
+      #   end
+      # end
 
 
       allCustomerxPlans = Stripe::Subscription.list({customer: stripeCustomerID})['data'].map(&:plan)
