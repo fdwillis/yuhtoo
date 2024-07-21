@@ -18,7 +18,7 @@ class User < ApplicationRecord
       paymentIntentsX = Stripe::PaymentIntent.list({customer: stripeCustomerID})
       paymentIntentsX.auto_paging_each do |paymentX|
         unless paymentX['metadata']['rawAmount'].present?
-          if paymentX['amount'] == 110000 && paymentX['status'] == 'succeeded'
+          if paymentX['amount'] == 250000 && paymentX['status'] == 'succeeded'
             stripeCustomer += 1
             lifeTime += 1
           end
