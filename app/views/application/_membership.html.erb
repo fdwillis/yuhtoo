@@ -1,0 +1,53 @@
+<% if Rails.env.development? %>
+  <% if @current_user&.payoutStatus[:lifeTime] == 0 %>
+    <a href="https://buy.stripe.com/test_3cs8yb3Ipf9YcHmfYY?prefilled_email=<%= @current_user&.email %>">
+    <div class="text-left " id="page_layout">
+            <div class="col-12">
+               <div class="card position-relative inner-page-bg bg-primary" style="height: 150px;">
+                  <div class="inner-page-title">
+                    <h3 class="text-white"><em><strong><u>Lifetime Memberships</u></strong></em></h3>
+                    <p class="text-white mb-0">Ending - Jan 01 2025</p>
+                    <a href="https://buy.stripe.com/test_3cs8yb3Ipf9YcHmfYY?prefilled_email=<%= @current_user&.email %>" class="btn btn-secondary-subtle">Get Started</a>
+                  </div>
+               </div>
+            </div>
+    </div>
+    </a>
+    <% end %>
+    <% unless @current_user.present? && @current_user&.stripeCustomerID.present? %>
+      <script async src="https://js.stripe.com/v3/pricing-table.js"></script>
+      <stripe-pricing-table customer-email="<%= @current_user&.email %>" pricing-table-id="prctbl_1PeXqTIe57Q4b5GrrkiFKxJw"
+      publishable-key="<%= ENV['stripeTestPublish'] %>">
+      </stripe-pricing-table>
+  <% end %>
+<% end %>
+<% if Rails.env.production? %>
+
+  <% unless @current_user.present? && @current_user&.stripeCustomerID.present? %>
+    <script async src="https://js.stripe.com/v3/pricing-table.js"></script>
+    <div class="mb-4">
+      
+    <stripe-pricing-table pricing-table-id="prctbl_1Pf3xeIe57Q4b5GrDb8mIvkG"
+    publishable-key="<%= ENV['stripeLivePublish'] %>" >
+    </stripe-pricing-table>
+    </div>
+    <% if @current_user&.payoutStatus[:lifeTime] == 0 %>
+      <a href="https://buy.stripe.com/test_3cs8yb3Ipf9YcHmfYY?prefilled_email=<%= @current_user&.email %>" class="mt-2">
+        <div class="text-left " id="page_layout">
+                <div class="col-12">
+                   <div class="card position-relative inner-page-bg bg-primary" style="height: 150px;">
+                      <div class="inner-page-title">
+                        <h3 class="text-white"><em><strong><u>Lifetime Memberships</u></strong></em></h3>
+                        <p class="text-white mb-0">Ending - Jan 01 2025</p>
+                        <a href="https://buy.stripe.com/test_3cs8yb3Ipf9YcHmfYY?prefilled_email=<%= @current_user&.email %>" class="btn btn-secondary-subtle">Get Started</a>
+                      </div>
+                   </div>
+                </div>
+        </div>
+      </a>
+    <% end %>
+    <stripe-pricing-table pricing-table-id="prctbl_1Pf41PIe57Q4b5GrGa93q4Uk"
+    publishable-key="<%= ENV['stripeLivePublish'] %>" >
+    </stripe-pricing-table>
+  <% end %>
+<% end %>
