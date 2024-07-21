@@ -10,7 +10,7 @@
 		  <%= cl_video_tag(file, aspect_ratio: "3:4", gravity: "auto:face", height: 300, crop: "auto")%>
 	<% end %>
 <% end %>
-<div class="col-lg-12">
+<div class="col-12">
          <div class="card">
             <div class="card-body p-0">
                <div class="">
@@ -58,316 +58,322 @@
                </div>
             </div>
          </div>
-  </div>
-  <div class="col-sm-12">
-         <div class="tab-content forum-content">
+</div>
+<% if request.original_url.include?('?') %>
+<div class="col-12 mb-4">
+  <a href="/ideas/<%= @idea&.id %>" class="btn btn-secondary-subtle form-control"><svg xmlns="http://www.w3.org/2000/svg" height="14" width="10.5" viewBox="0 0 384 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ff0000" d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></svg>&nbsp;Close</a>
+</div>
+<% end %>
+<div class="col-12">
+   <div class="tab-content forum-content">
 
-            <div class="tab-pane fade <%= @panel.present? && @panel == 'getPaid' ? 'active show' : nil %>" id="getPaid" role="tabpanel">
-               <div class="card">
-                  <div class="card-body p-0">
-                     <div class="container">
-                        <div class="text-center iq-comingsoon-info">
-                          <div class="row">
-                            
-                             <a class="d-inline-flex align-items-center justify-content-center">
-                               <%= image_tag 'YuhToo.png', class: 'signin-img img-fluid rounded-3', style: 'height:180px;width:180px;' %>
-                             </a>
+      <div class="tab-pane fade <%= @panel.present? && @panel == 'getPaid' ? 'active show' : nil %>" id="getPaid" role="tabpanel">
+         <div class="card">
+            <div class="card-body p-0">
+               <div class="container">
+                  <div class="text-center iq-comingsoon-info">
+                    <div class="row">
+                      
+                       <a class="d-inline-flex align-items-center justify-content-center">
+                         <%= image_tag 'YuhToo.png', class: 'signin-img img-fluid rounded-3', style: 'height:180px;width:180px;' %>
+                       </a>
+                    </div>
+                    <div class="row">
+                      <a href="/" class="d-flex justify-content-center align-items-center gap-2 iq-header-logo d-none d-lg-flex">
+                      
+                        <h3 class="logo-title d-none d-sm-block" data-setting="app_name">YuhToo</h3>
+                      </a>
+                    </div>
+                    
+                    <h2 class="mt-4 mb-1">Put money in</h2>
+                    <p><em><strong>Get paid after the idea is monetized on YouTube</strong></em></p>
+                    <a href="https://www.youtube.com/@quote.the.streets?sub_confirmation=1" target="_blank" class="d-inline-flex align-items-center justify-content-center mb-4">
+                        <p ><em><strong>Subscribe On YouTube</strong></em></p>
+                      </a>
+                    <% if @current_user&.payoutStatus[:stripeCustomerID] == 1 %>
+                    <div class="add-comment-form-block">
+                      <div class="d-flex align-items-center gap-3">
+                         <div class="flex-shrink-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="20" width="22.5" viewBox="0 0 576 512"><path fill="#ff0000" d="M312 24V34.5c6.4 1.2 12.6 2.7 18.2 4.2c12.8 3.4 20.4 16.6 17 29.4s-16.6 20.4-29.4 17c-10.9-2.9-21.1-4.9-30.2-5c-7.3-.1-14.7 1.7-19.4 4.4c-2.1 1.3-3.1 2.4-3.5 3c-.3 .5-.7 1.2-.7 2.8c0 .3 0 .5 0 .6c.2 .2 .9 1.2 3.3 2.6c5.8 3.5 14.4 6.2 27.4 10.1l.9 .3c11.1 3.3 25.9 7.8 37.9 15.3c13.7 8.6 26.1 22.9 26.4 44.9c.3 22.5-11.4 38.9-26.7 48.5c-6.7 4.1-13.9 7-21.3 8.8V232c0 13.3-10.7 24-24 24s-24-10.7-24-24V220.6c-9.5-2.3-18.2-5.3-25.6-7.8c-2.1-.7-4.1-1.4-6-2c-12.6-4.2-19.4-17.8-15.2-30.4s17.8-19.4 30.4-15.2c2.6 .9 5 1.7 7.3 2.5c13.6 4.6 23.4 7.9 33.9 8.3c8 .3 15.1-1.6 19.2-4.1c1.9-1.2 2.8-2.2 3.2-2.9c.4-.6 .9-1.8 .8-4.1l0-.2c0-1 0-2.1-4-4.6c-5.7-3.6-14.3-6.4-27.1-10.3l-1.9-.6c-10.8-3.2-25-7.5-36.4-14.4c-13.5-8.1-26.5-22-26.6-44.1c-.1-22.9 12.9-38.6 27.7-47.4c6.4-3.8 13.3-6.4 20.2-8.2V24c0-13.3 10.7-24 24-24s24 10.7 24 24zM568.2 336.3c13.1 17.8 9.3 42.8-8.5 55.9L433.1 485.5c-23.4 17.2-51.6 26.5-80.7 26.5H192 32c-17.7 0-32-14.3-32-32V416c0-17.7 14.3-32 32-32H68.8l44.9-36c22.7-18.2 50.9-28 80-28H272h16 64c17.7 0 32 14.3 32 32s-14.3 32-32 32H288 272c-8.8 0-16 7.2-16 16s7.2 16 16 16H392.6l119.7-88.2c17.8-13.1 42.8-9.3 55.9 8.5zM193.6 384l0 0-.9 0c.3 0 .6 0 .9 0z"/></svg>
+                         </div>
+                        
+
+                          <div class="add-comment-form">
+                          	<%= form_for :transaction, :url => { :controller => 'transactions', :action => "create" } do |f| %>
+                          	<div class="row">
+                          		<div class="col-8">
+          	                    <%= f.number_field :amount, id: 'source', placeholder: 'Enter amount...', class: 'form-control', min: 1 %>
+                          		</div>
+                          		<div class="col-4">
+          	                    <%= f.submit "Submit", class: "btn btn-primary font-size-12 text-capitalize px-5 form-control"%>
+                          		</div>
+                          	</div>
+                              <%= f.hidden_field :idea, value: @idea.uuid %>
+                          	<% end %>
                           </div>
-                          <div class="row">
-                            <a href="/" class="d-flex justify-content-center align-items-center gap-2 iq-header-logo d-none d-lg-flex">
-                            
-                              <h3 class="logo-title d-none d-sm-block" data-setting="app_name">YuhToo</h3>
-                            </a>
-                          </div>
+                        
+                      </div>
+                      <p class="mt-2"> <span id='result'>$0</span> USD after processing</p>
+                      <div class="container">
                           
-                          <h2 class="mt-4 mb-1">Put money in</h2>
-                          <p><em><strong>Get paid after the idea is monetized on YouTube</strong></em></p>
-                          <a href="https://www.youtube.com/@quote.the.streets?sub_confirmation=1" target="_blank" class="d-inline-flex align-items-center justify-content-center mb-4">
-                              <p ><em><strong>Subscribe On YouTube</strong></em></p>
-                            </a>
-                          <% if @current_user&.payoutStatus[:stripeCustomerID] == 1 %>
-                          <div class="add-comment-form-block">
-                            <div class="d-flex align-items-center gap-3">
-                               <div class="flex-shrink-0">
-                                  <svg xmlns="http://www.w3.org/2000/svg" height="20" width="22.5" viewBox="0 0 576 512"><path fill="#ff0000" d="M312 24V34.5c6.4 1.2 12.6 2.7 18.2 4.2c12.8 3.4 20.4 16.6 17 29.4s-16.6 20.4-29.4 17c-10.9-2.9-21.1-4.9-30.2-5c-7.3-.1-14.7 1.7-19.4 4.4c-2.1 1.3-3.1 2.4-3.5 3c-.3 .5-.7 1.2-.7 2.8c0 .3 0 .5 0 .6c.2 .2 .9 1.2 3.3 2.6c5.8 3.5 14.4 6.2 27.4 10.1l.9 .3c11.1 3.3 25.9 7.8 37.9 15.3c13.7 8.6 26.1 22.9 26.4 44.9c.3 22.5-11.4 38.9-26.7 48.5c-6.7 4.1-13.9 7-21.3 8.8V232c0 13.3-10.7 24-24 24s-24-10.7-24-24V220.6c-9.5-2.3-18.2-5.3-25.6-7.8c-2.1-.7-4.1-1.4-6-2c-12.6-4.2-19.4-17.8-15.2-30.4s17.8-19.4 30.4-15.2c2.6 .9 5 1.7 7.3 2.5c13.6 4.6 23.4 7.9 33.9 8.3c8 .3 15.1-1.6 19.2-4.1c1.9-1.2 2.8-2.2 3.2-2.9c.4-.6 .9-1.8 .8-4.1l0-.2c0-1 0-2.1-4-4.6c-5.7-3.6-14.3-6.4-27.1-10.3l-1.9-.6c-10.8-3.2-25-7.5-36.4-14.4c-13.5-8.1-26.5-22-26.6-44.1c-.1-22.9 12.9-38.6 27.7-47.4c6.4-3.8 13.3-6.4 20.2-8.2V24c0-13.3 10.7-24 24-24s24 10.7 24 24zM568.2 336.3c13.1 17.8 9.3 42.8-8.5 55.9L433.1 485.5c-23.4 17.2-51.6 26.5-80.7 26.5H192 32c-17.7 0-32-14.3-32-32V416c0-17.7 14.3-32 32-32H68.8l44.9-36c22.7-18.2 50.9-28 80-28H272h16 64c17.7 0 32 14.3 32 32s-14.3 32-32 32H288 272c-8.8 0-16 7.2-16 16s7.2 16 16 16H392.6l119.7-88.2c17.8-13.1 42.8-9.3 55.9 8.5zM193.6 384l0 0-.9 0c.3 0 .6 0 .9 0z"/></svg>
-                               </div>
-                              
+                          <div class="progress mt-2">
+                             <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" aria-valuenow="<%= (((@transactions.map{|d|d['rawAmount'].to_i}.sum).to_f / @idea&.fundingAmount.to_f).to_f * 100) %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= (@totalAmount/100)*100 %>%"></div>
+                          </div>
+                          <p class="text-center"><%= number_to_percentage((@totalAmount/100)*100) %> Funded</p>
+                      </div>
+                    </div>
 
-                                <div class="add-comment-form">
-                                	<%= form_for :transaction, :url => { :controller => 'transactions', :action => "create" } do |f| %>
-                                	<div class="row">
-                                		<div class="col-8">
-                	                    <%= f.number_field :amount, id: 'source', placeholder: 'Enter amount...', class: 'form-control', min: 1 %>
-                                		</div>
-                                		<div class="col-4">
-                	                    <%= f.submit "Submit", class: "btn btn-primary font-size-12 text-capitalize px-5 form-control"%>
-                                		</div>
-                                	</div>
-                                    <%= f.hidden_field :idea, value: @idea.uuid %>
-                                	<% end %>
+
+
+
+                    
+                    <% else %>
+                    <div class="col-12 ">
+
+                      <a href="<%= @current_user&.stripeCustomerID.present? ? @stripeCustomerPortal['url'] : '/membership'  %>" >
+                       <div class="card">
+                          <div class="card-body">
+                             <div class="iq-badges text-center">
+                                <div class="badges-icon">
+                                   
+                                   <svg xmlns="http://www.w3.org/2000/svg" height="80" width="100" viewBox="0 0 640 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ff0000" d="M72 88a56 56 0 1 1 112 0A56 56 0 1 1 72 88zM64 245.7C54 256.9 48 271.8 48 288s6 31.1 16 42.3l0-84.7zm144.4-49.3C178.7 222.7 160 261.2 160 304c0 34.3 12 65.8 32 90.5l0 21.5c0 17.7-14.3 32-32 32l-64 0c-17.7 0-32-14.3-32-32l0-26.8C26.2 371.2 0 332.7 0 288c0-61.9 50.1-112 112-112l32 0c24 0 46.2 7.5 64.4 20.3zM448 416l0-21.5c20-24.7 32-56.2 32-90.5c0-42.8-18.7-81.3-48.4-107.7C449.8 183.5 472 176 496 176l32 0c61.9 0 112 50.1 112 112c0 44.7-26.2 83.2-64 101.2l0 26.8c0 17.7-14.3 32-32 32l-64 0c-17.7 0-32-14.3-32-32zm8-328a56 56 0 1 1 112 0A56 56 0 1 1 456 88zM576 245.7l0 84.7c10-11.3 16-26.1 16-42.3s-6-31.1-16-42.3zM320 32a64 64 0 1 1 0 128 64 64 0 1 1 0-128zM240 304c0 16.2 6 31 16 42.3l0-84.7c-10 11.3-16 26.1-16 42.3zm144-42.3l0 84.7c10-11.3 16-26.1 16-42.3s-6-31.1-16-42.3zM448 304c0 44.7-26.2 83.2-64 101.2l0 42.8c0 17.7-14.3 32-32 32l-64 0c-17.7 0-32-14.3-32-32l0-42.8c-37.8-18-64-56.5-64-101.2c0-61.9 50.1-112 112-112l32 0c61.9 0 112 50.1 112 112z"/></svg>
                                 </div>
-                              
-                            </div>
-                            <p class="mt-2"> <span id='result'>$0</span> USD after processing</p>
-                            <div class="container">
+                                <h5 class="mb-2">Membership</h5>
                                 
-                                <div class="progress mt-2">
-                                   <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" aria-valuenow="<%= (((@transactions.map{|d|d['rawAmount'].to_i}.sum).to_f / @idea&.fundingAmount.to_f).to_f * 100) %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= (@totalAmount/100)*100 %>%"></div>
-                                </div>
-                                <p class="text-center"><%= number_to_percentage((@totalAmount/100)*100) %> Funded</p>
-                            </div>
-                          </div>
-
-
-
-
-                          
-                          <% else %>
-                          <div class="col-12 ">
-
-                            <a href="<%= @current_user&.stripeCustomerID.present? ? @stripeCustomerPortal['url'] : '/membership'  %>" >
-                             <div class="card">
-                                <div class="card-body">
-                                   <div class="iq-badges text-center">
-                                      <div class="badges-icon">
-                                         
-                                         <svg xmlns="http://www.w3.org/2000/svg" height="80" width="100" viewBox="0 0 640 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ff0000" d="M72 88a56 56 0 1 1 112 0A56 56 0 1 1 72 88zM64 245.7C54 256.9 48 271.8 48 288s6 31.1 16 42.3l0-84.7zm144.4-49.3C178.7 222.7 160 261.2 160 304c0 34.3 12 65.8 32 90.5l0 21.5c0 17.7-14.3 32-32 32l-64 0c-17.7 0-32-14.3-32-32l0-26.8C26.2 371.2 0 332.7 0 288c0-61.9 50.1-112 112-112l32 0c24 0 46.2 7.5 64.4 20.3zM448 416l0-21.5c20-24.7 32-56.2 32-90.5c0-42.8-18.7-81.3-48.4-107.7C449.8 183.5 472 176 496 176l32 0c61.9 0 112 50.1 112 112c0 44.7-26.2 83.2-64 101.2l0 26.8c0 17.7-14.3 32-32 32l-64 0c-17.7 0-32-14.3-32-32zm8-328a56 56 0 1 1 112 0A56 56 0 1 1 456 88zM576 245.7l0 84.7c10-11.3 16-26.1 16-42.3s-6-31.1-16-42.3zM320 32a64 64 0 1 1 0 128 64 64 0 1 1 0-128zM240 304c0 16.2 6 31 16 42.3l0-84.7c-10 11.3-16 26.1-16 42.3zm144-42.3l0 84.7c10-11.3 16-26.1 16-42.3s-6-31.1-16-42.3zM448 304c0 44.7-26.2 83.2-64 101.2l0 42.8c0 17.7-14.3 32-32 32l-64 0c-17.7 0-32-14.3-32-32l0-42.8c-37.8-18-64-56.5-64-101.2c0-61.9 50.1-112 112-112l32 0c61.9 0 112 50.1 112 112z"/></svg>
-                                      </div>
-                                      <h5 class="mb-2">Membership</h5>
-                                      
-                                      <p>Manage payment &amp; information</p>
-                                      <button type="button" class="btn mb-1 <%= @payoutInfo[:stripeCustomerID] + 1 == 1 ? 'btn-warning-subtle' : 'btn-success-subtle' %> form-control">
-                                        Complete <span class="badge <%= @payoutInfo[:stripeCustomerID] + 1 == 1 ? 'bg-warning' : 'bg-success' %> ml-2"><%= @payoutInfo[:stripeCustomerID] + 1 %>/2</span>
-                                        </button>
-                                        <div class="progress mb-3">
-                                            <div class="progress-bar progress-bar-striped <%= @payoutInfo[:stripeCustomerID] + 1 == 1 ? 'bg-warning' : 'bg-success' %>" role="progressbar" style="width: <%= (@payoutInfo[:stripeCustomerID]) == 1 ? 100 : 50 %>%" aria-valuenow="<%= (@payoutInfo[:stripeCustomerID]) == 1 ? 100 : 50 %>" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                   </div>
-                                </div>
-                             </div>
-                            </a>
-                          </div>
-                          <% end %>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </div>
-
-            <div class="tab-pane fade <%= @panel.present? && @panel == 'splits' ? 'active show' : nil %>" id="splits" role="tabpanel">
-               <div class="card">
-                  <div class="card-body p-0">
-                     <div class="container">
-                        <div class="text-center iq-comingsoon-info">
-                          <div class="row">
-                            
-                             <a class="d-inline-flex align-items-center justify-content-center">
-                               <%= image_tag 'YuhToo.png', class: 'signin-img img-fluid rounded-3', style: 'height:180px;width:180px;' %>
-                             </a>
-                          </div>
-                          <div class="row">
-                            <a href="/" class="d-flex justify-content-center align-items-center gap-2 iq-header-logo d-none d-lg-flex">
-                            
-                              <h3 class="logo-title d-none d-sm-block" data-setting="app_name">YuhToo</h3>
-                            </a>
-                          </div>
-                          <h2 class="mt-4 mb-1">YouTube Payout History</h2>
-                          <p><em><strong>Get paid after the idea is monetized on YouTube</strong></em></p>
-                          <a href="https://www.youtube.com/@quote.the.streets?sub_confirmation=1" target="_blank" class="d-inline-flex align-items-center justify-content-center mb-4">
-                              <p ><em><strong>Subscribe On YouTube</strong></em></p>
-                            </a><br>
-                          <% if @current_user&.payoutStatus[:stripeCustomerID] == 1 %>
-
-                            <table class="table table-hover">
-                                <thead>
-                                   <tr>
-                                      <th scope="col">Country</th>
-                                      <th scope="col">Payout</th>
-                                      <th scope="col">Fee</th>
-                                      <th scope="col">Charge</th>
-                                      <th scope="col">Invested</th>
-                                      <th scope="col">Date</th>
-                                   </tr>
-                                </thead>
-                                <tbody>
-                                    <svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 512 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ff0000" d="M448 32l-86.1 0-1 1-127 127 92.1 0 1-1L453.8 32.3c-1.9-.2-3.8-.3-5.8-.3zm64 128l0-64c0-15.1-5.3-29.1-14-40l-104 104L512 160zM294.1 32l-92.1 0-1 1L73.9 160l92.1 0 1-1 127-127zM64 32C28.7 32 0 60.7 0 96l0 64 6.1 0 1-1 127-127L64 32zM512 192L0 192 0 416c0 35.3 28.7 64 64 64l384 0c35.3 0 64-28.7 64-64l0-224z"/></svg>&nbsp;&nbsp;Your Transaction
-                                  <% @transactions.each do |transactionX| %>
-                                     <tr>
-                                        
-                                        <td scope='col' class="icon-30 p-0">
-                                          <% if transactionX['customer'] == @current_user&.stripeCustomerID %>
-                                            <svg xmlns="http://www.w3.org/2000/svg" height="14" width="14" viewBox="0 0 512 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ff0000" d="M448 32l-86.1 0-1 1-127 127 92.1 0 1-1L453.8 32.3c-1.9-.2-3.8-.3-5.8-.3zm64 128l0-64c0-15.1-5.3-29.1-14-40l-104 104L512 160zM294.1 32l-92.1 0-1 1L73.9 160l92.1 0 1-1 127-127zM64 32C28.7 32 0 60.7 0 96l0 64 6.1 0 1-1 127-127L64 32zM512 192L0 192 0 416c0 35.3 28.7 64 64 64l384 0c35.3 0 64-28.7 64-64l0-224z"/></svg>
-                                          <% end %>
-                                          <%= User::FLAGS.reject{|d| d[1]!= 'CO'}[0][0] %>
-
-                                        </td>
-                                        <td scope='col'><%= number_to_percentage((transactionX['metadata']['rawAmount'].to_f/@totalAmount) * 100, precision: 2) %></td>
-<!--                                         <% if transactionX['customer'] == @current_user&.stripeCustomerID %>
-                                          <th class="text-primary">
-                                            <%= transactionX&.id[3..12] %><br>
-                                          </th>
-
-                                        <% else %>
-                                          <th><%= transactionX&.id[3..12] %></th>
-                                        <% end %> -->
-                                        <td scope='col'><%= number_to_currency(((transactionX['amount'] * 0.01).to_f - transactionX['metadata']['rawAmount'].to_f),precision: 2) %></td>
-                                        <td scope='col'><%= number_to_currency((transactionX['amount'] * 0.01), precision: 2) %></td>
-                                        <td scope='col'><%= number_to_currency((transactionX['metadata']['rawAmount']), precision: 2) %></td>
-                                        <td scope='col'><%= DateTime.strptime(transactionX['created'].to_s,'%s').strftime("%d %B %Y")  %></td>
-                                     </tr>
-                                  <% end %>
-                                </tbody>
-                            </table>
-                          <% else %>
-                            <div class="col-12 ">
-
-                              <a href="<%= @current_user&.stripeCustomerID.present? ? @stripeCustomerPortal['url'] : '/membership'  %>" >
-                               <div class="card">
-                                  <div class="card-body">
-                                     <div class="iq-badges text-center">
-                                        <div class="badges-icon">
-                                           
-                                           <svg xmlns="http://www.w3.org/2000/svg" height="80" width="100" viewBox="0 0 640 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ff0000" d="M72 88a56 56 0 1 1 112 0A56 56 0 1 1 72 88zM64 245.7C54 256.9 48 271.8 48 288s6 31.1 16 42.3l0-84.7zm144.4-49.3C178.7 222.7 160 261.2 160 304c0 34.3 12 65.8 32 90.5l0 21.5c0 17.7-14.3 32-32 32l-64 0c-17.7 0-32-14.3-32-32l0-26.8C26.2 371.2 0 332.7 0 288c0-61.9 50.1-112 112-112l32 0c24 0 46.2 7.5 64.4 20.3zM448 416l0-21.5c20-24.7 32-56.2 32-90.5c0-42.8-18.7-81.3-48.4-107.7C449.8 183.5 472 176 496 176l32 0c61.9 0 112 50.1 112 112c0 44.7-26.2 83.2-64 101.2l0 26.8c0 17.7-14.3 32-32 32l-64 0c-17.7 0-32-14.3-32-32zm8-328a56 56 0 1 1 112 0A56 56 0 1 1 456 88zM576 245.7l0 84.7c10-11.3 16-26.1 16-42.3s-6-31.1-16-42.3zM320 32a64 64 0 1 1 0 128 64 64 0 1 1 0-128zM240 304c0 16.2 6 31 16 42.3l0-84.7c-10 11.3-16 26.1-16 42.3zm144-42.3l0 84.7c10-11.3 16-26.1 16-42.3s-6-31.1-16-42.3zM448 304c0 44.7-26.2 83.2-64 101.2l0 42.8c0 17.7-14.3 32-32 32l-64 0c-17.7 0-32-14.3-32-32l0-42.8c-37.8-18-64-56.5-64-101.2c0-61.9 50.1-112 112-112l32 0c61.9 0 112 50.1 112 112z"/></svg>
-                                        </div>
-                                        <h5 class="mb-2">Membership</h5>
-                                        
-                                        <p>Manage payment &amp; information</p>
-                                        <button type="button" class="btn mb-1 <%= @payoutInfo[:stripeCustomerID] + 1 == 1 ? 'btn-warning-subtle' : 'btn-success-subtle' %> form-control">
-                                          Complete <span class="badge <%= @payoutInfo[:stripeCustomerID] + 1 == 1 ? 'bg-warning' : 'bg-success' %> ml-2"><%= @payoutInfo[:stripeCustomerID] + 1 %>/2</span>
-                                          </button>
-                                          <div class="progress mb-3">
-                                              <div class="progress-bar progress-bar-striped <%= @payoutInfo[:stripeCustomerID] + 1 == 1 ? 'bg-warning' : 'bg-success' %>" role="progressbar" style="width: <%= (@payoutInfo[:stripeCustomerID]) == 1 ? 100 : 50 %>%" aria-valuenow="<%= (@payoutInfo[:stripeCustomerID]) == 1 ? 100 : 50 %>" aria-valuemin="0" aria-valuemax="100"></div>
-                                          </div>
-                                     </div>
+                                <p>Manage payment &amp; information</p>
+                                <button type="button" class="btn mb-1 <%= @payoutInfo[:stripeCustomerID] + 1 == 1 ? 'btn-warning-subtle' : 'btn-success-subtle' %> form-control">
+                                  Complete <span class="badge <%= @payoutInfo[:stripeCustomerID] + 1 == 1 ? 'bg-warning' : 'bg-success' %> ml-2"><%= @payoutInfo[:stripeCustomerID] + 1 %>/2</span>
+                                  </button>
+                                  <div class="progress mb-3">
+                                      <div class="progress-bar progress-bar-striped <%= @payoutInfo[:stripeCustomerID] + 1 == 1 ? 'bg-warning' : 'bg-success' %>" role="progressbar" style="width: <%= (@payoutInfo[:stripeCustomerID]) == 1 ? 100 : 50 %>%" aria-valuenow="<%= (@payoutInfo[:stripeCustomerID]) == 1 ? 100 : 50 %>" aria-valuemin="0" aria-valuemax="100"></div>
                                   </div>
-                               </div>
-                              </a>
-                            </div>
-                          <% end %>
-                        </div>
-                     </div>
+                             </div>
+                          </div>
+                       </div>
+                      </a>
+                    </div>
+                    <% end %>
                   </div>
                </div>
             </div>
-
-            <div class="tab-pane fade <%= @panel.present? && @panel == 'comments' ? 'active show' : nil %>" id="comments" role="tabpanel">
-               <div class="card">
-                  <div class="card-body p-0">
-                     <div class="container">
-				                 <div class="add-comment-form mt-4 pb-4">
-				                    <div class="row">
-				                      
-				                    <%= form_for(:newComment, id: "comment##{@idea.id}", url: comments_path) do |form| %>
-				                      <%= form.hidden_field :idea_id, value: @idea.id %>
-				                      <%= form.text_field :body, class: "form-control", placeholder: "Write a Comment..." %>
-				                       <button type="submit" class="btn btn-primary font-size-12 text-capitalize px-5 mt-2 form-control">Post</button>
-				                    <% end %>
-				                    </div>
-				                 </div>
-                       	<% if @idea&.comments.size > 0 %>
-	                        <table class="table forum-table mb-0 rounded">
-	                           <thead class="bg-primary text-white">
-	                              <tr>
-	                                 <th>Comment</th>
-	                                 <!-- <th>Voices</th>
-	                                 <th>Replies</th>
-	                                 <th>Discussion</th> -->
-	                              </tr>
-	                           </thead>
-	                           <tbody>
-							                  <% @idea&.comments.reverse.each do |comment| %>
-		                              <tr>
-		                                 <td class="col-12">
-		                                    <div class="d-flex align-items-center">
-		                                       <svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#919191" d="M168.2 384.9c-15-5.4-31.7-3.1-44.6 6.4c-8.2 6-22.3 14.8-39.4 22.7c5.6-14.7 9.9-31.3 11.3-49.4c1-12.9-3.3-25.7-11.8-35.5C60.4 302.8 48 272 48 240c0-79.5 83.3-160 208-160s208 80.5 208 160s-83.3 160-208 160c-31.6 0-61.3-5.5-87.8-15.1zM26.3 423.8c-1.6 2.7-3.3 5.4-5.1 8.1l-.3 .5c-1.6 2.3-3.2 4.6-4.8 6.9c-3.5 4.7-7.3 9.3-11.3 13.5c-4.6 4.6-5.9 11.4-3.4 17.4c2.5 6 8.3 9.9 14.8 9.9c5.1 0 10.2-.3 15.3-.8l.7-.1c4.4-.5 8.8-1.1 13.2-1.9c.8-.1 1.6-.3 2.4-.5c17.8-3.5 34.9-9.5 50.1-16.1c22.9-10 42.4-21.9 54.3-30.6c31.8 11.5 67 17.9 104.1 17.9c141.4 0 256-93.1 256-208S397.4 32 256 32S0 125.1 0 240c0 45.1 17.7 86.8 47.7 120.9c-1.9 24.5-11.4 46.3-21.4 62.9zM144 272a32 32 0 1 0 0-64 32 32 0 1 0 0 64zm144-32a32 32 0 1 0 -64 0 32 32 0 1 0 64 0zm80 32a32 32 0 1 0 0-64 32 32 0 1 0 0 64z"/></svg>
-		                                       <div class="media-body ms-3">
-		                                          <h6 class=""><a href="#"><%= comment&.body %></a></h6>
-		                                          <p class="mb-0"><%= time_ago_in_words(@idea.created_at) %> ago</p>
-		                                       </div>
-		                                    </div>
-		                                 </td>
-		                                 <!-- <td class="col-lg-2 h6">4</td>
-		                                 <td class="col-lg-2 h6">2</td>
-		                                 <td class="col-lg-4">
-		                                    <h6>There are many variations of passages.</h6>
-		                                    <p class="mb-0"><span class="text-dark me-2">Bob Frapples</span>20 minutes ago <span class="text-primary"> - Community Hangout</span></p>
-		                                 </td> -->
-		                              </tr>
-							                 	<% end %>
-	                           </tbody>
-	                        </table>
-			                 	<% end %>
-                     </div>
-                  </div>
-               </div>
-            </div>
-
-            <div class="tab-pane fade <%= @panel.present? && @panel == 'storyBoard' ? 'active show' : nil %>" id="storyBoard" role="tabpanel">
-               <div class="card">
-                  <diiv class="card-body p-0">
-                     <div class="table-responsive-lg">
-                        <div class="iq-comingsoon mt-5 mt-lg-0 mb-n5">
-							      <div class="container">
-							          <div class="row justify-content-center">
-							            <div class="col-md-8 text-center">
-							                <div class="iq-comingsoon-info">
-							                  <div class="row">
-							                    
-							                     <a class="d-inline-flex align-items-center justify-content-center">
-							                       <%= image_tag 'YuhToo.png', class: 'signin-img img-fluid rounded-3', style: 'height:180px;width:180px;' %>
-							                     </a>
-							                  </div>
-							                  <div class="row">
-							                    <a href="/" class="d-flex justify-content-center align-items-center gap-2 iq-header-logo d-none d-lg-flex">
-							                    
-							                      <h3 class="logo-title d-none d-sm-block" data-setting="app_name">YuhToo</h3>
-							                    </a>
-							                  </div>
-							                  <h2 class="mt-4 mb-1">ChatGPT coming soon</h2>
-							                  <p><em><strong>Automated titles, images &amp; scripts with AI</strong></em></p>
-
-							                  <ul class="countdown row list-inline" data-date="Jan 01 2025 00:00:00">
-							                    <li class="col-md-6 col-xl-3">
-							                      <div class="card">
-							                        <div class="card-body">
-							                          <span  id="days" class="text-center" data-days=""></span>Days
-							                        </div>
-							                      </div>
-							                    </li>
-							                    <li class="col-md-6 col-xl-3">
-							                      <div class="card">
-							                        <div class="card-body">
-							                          <span id="hours" class="text-center" data-hours=""></span>Hours
-							                        </div>
-							                      </div>
-							                    </li>
-							                    <li class="col-md-6 col-xl-3">
-							                      <div class="card">
-							                        <div class="card-body">
-							                          <span id="minutes" class="text-center" data-minutes=""></span>Minutes
-							                        </div>
-							                      </div>
-							                    </li>
-							                    <li class="col-md-6 col-xl-3">
-							                      <div class="card">
-							                        <div class="card-body">
-							                          <span id="seconds" class="text-center" data-seconds=""></span>Seconds
-							                        </div>
-							                      </div>
-							                    </li>
-							                  </ul>
-							                </div>
-							            </div>
-							          </div>
-							      </div>
-							    </div>
-                     </div>
-                  </diiv>
-               </div>
-            </div>
-
          </div>
       </div>
+
+      <div class="tab-pane fade <%= @panel.present? && @panel == 'splits' ? 'active show' : nil %>" id="splits" role="tabpanel">
+         <div class="card">
+            <div class="card-body p-0">
+               <div class="container">
+                  <div class="text-center iq-comingsoon-info">
+                    <div class="row">
+                      
+                       <a class="d-inline-flex align-items-center justify-content-center">
+                         <%= image_tag 'YuhToo.png', class: 'signin-img img-fluid rounded-3', style: 'height:180px;width:180px;' %>
+                       </a>
+                    </div>
+                    <div class="row">
+                      <a href="/" class="d-flex justify-content-center align-items-center gap-2 iq-header-logo d-none d-lg-flex">
+                      
+                        <h3 class="logo-title d-none d-sm-block" data-setting="app_name">YuhToo</h3>
+                      </a>
+                    </div>
+                    <h2 class="mt-4 mb-1">YouTube Payout History</h2>
+                    <p><em><strong>Get paid after the idea is monetized on YouTube</strong></em></p>
+                    <a href="https://www.youtube.com/@quote.the.streets?sub_confirmation=1" target="_blank" class="d-inline-flex align-items-center justify-content-center mb-4">
+                        <p ><em><strong>Subscribe On YouTube</strong></em></p>
+                      </a><br>
+                    <% if @current_user&.payoutStatus[:stripeCustomerID] == 1 %>
+
+                      <table class="table table-hover">
+                          <thead>
+                             <tr>
+                                <th scope="col">Country</th>
+                                <th scope="col">Payout</th>
+                                <th scope="col">Fee</th>
+                                <th scope="col">Charge</th>
+                                <th scope="col">Invested</th>
+                                <th scope="col">Date</th>
+                             </tr>
+                          </thead>
+                          <tbody>
+                              <svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 512 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ff0000" d="M448 32l-86.1 0-1 1-127 127 92.1 0 1-1L453.8 32.3c-1.9-.2-3.8-.3-5.8-.3zm64 128l0-64c0-15.1-5.3-29.1-14-40l-104 104L512 160zM294.1 32l-92.1 0-1 1L73.9 160l92.1 0 1-1 127-127zM64 32C28.7 32 0 60.7 0 96l0 64 6.1 0 1-1 127-127L64 32zM512 192L0 192 0 416c0 35.3 28.7 64 64 64l384 0c35.3 0 64-28.7 64-64l0-224z"/></svg>&nbsp;&nbsp;Your Transaction
+                            <% @transactions.each do |transactionX| %>
+                               <tr>
+                                  
+                                  <td scope='col' class="icon-30 p-0">
+                                    <% if transactionX['customer'] == @current_user&.stripeCustomerID %>
+                                      <svg xmlns="http://www.w3.org/2000/svg" height="14" width="14" viewBox="0 0 512 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ff0000" d="M448 32l-86.1 0-1 1-127 127 92.1 0 1-1L453.8 32.3c-1.9-.2-3.8-.3-5.8-.3zm64 128l0-64c0-15.1-5.3-29.1-14-40l-104 104L512 160zM294.1 32l-92.1 0-1 1L73.9 160l92.1 0 1-1 127-127zM64 32C28.7 32 0 60.7 0 96l0 64 6.1 0 1-1 127-127L64 32zM512 192L0 192 0 416c0 35.3 28.7 64 64 64l384 0c35.3 0 64-28.7 64-64l0-224z"/></svg>
+                                    <% end %>
+                                    <%= User::FLAGS.reject{|d| d[1]!= 'CO'}[0][0] %>
+
+                                  </td>
+                                  <td scope='col'><%= number_to_percentage((transactionX['metadata']['rawAmount'].to_f/@totalAmount) * 100, precision: 2) %></td>
+            <!--                                         <% if transactionX['customer'] == @current_user&.stripeCustomerID %>
+                                    <th class="text-primary">
+                                      <%= transactionX&.id[3..12] %><br>
+                                    </th>
+
+                                  <% else %>
+                                    <th><%= transactionX&.id[3..12] %></th>
+                                  <% end %> -->
+                                  <td scope='col'><%= number_to_currency(((transactionX['amount'] * 0.01).to_f - transactionX['metadata']['rawAmount'].to_f),precision: 2) %></td>
+                                  <td scope='col'><%= number_to_currency((transactionX['amount'] * 0.01), precision: 2) %></td>
+                                  <td scope='col'><%= number_to_currency((transactionX['metadata']['rawAmount']), precision: 2) %></td>
+                                  <td scope='col'><%= DateTime.strptime(transactionX['created'].to_s,'%s').strftime("%d %B %Y")  %></td>
+                               </tr>
+                            <% end %>
+                          </tbody>
+                      </table>
+                    <% else %>
+                      <div class="col-12 ">
+
+                        <a href="<%= @current_user&.stripeCustomerID.present? ? @stripeCustomerPortal['url'] : '/membership'  %>" >
+                         <div class="card">
+                            <div class="card-body">
+                               <div class="iq-badges text-center">
+                                  <div class="badges-icon">
+                                     
+                                     <svg xmlns="http://www.w3.org/2000/svg" height="80" width="100" viewBox="0 0 640 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ff0000" d="M72 88a56 56 0 1 1 112 0A56 56 0 1 1 72 88zM64 245.7C54 256.9 48 271.8 48 288s6 31.1 16 42.3l0-84.7zm144.4-49.3C178.7 222.7 160 261.2 160 304c0 34.3 12 65.8 32 90.5l0 21.5c0 17.7-14.3 32-32 32l-64 0c-17.7 0-32-14.3-32-32l0-26.8C26.2 371.2 0 332.7 0 288c0-61.9 50.1-112 112-112l32 0c24 0 46.2 7.5 64.4 20.3zM448 416l0-21.5c20-24.7 32-56.2 32-90.5c0-42.8-18.7-81.3-48.4-107.7C449.8 183.5 472 176 496 176l32 0c61.9 0 112 50.1 112 112c0 44.7-26.2 83.2-64 101.2l0 26.8c0 17.7-14.3 32-32 32l-64 0c-17.7 0-32-14.3-32-32zm8-328a56 56 0 1 1 112 0A56 56 0 1 1 456 88zM576 245.7l0 84.7c10-11.3 16-26.1 16-42.3s-6-31.1-16-42.3zM320 32a64 64 0 1 1 0 128 64 64 0 1 1 0-128zM240 304c0 16.2 6 31 16 42.3l0-84.7c-10 11.3-16 26.1-16 42.3zm144-42.3l0 84.7c10-11.3 16-26.1 16-42.3s-6-31.1-16-42.3zM448 304c0 44.7-26.2 83.2-64 101.2l0 42.8c0 17.7-14.3 32-32 32l-64 0c-17.7 0-32-14.3-32-32l0-42.8c-37.8-18-64-56.5-64-101.2c0-61.9 50.1-112 112-112l32 0c61.9 0 112 50.1 112 112z"/></svg>
+                                  </div>
+                                  <h5 class="mb-2">Membership</h5>
+                                  
+                                  <p>Manage payment &amp; information</p>
+                                  <button type="button" class="btn mb-1 <%= @payoutInfo[:stripeCustomerID] + 1 == 1 ? 'btn-warning-subtle' : 'btn-success-subtle' %> form-control">
+                                    Complete <span class="badge <%= @payoutInfo[:stripeCustomerID] + 1 == 1 ? 'bg-warning' : 'bg-success' %> ml-2"><%= @payoutInfo[:stripeCustomerID] + 1 %>/2</span>
+                                    </button>
+                                    <div class="progress mb-3">
+                                        <div class="progress-bar progress-bar-striped <%= @payoutInfo[:stripeCustomerID] + 1 == 1 ? 'bg-warning' : 'bg-success' %>" role="progressbar" style="width: <%= (@payoutInfo[:stripeCustomerID]) == 1 ? 100 : 50 %>%" aria-valuenow="<%= (@payoutInfo[:stripeCustomerID]) == 1 ? 100 : 50 %>" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                               </div>
+                            </div>
+                         </div>
+                        </a>
+                      </div>
+                    <% end %>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <div class="tab-pane fade <%= @panel.present? && @panel == 'comments' ? 'active show' : nil %>" id="comments" role="tabpanel">
+         <div class="card">
+            <div class="card-body p-0">
+               <div class="container">
+	                 <div class="add-comment-form mt-4 pb-4">
+	                    <div class="row">
+	                      
+	                    <%= form_for(:newComment, id: "comment##{@idea.id}", url: comments_path) do |form| %>
+	                      <%= form.hidden_field :idea_id, value: @idea.id %>
+	                      <%= form.text_field :body, class: "form-control", placeholder: "Write a Comment..." %>
+	                       <button type="submit" class="btn btn-primary font-size-12 text-capitalize px-5 mt-2 form-control">Post</button>
+	                    <% end %>
+	                    </div>
+	                 </div>
+                 	<% if @idea&.comments.size > 0 %>
+                    <table class="table forum-table mb-0 rounded">
+                       <thead class="bg-primary text-white">
+                          <tr>
+                             <th>Comment</th>
+                             <!-- <th>Voices</th>
+                             <th>Replies</th>
+                             <th>Discussion</th> -->
+                          </tr>
+                       </thead>
+                       <tbody>
+				                  <% @idea&.comments.reverse.each do |comment| %>
+                            <tr>
+                               <td class="col-12">
+                                  <div class="d-flex align-items-center">
+                                     <svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#919191" d="M168.2 384.9c-15-5.4-31.7-3.1-44.6 6.4c-8.2 6-22.3 14.8-39.4 22.7c5.6-14.7 9.9-31.3 11.3-49.4c1-12.9-3.3-25.7-11.8-35.5C60.4 302.8 48 272 48 240c0-79.5 83.3-160 208-160s208 80.5 208 160s-83.3 160-208 160c-31.6 0-61.3-5.5-87.8-15.1zM26.3 423.8c-1.6 2.7-3.3 5.4-5.1 8.1l-.3 .5c-1.6 2.3-3.2 4.6-4.8 6.9c-3.5 4.7-7.3 9.3-11.3 13.5c-4.6 4.6-5.9 11.4-3.4 17.4c2.5 6 8.3 9.9 14.8 9.9c5.1 0 10.2-.3 15.3-.8l.7-.1c4.4-.5 8.8-1.1 13.2-1.9c.8-.1 1.6-.3 2.4-.5c17.8-3.5 34.9-9.5 50.1-16.1c22.9-10 42.4-21.9 54.3-30.6c31.8 11.5 67 17.9 104.1 17.9c141.4 0 256-93.1 256-208S397.4 32 256 32S0 125.1 0 240c0 45.1 17.7 86.8 47.7 120.9c-1.9 24.5-11.4 46.3-21.4 62.9zM144 272a32 32 0 1 0 0-64 32 32 0 1 0 0 64zm144-32a32 32 0 1 0 -64 0 32 32 0 1 0 64 0zm80 32a32 32 0 1 0 0-64 32 32 0 1 0 0 64z"/></svg>
+                                     <div class="media-body ms-3">
+                                        <h6 class=""><a href="#"><%= comment&.body %></a></h6>
+                                        <p class="mb-0"><%= time_ago_in_words(@idea.created_at) %> ago</p>
+                                     </div>
+                                  </div>
+                               </td>
+                               <!-- <td class="col-lg-2 h6">4</td>
+                               <td class="col-lg-2 h6">2</td>
+                               <td class="col-lg-4">
+                                  <h6>There are many variations of passages.</h6>
+                                  <p class="mb-0"><span class="text-dark me-2">Bob Frapples</span>20 minutes ago <span class="text-primary"> - Community Hangout</span></p>
+                               </td> -->
+                            </tr>
+        
+				                 	<% end %>
+                       </tbody>
+                    </table>
+                 	<% end %>
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <div class="tab-pane fade <%= @panel.present? && @panel == 'storyBoard' ? 'active show' : nil %>" id="storyBoard" role="tabpanel">
+         <div class="card">
+            <diiv class="card-body p-0">
+               <div class="table-responsive-lg">
+                  <div class="iq-comingsoon mt-5 mt-lg-0 mb-n5">
+				      <div class="container">
+				          <div class="row justify-content-center">
+				            <div class="col-md-8 text-center">
+				                <div class="iq-comingsoon-info">
+				                  <div class="row">
+				                    
+				                     <a class="d-inline-flex align-items-center justify-content-center">
+				                       <%= image_tag 'YuhToo.png', class: 'signin-img img-fluid rounded-3', style: 'height:180px;width:180px;' %>
+				                     </a>
+				                  </div>
+				                  <div class="row">
+				                    <a href="/" class="d-flex justify-content-center align-items-center gap-2 iq-header-logo d-none d-lg-flex">
+				                    
+				                      <h3 class="logo-title d-none d-sm-block" data-setting="app_name">YuhToo</h3>
+				                    </a>
+				                  </div>
+				                  <h2 class="mt-4 mb-1">ChatGPT coming soon</h2>
+				                  <p><em><strong>Automated titles, images &amp; scripts with AI</strong></em></p>
+
+				                  <ul class="countdown row list-inline" data-date="Jan 01 2025 00:00:00">
+				                    <li class="col-md-6 col-xl-3">
+				                      <div class="card">
+				                        <div class="card-body">
+				                          <span  id="days" class="text-center" data-days=""></span>Days
+				                        </div>
+				                      </div>
+				                    </li>
+				                    <li class="col-md-6 col-xl-3">
+				                      <div class="card">
+				                        <div class="card-body">
+				                          <span id="hours" class="text-center" data-hours=""></span>Hours
+				                        </div>
+				                      </div>
+				                    </li>
+				                    <li class="col-md-6 col-xl-3">
+				                      <div class="card">
+				                        <div class="card-body">
+				                          <span id="minutes" class="text-center" data-minutes=""></span>Minutes
+				                        </div>
+				                      </div>
+				                    </li>
+				                    <li class="col-md-6 col-xl-3">
+				                      <div class="card">
+				                        <div class="card-body">
+				                          <span id="seconds" class="text-center" data-seconds=""></span>Seconds
+				                        </div>
+				                      </div>
+				                    </li>
+				                  </ul>
+				                </div>
+				            </div>
+				          </div>
+				      </div>
+				    </div>
+               </div>
+            </diiv>
+         </div>
+      </div>
+
+   </div>
+</div>
 <div class="card card-block">
   <div class="card-body">
 		<div class="user-post-data">
@@ -431,7 +437,7 @@
 		</div>
 	<p class="mb-0"><strong><%= time_ago_in_words(@idea.created_at) %> ago</strong></p>
 
-  <a href="/feed" class="btn btn-secondary-subtle"><svg xmlns="http://www.w3.org/2000/svg" height="14" width="10.5" viewBox="0 0 384 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ff0000" d="M272 384c9.6-31.9 29.5-59.1 49.2-86.2c0 0 0 0 0 0c5.2-7.1 10.4-14.2 15.4-21.4c19.8-28.5 31.4-63 31.4-100.3C368 78.8 289.2 0 192 0S16 78.8 16 176c0 37.3 11.6 71.9 31.4 100.3c5 7.2 10.2 14.3 15.4 21.4c0 0 0 0 0 0c19.8 27.1 39.7 54.4 49.2 86.2l160 0zM192 512c44.2 0 80-35.8 80-80l0-16-160 0 0 16c0 44.2 35.8 80 80 80zM112 176c0 8.8-7.2 16-16 16s-16-7.2-16-16c0-61.9 50.1-112 112-112c8.8 0 16 7.2 16 16s-7.2 16-16 16c-44.2 0-80 35.8-80 80z"/></svg>&nbsp;YuhToo Feed</a>
+  <a href="/feed" class="btn btn-secondary-subtle form-control"><svg xmlns="http://www.w3.org/2000/svg" height="14" width="10.5" viewBox="0 0 384 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ff0000" d="M272 384c9.6-31.9 29.5-59.1 49.2-86.2c0 0 0 0 0 0c5.2-7.1 10.4-14.2 15.4-21.4c19.8-28.5 31.4-63 31.4-100.3C368 78.8 289.2 0 192 0S16 78.8 16 176c0 37.3 11.6 71.9 31.4 100.3c5 7.2 10.2 14.3 15.4 21.4c0 0 0 0 0 0c19.8 27.1 39.7 54.4 49.2 86.2l160 0zM192 512c44.2 0 80-35.8 80-80l0-16-160 0 0 16c0 44.2 35.8 80 80 80zM112 176c0 8.8-7.2 16-16 16s-16-7.2-16-16c0-61.9 50.1-112 112-112c8.8 0 16 7.2 16 16s-7.2 16-16 16c-44.2 0-80 35.8-80 80z"/></svg>&nbsp;YuhToo Feed</a>
 	</div>
 </div>
  	
