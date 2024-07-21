@@ -1,8 +1,6 @@
 class IdeasController < ApplicationController
   before_action :set_idea, only: %i[reaction like unlike show edit update destroy ]
 
-  
-
   def unlike
     @idea.update(likes: @idea.likes.gsub(",#{@current_user&.uuid}", ""))
     redirect_to request.referrer
