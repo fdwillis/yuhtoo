@@ -28,7 +28,7 @@ class TransactionsController < ApplicationController
 		})
 
 		if paymentIntent['amount_received'] > 0 
-			redirect_to Idea.find_by(uuid: params['transaction']['idea'])
+			redirect_to request.referrer
 		end
 
 	end

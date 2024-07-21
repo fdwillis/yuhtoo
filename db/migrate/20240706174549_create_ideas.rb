@@ -12,7 +12,9 @@ class CreateIdeas < ActiveRecord::Migration[7.1]
       t.text :titles
       t.text :tags
       t.text :scripts
+      t.text :transactions
       t.string :userID
+      t.integer :fundingAmount, default: 100
       
       t.belongs_to :user, null: false, foreign_key: true
 

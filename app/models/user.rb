@@ -6,13 +6,13 @@ class User < ApplicationRecord
   has_many :replies
   has_many :ideas
 
-  def payoutStatus(userX)
+  def payoutStatus
     liveCount = 0
     stripeCustomer = 0
     stripeAccount = 0
     
-    if userX&.stripeCustomerID.present?
-      allCustomerxPlans = Stripe::Subscription.list({customer: userX&.stripeCustomerID})['data'].map(&:plan)
+    if stripeCustomerID.present?
+      allCustomerxPlans = Stripe::Subscription.list({customer: stripeCustomerID})['data'].map(&:plan)
       allCustomerxPlans.each do |planX|
         if planX['active'] == true
           stripeCustomer += 1
@@ -22,9 +22,9 @@ class User < ApplicationRecord
       stripeCustomer = 0
     end
 
-    if userX.stripeAccountID.present?
-      if Stripe::Account.retrieve(userX&.stripeAccountID)['requirements']['currently_due'].count == 0
-        if Stripe::Account.retrieve(userX&.stripeAccountID)['payouts_enabled']
+    if self.stripeAccountID.present?
+      if Stripe::Account.retrieve(stripeAccountID)['requirements']['currently_due'].count == 0
+        if Stripe::Account.retrieve(stripeAccountID)['payouts_enabled']
           stripeAccount += 1
         else
           stripeAccount = 0
@@ -35,7 +35,7 @@ class User < ApplicationRecord
     end
 
 
-    return {stripeAccountID: stripeAccount, stripeCustomerID: stripeCustomer, commentCount: userX&.comments&.count >= 100 ? 1 : 0  }#.where(approved: true).count
+    return {stripeAccountID: stripeAccount, stripeCustomerID: stripeCustomer, commentCount: comments&.count >= 100 ? 1 : 0  }#.where(approved: true).count
   end
 
 

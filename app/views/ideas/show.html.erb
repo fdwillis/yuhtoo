@@ -76,36 +76,66 @@
             <h2 class="mt-4 mb-1">Put money in</h2>
             <p><em><strong>Get paid after the idea is monetized on YouTube</strong></em></p>
             <a href="https://www.youtube.com/@quote.the.streets?sub_confirmation=1" target="_blank" class="d-inline-flex align-items-center justify-content-center">
-                <p><em><strong>Subscribe For Notifications</strong></em></p>
+                <p class="mb-4"><em><strong>Subscribe</strong></em></p>
               </a>
+            <% if @current_user&.payoutStatus[:stripeCustomerID] == 1 %>
             <div class="add-comment-form-block">
               <div class="d-flex align-items-center gap-3">
                  <div class="flex-shrink-0">
                     <svg xmlns="http://www.w3.org/2000/svg" height="20" width="22.5" viewBox="0 0 576 512"><path fill="#ff0000" d="M312 24V34.5c6.4 1.2 12.6 2.7 18.2 4.2c12.8 3.4 20.4 16.6 17 29.4s-16.6 20.4-29.4 17c-10.9-2.9-21.1-4.9-30.2-5c-7.3-.1-14.7 1.7-19.4 4.4c-2.1 1.3-3.1 2.4-3.5 3c-.3 .5-.7 1.2-.7 2.8c0 .3 0 .5 0 .6c.2 .2 .9 1.2 3.3 2.6c5.8 3.5 14.4 6.2 27.4 10.1l.9 .3c11.1 3.3 25.9 7.8 37.9 15.3c13.7 8.6 26.1 22.9 26.4 44.9c.3 22.5-11.4 38.9-26.7 48.5c-6.7 4.1-13.9 7-21.3 8.8V232c0 13.3-10.7 24-24 24s-24-10.7-24-24V220.6c-9.5-2.3-18.2-5.3-25.6-7.8c-2.1-.7-4.1-1.4-6-2c-12.6-4.2-19.4-17.8-15.2-30.4s17.8-19.4 30.4-15.2c2.6 .9 5 1.7 7.3 2.5c13.6 4.6 23.4 7.9 33.9 8.3c8 .3 15.1-1.6 19.2-4.1c1.9-1.2 2.8-2.2 3.2-2.9c.4-.6 .9-1.8 .8-4.1l0-.2c0-1 0-2.1-4-4.6c-5.7-3.6-14.3-6.4-27.1-10.3l-1.9-.6c-10.8-3.2-25-7.5-36.4-14.4c-13.5-8.1-26.5-22-26.6-44.1c-.1-22.9 12.9-38.6 27.7-47.4c6.4-3.8 13.3-6.4 20.2-8.2V24c0-13.3 10.7-24 24-24s24 10.7 24 24zM568.2 336.3c13.1 17.8 9.3 42.8-8.5 55.9L433.1 485.5c-23.4 17.2-51.6 26.5-80.7 26.5H192 32c-17.7 0-32-14.3-32-32V416c0-17.7 14.3-32 32-32H68.8l44.9-36c22.7-18.2 50.9-28 80-28H272h16 64c17.7 0 32 14.3 32 32s-14.3 32-32 32H288 272c-8.8 0-16 7.2-16 16s7.2 16 16 16H392.6l119.7-88.2c17.8-13.1 42.8-9.3 55.9 8.5zM193.6 384l0 0-.9 0c.3 0 .6 0 .9 0z"/></svg>
                  </div>
-                <div class="add-comment-form">
-                	<%= form_for :transaction, :url => { :controller => 'transactions', :action => "create" } do |f| %>
-                	<div class="row">
-                		<div class="col-8">
-	                    <%= f.number_field :amount, id: 'source', placeholder: 'Enter an amount...', class: 'form-control' %>
-                		</div>
-                		<div class="col-4">
-	                    <%= f.submit "Submit", class: "btn btn-primary font-size-12 text-capitalize px-5 form-control"%>
-                		</div>
-                	</div>
-                    <%= f.hidden_field :idea, value: @idea.uuid %>
-                	<% end %>
-                </div>
+                
+
+                  <div class="add-comment-form">
+                  	<%= form_for :transaction, :url => { :controller => 'transactions', :action => "create" } do |f| %>
+                  	<div class="row">
+                  		<div class="col-8">
+  	                    <%= f.number_field :amount, id: 'source', placeholder: 'Enter an amount...', class: 'form-control' %>
+                  		</div>
+                  		<div class="col-4">
+  	                    <%= f.submit "Submit", class: "btn btn-primary font-size-12 text-capitalize px-5 form-control"%>
+                  		</div>
+                  	</div>
+                      <%= f.hidden_field :idea, value: @idea.uuid %>
+                  	<% end %>
+                  </div>
+                
               </div>
               <h5 class="mt-2"> <span id='result'>$0</span> After Processing Fee</h5>
               <div class="container">
                   <% numbX = rand(50..96) %>
                   <div class="progress mt-2">
-                     <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: <%= numbX %>%"></div>
+                     <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" aria-valuenow="<%= (((Stripe::PaymentIntent.list().map(&:metadata).reject{|d|d['ideaUUID']!=@idea&.uuid}.map{|d|d['rawAmount'].to_i}.sum).to_f / @idea&.fundingAmount.to_f).to_f * 100) %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= (((Stripe::PaymentIntent.list().map(&:metadata).reject{|d|d['ideaUUID']!=@idea&.uuid}.map{|d|d['rawAmount'].to_i}.sum).to_f / @idea&.fundingAmount.to_f).to_f * 100) %>%"></div>
                   </div>
-                  <p class="text-center"><%= numbX %>% Funded</p>
+                  <p class="text-center"><%=(((Stripe::PaymentIntent.list().map(&:metadata).reject{|d|d['ideaUUID']!=@idea&.uuid}.map{|d|d['rawAmount'].to_i}.sum).to_f / @idea&.fundingAmount.to_f).to_f * 100).round %>% Funded</p>
               </div>
             </div>
+            <% else %>
+            <div class="col-12 ">
+
+              <a href="<%= @current_user&.stripeCustomerID.present? ? @stripeCustomerPortal['url'] : '/membership'  %>" >
+               <div class="card">
+                  <div class="card-body">
+                     <div class="iq-badges text-center">
+                        <div class="badges-icon">
+                           
+                           <svg xmlns="http://www.w3.org/2000/svg" height="80" width="100" viewBox="0 0 640 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ff0000" d="M72 88a56 56 0 1 1 112 0A56 56 0 1 1 72 88zM64 245.7C54 256.9 48 271.8 48 288s6 31.1 16 42.3l0-84.7zm144.4-49.3C178.7 222.7 160 261.2 160 304c0 34.3 12 65.8 32 90.5l0 21.5c0 17.7-14.3 32-32 32l-64 0c-17.7 0-32-14.3-32-32l0-26.8C26.2 371.2 0 332.7 0 288c0-61.9 50.1-112 112-112l32 0c24 0 46.2 7.5 64.4 20.3zM448 416l0-21.5c20-24.7 32-56.2 32-90.5c0-42.8-18.7-81.3-48.4-107.7C449.8 183.5 472 176 496 176l32 0c61.9 0 112 50.1 112 112c0 44.7-26.2 83.2-64 101.2l0 26.8c0 17.7-14.3 32-32 32l-64 0c-17.7 0-32-14.3-32-32zm8-328a56 56 0 1 1 112 0A56 56 0 1 1 456 88zM576 245.7l0 84.7c10-11.3 16-26.1 16-42.3s-6-31.1-16-42.3zM320 32a64 64 0 1 1 0 128 64 64 0 1 1 0-128zM240 304c0 16.2 6 31 16 42.3l0-84.7c-10 11.3-16 26.1-16 42.3zm144-42.3l0 84.7c10-11.3 16-26.1 16-42.3s-6-31.1-16-42.3zM448 304c0 44.7-26.2 83.2-64 101.2l0 42.8c0 17.7-14.3 32-32 32l-64 0c-17.7 0-32-14.3-32-32l0-42.8c-37.8-18-64-56.5-64-101.2c0-61.9 50.1-112 112-112l32 0c61.9 0 112 50.1 112 112z"/></svg>
+                        </div>
+                        <h5 class="mb-2">Membership</h5>
+                        
+                        <p>Manage payment &amp; information</p>
+                        <button type="button" class="btn mb-1 <%= @payoutInfo[:stripeCustomerID] + 1 == 1 ? 'btn-warning-subtle' : 'btn-success-subtle' %> form-control">
+                          Complete <span class="badge <%= @payoutInfo[:stripeCustomerID] + 1 == 1 ? 'bg-warning' : 'bg-success' %> ml-2"><%= @payoutInfo[:stripeCustomerID] + 1 %>/2</span>
+                          </button>
+                          <div class="progress mb-3">
+                              <div class="progress-bar progress-bar-striped <%= @payoutInfo[:stripeCustomerID] + 1 == 1 ? 'bg-warning' : 'bg-success' %>" role="progressbar" style="width: <%= (@payoutInfo[:stripeCustomerID]) == 1 ? 100 : 50 %>%" aria-valuenow="<%= (@payoutInfo[:stripeCustomerID]) == 1 ? 100 : 50 %>" aria-valuemin="0" aria-valuemax="100"></div>
+                          </div>
+                     </div>
+                  </div>
+               </div>
+              </a>
+            </div>
+            <% end %>
           </div>
                      </div>
                   </div>
@@ -350,7 +380,7 @@ var x = setInterval(function() {
   const result = document.getElementById('result');
 
   const inputHandler = function(e) {
-  	var fee = (((Number(e.target.value) + 1)/(1 - 0.05) * 100) * 0.01)
+  	var fee = Math.round(((Number(e.target.value) + 1)/(1 - 0.05) * 100) * 0.01)
     result.innerText = '$' + fee;
 
 

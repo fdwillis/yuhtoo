@@ -79,7 +79,7 @@ class ApplicationController < ActionController::Base
 			  return_url: Rails.env.development? ? ENV['demoURL'] : ENV['productionURL'],
 			})
 		end
-		@payoutInfo = @current_user.present? ? @current_user.payoutStatus(@current_user) : {stripeAccountID: 0, stripeCustomerID: 0, commentCount: 0  }
+		@payoutInfo = @current_user.present? ? @current_user.payoutStatus : {stripeAccountID: 0, stripeCustomerID: 0, commentCount: 0  }
 	end
 
 	def membership
