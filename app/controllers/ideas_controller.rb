@@ -38,7 +38,13 @@ class IdeasController < ApplicationController
       @panel = 'comments'
     elsif params['storyBoard']
       @panel = 'storyBoard'
+    elsif params['splits']
+      @panel = 'splits'
     end
+
+    @transactions = Stripe::PaymentIntent.list().reject{|d|d['metadata']['ideaUUID']!=@idea&.uuid}
+    
+    @totalAmount = @transactions.map{|d|d['metadata']['rawAmount'].to_f}.sum
   end
 
   # GET /ideas/new

@@ -5,6 +5,7 @@ class CreateComments < ActiveRecord::Migration[7.1]
       t.belongs_to :user, null: false, foreign_key: true
       t.text :reactions
       t.text :body
+      t.boolean :approved
 
       t.timestamps
     end
