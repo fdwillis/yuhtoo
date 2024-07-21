@@ -4,7 +4,14 @@ class ApplicationController < ActionController::Base
 
 	def check_membership_session
 		if params['session'].present?
-			@current_user.update(stripeCustomerID: Stripe::Checkout::Session.retrieve(params['session'])['customer'])
+			if Stripe::Checkout::Session.list_line_items(params['session'])['data'][0]['description'].downcase.include?('lifetime')
+				# remove recurring subscription if present
+				sessionXemail = Stripe::Checkout::Session.retrieve(params['session'])['customer_details']['email']
+				
+				@current_user.update(stripeCustomerID: (Stripe::Customer.list({email: sessionXemail})['data'][0]['id']))
+			else
+				@current_user.update(stripeCustomerID: Stripe::Checkout::Session.retrieve(params['session'])['customer'])
+			end
 		end
 	end
 
