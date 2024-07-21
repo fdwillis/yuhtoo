@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   resources :comments
+  resources :transactions
+  
   root "application#index"
   devise_for :users, controllers: {sessions: 'application', omniauth_callbacks: 'users/omniauth_callbacks' }
 
