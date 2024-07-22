@@ -43,6 +43,191 @@ class IdeasController < ApplicationController
     @transactions = Stripe::PaymentIntent.list().reject{|d|d['metadata']['ideaUUID']!=@idea&.uuid}
     
     @totalAmount = @transactions.map{|d|d['metadata']['rawAmount'].to_f}.sum
+
+    @funnel0 = LazyHighCharts::HighChart.new('pie') do |f|
+          f.chart({:defaultSeriesType=>"pie"} )
+          series = {
+                   :type=> 'pie',
+                   :name=> 'Percentage',
+                   :data=> [
+                      {
+                         :name=> 'Others',    
+                         :y=> 70,
+                         color: 'grey'
+                      },
+                      {
+                         :name=> 'Yours',    
+                         :y=> 30,
+                         :sliced=> true,
+                         :selected=> true, 
+                         color: 'red'
+                      }
+                   ]
+          }
+          f.series(series)
+          f.options[:title][:text] = "$100 Budget"
+          f.legend(:layout=> 'vertical',:style=> {:left=> 'auto', :bottom=> 'auto',:right=> '50px',:top=> '100px'}) 
+          f.plot_options(:pie=>{
+            :allowPointSelect=>true, 
+            :cursor=>"pointer" , 
+            :dataLabels=>{
+              :enabled=>true,
+              :color=>"black",
+              :style=>{
+                :font=>"13px Trebuchet MS, Verdana, sans-serif"
+              }
+            }
+          })
+
+          f.responsive(
+              rules: [{
+                  condition: {
+                      maxWidth: 500
+                  },
+                  chartOptions: {
+                      plotOptions: {
+                          series: {
+                              dataLabels: {
+                                  inside: true
+                              },
+                              center: ['50%', '50%'],
+                              width: '100%'
+                          }
+                      }
+                  }
+              }]
+          )
+    end
+    
+    @funnel = LazyHighCharts::HighChart.new('pie') do |f|
+          f.chart({:defaultSeriesType=>"pie"} )
+          series = {
+                   :type=> 'pie',
+                   :name=> 'Dollars',
+                   :data=> [
+                      {
+                         :name=> 'Tier 1',    
+                         :y=> 5000,
+                         color: 'grey'
+                      },
+                      {
+                         :name=> 'Tier 2 (Yours)',    
+                         :y=> 10000,
+                         :sliced=> true,
+                         :selected=> true, 
+                         color: 'red'
+                      },
+                      {
+                         :name=> 'Tier 3',    
+                         :y=> 25000,
+                         color: 'grey'
+                      },
+                      {
+                         :name=> 'Badges',    
+                         :y=> 30000,
+                         color: 'grey'
+                      },{
+                         :name=> 'YuhToo',    
+                         :y=> 30000,
+                         color: 'grey'
+                      },
+                   ]
+          }
+          f.series(series)
+          f.options[:title][:text] = "$100,000 Payout"
+          f.legend(:layout=> 'vertical',:style=> {:left=> 'auto', :bottom=> 'auto',:right=> '50px',:top=> '100px'}) 
+          f.plot_options(:pie=>{
+            :allowPointSelect=>true, 
+            :cursor=>"pointer" , 
+            :dataLabels=>{
+              :enabled=>true,
+              :color=>"black",
+              :style=>{
+                :font=>"13px Trebuchet MS, Verdana, sans-serif"
+              }
+            }
+          })
+
+          f.responsive(
+              rules: [{
+                  condition: {
+                      maxWidth: 500
+                  },
+                  chartOptions: {
+                      plotOptions: {
+                          series: {
+                              dataLabels: {
+                                  inside: true
+                              },
+                              center: ['50%', '50%'],
+                              width: '100%'
+                          }
+                      }
+                  }
+              }]
+          )
+    end
+
+    @yours = LazyHighCharts::HighChart.new('funnel') do |f|
+          f.chart({:defaultSeriesType=>"funnel" , :margin=> [50, 200, 60, 170]} )
+          series = {
+                   :type=> 'funnel',
+                   :name=> 'Dollars',
+                   :data=> [
+                      {
+                         :name=> 'Tier 2 Payout',    
+                         :y=> 10000,
+                         color: 'grey'
+                      },
+                      {
+                         :name=> 'Your Take',    
+                         :y=> 3000,
+                         color: 'red'
+                      },
+                   ]
+          }
+          f.series(series)
+          f.options[:title][:text] = "Tier 2 - $10,000"
+          f.legend(:layout=> 'vertical',:style=> {:left=> 'auto', :bottom=> 'auto',:right=> '50px',:top=> '100px'}) 
+          f.plot_options(:funnel=>{
+            :allowPointSelect=>true, 
+            :cursor=>"pointer" , 
+            height: '100%',
+            neckHeight: '60%',
+            neckWidth: '50%',
+            :dataLabels=>{
+              :enabled=>true,
+              :color=>"black",
+              :style=>{
+                :font=>"22px Trebuchet MS, Verdana, sans-serif"
+              }
+            }
+          })
+
+          f.responsive(
+              rules: [{
+                  condition: {
+                      maxWidth: 500
+                  },
+                  chartOptions: {
+                      plotOptions: {
+                          series: {
+                              dataLabels: {
+                                  inside: true
+                              },
+                              center: ['50%', '50%'],
+                              width: '100%'
+                          }
+                      }
+                  }
+              }]
+          )
+    end
+
+
+    
+
+    
   end
 
   # GET /ideas/new
