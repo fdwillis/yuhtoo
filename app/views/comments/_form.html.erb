@@ -11,7 +11,10 @@
     </div>
   <% end %>
 
+  <%= form.text_area :body, required: true, id: 'validationDefault01', class: 'form-control rounded px-0', placeholder: " Start typing here. Use markdown as needed...", cols: 30, rows: 10  %>
+
   <div>
-    <%= form.submit %>
+    <%= form.submit 'Edit', class: "btn btn-primary px-4" %>
+    <%= link_to "Back To Idea", "/ideas/#{@comment&.idea&.id}?comments=true" , class: "btn btn-secondary-subtle px-4" %>
   </div>
 <% end %>

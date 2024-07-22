@@ -147,7 +147,7 @@
                        </div>
                       </div>
 
-                      <% unless request.original_url.include?('ideas') || request.original_url.include?('feed') || request.original_url.include?('/terms') || request.original_url.include?('/privacy') %>
+                      <% unless request.original_url.include?('ideas') || request.original_url.include?('feed') || request.original_url.include?('/terms') || request.original_url.include?('/privacy') || request.original_url.include?('/comments') %>
                       <div class="row">
                           <div class="col-lg-3 col-md-6 mt-5">
 
@@ -274,7 +274,7 @@
                        <div class="card">
                           <div class="card-body pt-0">
                             <ul class="iq-timeline ms-1">
-                              <% unless request.original_url.include?('/ideas') || request.original_url.include?('/feed') || request.original_url.include?('/terms') || request.original_url.include?('/privacy')%>
+                              <% unless request.original_url.include?('/ideas') || request.original_url.include?('/feed') || request.original_url.include?('/terms') || request.original_url.include?('/privacy') || request.original_url.include?('/comments') %>
                                 <% @history.each do |item| %>
                                  
                                   <li>

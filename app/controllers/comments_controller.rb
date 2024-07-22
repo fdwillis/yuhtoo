@@ -39,7 +39,7 @@ class CommentsController < ApplicationController
   def update
     respond_to do |format|
       if @comment.update(comment_params)
-        format.html { redirect_to comment_url(@comment), notice: "Comment was successfully updated." }
+        format.html { redirect_to "/ideas/#{@comment&.idea&.id}?comments=true", notice: "Comment was successfully updated." }
         format.json { render :show, status: :ok, location: @comment }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -66,6 +66,6 @@ class CommentsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def comment_params
-      params.require(:newComment).permit(:body, :idea_id)
+      params.require(:comment).permit(:body, :idea_id)
     end
 end
