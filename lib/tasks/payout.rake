@@ -133,7 +133,7 @@ namespace :process do
 			 		transferyuhToo = Stripe::Transfer.create({
 					  amount: bonuses,
 					  currency: 'usd',
-					  description: 'Bonuses'
+					  description: 'Bonuses',
 					  destination: User&.first&.stripeAccountID,
 					})
 
