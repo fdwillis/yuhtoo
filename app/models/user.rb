@@ -11,34 +11,10 @@ class User < ApplicationRecord
   def payoutStatus
     liveCount = 0
     stripeCustomer = 0
-    lifeTime = 0
     stripeAccount = 0
     tier = 0
     
     if stripeCustomerID.present?
-      allSessions = Stripe::Checkout::Session.list({customer: stripeCustomerID})
-
-      allSessions.auto_paging_each do |sessionX|
-        session0 = Stripe::Checkout::Session.list_line_items(sessionX['id'])
-
-        if session0['data'].map{|d|d['description']}[0].downcase.include?('lifetime')
-          stripeCustomer += 1
-          lifeTime += 1
-          tier += Stripe::Product.retrieve(planX['product'])['metadata']['tier'].to_i
-        end
-      end
-
-      # paymentIntentsX = Stripe::PaymentIntent.list({customer: stripeCustomerID})
-      # paymentIntentsX.auto_paging_each do |paymentX|
-      #   unless paymentX['metadata']['rawAmount'].present?
-      #     if paymentX['amount'] == 250000 && paymentX['status'] == 'succeeded'
-      #       stripeCustomer += 1
-      #       lifeTime += 1
-      #     end
-
-      #   end
-      # end
-
 
       allCustomerxPlans = Stripe::Subscription.list({customer: stripeCustomerID})['data'].map(&:plan)
       allCustomerxPlans.each do |planX|
@@ -64,7 +40,7 @@ class User < ApplicationRecord
     end
 
 
-    return {tier: tier, lifeTime: lifeTime, stripeAccountID: stripeAccount, stripeCustomerID: stripeCustomer, commentCount: comments&.count >= 100 ? 1 : 0  }#.where(approved: true).count
+    return {tier: tier, stripeAccountID: stripeAccount, stripeCustomerID: stripeCustomer, commentCount: comments&.count >= 100 ? 1 : 0  }#.where(approved: true).count
   end
 
 

@@ -30,6 +30,14 @@ class IdeasController < ApplicationController
 
   # GET /ideas/1 or /ideas/1.json
   def show
+    @cleanedTops = []
+    @cleanedPayInts = []
+    @totalAmount = 0
+    @totalPayout = 0
+    @userXinvestment = 0
+    @amountReceived = 0
+    @amountForfeit = 0
+
     if params['getPaid']
       @panel = 'getPaid'
     elsif params['comments']
@@ -40,8 +48,36 @@ class IdeasController < ApplicationController
       @panel = 'splits'
     end
 
-    @transactions = Stripe::PaymentIntent.list().reject{|d|d['metadata']['ideaUUID']!=@idea&.uuid}
-    @totalAmount = @transactions.map{|d|d['metadata']['rawAmount'].to_f}.sum
+    Stripe::PaymentIntent.list().auto_paging_each do |paymentInt|
+      if paymentInt['metadata']['ideaUUID']==@idea&.uuid
+        @cleanedPayInts << paymentInt
+      end
+    end
+
+    if @cleanedPayInts.present?
+      @cleanedPayInts.each do |paymentIntX|
+        @totalAmount += paymentIntX['metadata']['rawAmount'].to_f
+
+        if session[:user_id].present? && (paymentIntX['customer'] == User.find(session[:user_id])&.stripeCustomerID)
+          @userXinvestment += @totalAmount
+          @amountReceived += paymentIntX['metadata']['running'].to_f
+          @amountForfeit += paymentIntX['metadata']['forfeit'].to_f
+        end
+      end
+    end
+
+
+
+    Stripe::Topup.list().auto_paging_each do |topUpx|
+      if topUpx['metadata']['paid'] == 'true' && topUpx['metadata']['ideaUUID'] == @idea&.uuid
+        @cleanedTops << topUpx
+      end
+    end
+    if @cleanedTops.present?
+      @cleanedTops.each do |topUpX|
+        @totalPayout += topUpX['amount'].to_f
+      end
+    end
 
   end
 
