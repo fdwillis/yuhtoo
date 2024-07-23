@@ -81,9 +81,20 @@ namespace :process do
 									end
 						 		elsif yuhTooUserxpayoutStatus[:commentCount] == 1 && yuhTooUserxpayoutStatus[:stripeAccountID] == 1 && !tier.nil?
 						 			if yuhTooUserxpayoutStatus[:stripeCustomerID] == 1 || yuhTooUserxpayoutStatus[:lifeTime] == 1
-								 		debugger
 								 		#pay above percentage to customer based on their tier of membership & ONLY IF CURRENT STATUS IS ACTIVE
 								 		# keep running total on payment intent in new metadata
+								 		# transferWent = Stripe::Transfer.create({
+										#   amount: (stripeAmountToTransfer.to_i),
+										#   currency: 'usd',
+										#   destination: customerFound['metadata']['side'],
+										# })
+										if paymentXForMeta['metadata']['running'].present?
+											Stripe::PaymentIntent.update(transactionX['id'], {metadata: {running: paymentXForMeta['metadata']['running'].to_i + (stripeAmountToTransfer.to_i).to_i}})
+											puts "Payout #{transactionX['id']}"
+										else
+											Stripe::PaymentIntent.update(transactionX['id'], {metadata: {running: (stripeAmountToTransfer.to_i)}})
+											puts "Payout #{transactionX['id']}"
+										end
 								 	else
 								 		if paymentXForMeta['metadata']['forfeit'].present?
 											Stripe::PaymentIntent.update(transactionX['id'], {metadata: {forfeit: paymentXForMeta['metadata']['forfeit'].to_i + (stripeAmountToTransfer.to_i).to_i}})
