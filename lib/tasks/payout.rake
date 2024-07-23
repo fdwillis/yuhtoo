@@ -159,7 +159,7 @@ namespace :process do
 
 				 		# update topup to be marked as paid
 				 		puts "Payout #{topUpX['amount'].to_i} - YuhTooCut #{yuhTooCut.to_i} - Bonuses #{bonuses.to_i} - Eligible Total #{eligiblePay.to_i} - Ineligible Total #{ineligible.to_i} - Remainder #{(payoutAmount - (bonuses+yuhTooCut+ineligible+eligiblePay)).to_i} "
-						# Stripe::Topup.update(topUpX['id'], {metadata: {paid: 'true'}})
+						Stripe::Topup.update(topUpX['id'], {metadata: {paid: 'true'}})
 
 				# end
 			end
