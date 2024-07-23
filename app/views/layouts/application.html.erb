@@ -174,7 +174,7 @@
                             </a>
                           </div>
                         <div class="col-lg-3 col-md-6 mt-5">
-                          <a href="<%= @current_user&.stripeAccountID.present? ? @stripeAccountX['url'] : '#'  %>?prefilled_email=<%= @current_user&.email %>" target='_blank'>
+                          <a href="<%= @current_user&.stripeAccountID.present? ? @stripeAccountX['url'] : '/membership'  %>?prefilled_email=<%= @current_user&.email %>" target='_blank'>
                            <div class="card">
                               <div class="card-body">
                                  <div class="iq-badges text-center">

@@ -105,13 +105,13 @@ class ApplicationController < ActionController::Base
 	end
 
 	def membership
-		if @current_user&.present?
+		if session[:user_id].present?
 			current_user
 			feed
 			index
 		else
 			flash[:alert] = 'Please sign up'
-			redirect_to '/'
+			redirect_to user_google_oauth2_omniauth_authorize_path
 		end
 	end
 

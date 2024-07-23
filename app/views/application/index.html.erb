@@ -1,162 +1,5 @@
 
-<% unless current_user %>
-   <section class="sign-in-page">
-      <div class="container-fluid">
-         <div class="row">
-            <div class="col-md-6 overflow-hidden position-relative">
-               <div class="bg-primary w-100 h-100 position-absolute top-0 bottom-0 start-0 end-0"></div>
-               <div class="container-inside z-1">
-                  <div class="main-circle circle-small"></div>
-                  <div class="main-circle circle-medium"></div>
-                  <div class="main-circle circle-large"></div>
-                  <div class="main-circle circle-xlarge"></div>
-                  <div class="main-circle circle-xxlarge"></div>
-               </div>
-               <div class="sign-in-detail container-inside-top">
-                <h2 class="font-size-28 text-white mb-4">A Community For YouTube Automation</h2>
-                  <div class="swiper swiper-general overflow-hidden swiper-container-initialized swiper-container-horizontal swiper-container-pointer-events" data-slide="1" data-laptop="1" data-tab="1" data-mobile="1" data-mobile-sm="1" data-autoplay="true" data-loop="true" data-navigation="true" data-pagination="true" data-space="16">
 
-                      
-                       <ul class="swiper-wrapper list-inline m-0 p-0 " id="swiper-wrapper-14f936baf77c71b2" aria-live="off" style="transform: translate3d(-1144px, 0px, 0px); transition-duration: 50000ms !important;">
-                          <li class="swiper-slide" role="group" style="width: 581px; margin-right: 16px;">
-                             <!-- <div class="ratio ratio-16x9">
-                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" allowfullscreen=""></iframe>
-                             </div> -->
-                             <h2 class="mt-5 text-white fw-semibold">Newbie 😳</h2>
-                             <p class="mt-2 font-size-16 text-white mb-0">New to content creation, YouTube, or automation?</p>
-                          </li>
-                          <li class="swiper-slide" role="group" style="width: 581px; margin-right: 16px;">
-                             <!-- <div class="ratio ratio-16x9">
-                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" allowfullscreen=""></iframe>
-                             </div> -->
-                             <h2 class="mt-5 text-white fw-semibold">Explorer 👀</h2>
-                             <p class="mt-2 font-size-16 text-white mb-0">Looking to make money from YouTube?</p>
-                          </li>
-                          <li class="swiper-slide" role="group" style="width: 581px; margin-right: 16px;">
-                             <!-- <div class="ratio ratio-16x9">
-                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" allowfullscreen=""></iframe>
-                             </div> -->
-                             <h2 class="mt-5 text-white fw-semibold">Creator 🤩</h2>
-                             <p class="mt-2 font-size-16 text-white mb-0">Sell to your audience through YuhToo Commerce</p>
-                          </li>
-                          <li class="swiper-slide" role="group" style="width: 581px; margin-right: 16px;">
-                             <!-- <div class="ratio ratio-16x9">
-                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" allowfullscreen=""></iframe>
-                             </div> -->
-                             <h2 class="mt-5 text-white fw-semibold">Expert 😎</h2>
-                             <p class="mt-2 font-size-16 text-white mb-0">YouTube &amp; YuhToo monetized - an elite combination</p>
-                          </li>
-                      </ul>
-
-                    <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
-                  </div>
-
-               </div>
-            </div>
-            <div class="col-md-6">
-               <div class="sign-in-from text-center">
-                  <a class="mt-n4 d-inline-flex align-items-center justify-content-center">
-                    <%= image_tag 'YuhToo.png', class: 'signin-img img-fluid rounded-3', style: 'height:180px;width:180px;' %>
-                  </a>
-
-                  <h2 class="logo-title font-size-30" data-setting="app_name"><a href="/">YuhToo</a></h2>
-                  <p class="font-size-22">Get Paid For YouTube Ideas</p>
-                  <p class="font-size-10"><%= link_to "Continue with Google", user_google_oauth2_omniauth_authorize_path %></p>
-                  <p class="text-center"><%= link_to image_tag('googlelogo.png'), user_google_oauth2_omniauth_authorize_path %></p>
-
-                  <div class="row">
-                    <button class="btn btn-secondary-subtle mb-1" type="button" data-bs-toggle="offcanvas" data-bs-target="#privacyPolicy" aria-controls="privacyPolicy">Privacy</button>
-                    <button class="btn mb-1 btn-secondary-subtle" type="button" data-bs-toggle="offcanvas" data-bs-target="#termsPolicy" aria-controls="termsPolicy">Terms</button>
-                  </div>
-                  <div class="row">
-                    <div class="card text-white bg-primary mb-3">
-                      <div class="card-body">
-                         <h5 class="card-title text-white">Learn YouTube from YouTube experts</h5>
-                    
-                            <a href="<%= user_google_oauth2_omniauth_authorize_path %>" type="button" class="btn btn-secondary-subtle mb-3 me-1 col-12 text-center">Access FREE Library</a>
-
-                      </div>
-
-                   </div>
-                  </div>
-                     
-                  <div class="offcanvas offcanvas-bottom" tabindex="-1" id="termsPolicy" aria-labelledby="offcanvasBottomLabel">
-                      <div class="offcanvas-header">
-                          <h5 class="offcanvas-title" id="offcanvasBottomLabel">YuhToo Terms &amp; Conditions</h5>
-                          <div class="close-icon" data-bs-dismiss="offcanvas">
-                              <svg xmlns="http://www.w3.org/2000/svg" width="24px" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                  <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-                              </svg>
-                          </div>
-                      </div>
-                      <div class="offcanvas-body small">
-                          Welcome to YuhToo!
-
-                        These Terms and Conditions ("Terms") are here to explain how YuhToo works and what you agree to when you use it.
-
-                        Signing Up
-                        You need a YouTube account: To join YuhToo, you must sign up with your YouTube account.
-                        What We Do with Your YouTube Data
-                        Accessing your YouTube data: When you sign up, you let us see your YouTube data. This helps us check how you use YuhToo.
-                        No sharing: We promise not to share your YouTube data with anyone else.
-                        Using YuhToo
-                        Respect others: Be kind and respectful to other members.
-                        No bad stuff: Do not post harmful or inappropriate content.
-                        Follow the rules: You must follow these Terms and YouTube's rules too.
-                        Your Privacy
-                        Keeping your data safe: We work hard to protect your information.
-                        Cookies: We use cookies to make YuhToo better. By using YuhToo, you agree to this.
-                        Changes to These Terms
-                        Updates: We might change these Terms sometimes. If we do, we will let you know.
-                        Ending Your Membership
-                        Stop anytime: You can stop using YuhToo whenever you want.
-                        We can too: We can end your membership if you break these rules.
-                        Contact Us
-                        Questions: If you have any questions, you can email me at fdwillis7@icloud.com.
-                      </div>
-                  </div>
-                  <div class="offcanvas offcanvas-bottom" tabindex="-1" id="privacyPolicy" aria-labelledby="offcanvasBottomLabel">
-                      <div class="offcanvas-header">
-                          <h5 class="offcanvas-title" id="offcanvasBottomLabel">YuhToo Privacy Policy</h5>
-                          <div class="close-icon" data-bs-dismiss="offcanvas">
-                              <svg xmlns="http://www.w3.org/2000/svg" width="24px" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                  <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-                              </svg>
-                          </div>
-                      </div>
-                      <div class="offcanvas-body small">
-                          We care about your privacy and want you to know how we use your information. This policy is simple and easy to understand.
-
-                  What We Do
-
-                  You sign up for YuhToo using your YouTube account.
-                  We track your activity on YuhToo to make sure everything runs smoothly.
-                  We look at your YouTube data to check your channel stats, video stats, and ownership rights.
-                  What Information We Use
-
-                  We need access to your YouTube channel details.
-                  We look at your video views, likes, comments, and other stats.
-                  We check who owns the videos to protect your rights.
-                  What We DON'T Do
-
-                  We NEVER sell your data.
-                  We NEVER share your data with anyone else.
-                  Your Privacy Matters
-
-                  We use your data only to make YuhToo better for you.
-                  We keep your information safe and secure.
-                  Questions?
-
-                  If you have any questions, feel free to contact us anytime. We're here to help!
-                      </div>
-                  </div>
-               </div>
-            </div>
-            
-         </div>
-      </div>
-   </section>
-<% else %>
   <div class="iq-comingsoon">
     <div class="row justify-content-center">
       <div class="iq-comingsoon-info">
@@ -167,21 +10,27 @@
            </a>
         </div>
         <div class="row text-center">
-          <a href="<%= destroy_user_session_path %>" class="d-flex justify-content-center align-items-center gap-2 iq-header-logo d-none d-lg-flex">                  
-            <%= link_to 'Sign Out', destroy_user_session_path, method: :get %>
-          </a>
+          <% if session[:user_id].present? %>
+            <a href="<%= destroy_user_session_path %>" class="d-flex justify-content-center align-items-center gap-2 iq-header-logo d-none d-lg-flex">                  
+              <%= link_to 'Sign Out', destroy_user_session_path, method: :get %>
+            </a>
+          <% else %>
+            <a href="<%= user_google_oauth2_omniauth_authorize_path %>" class="d-flex justify-content-center align-items-center gap-2 iq-header-logo d-none d-lg-flex">
+            <%= link_to image_tag('googlelogo.png'), user_google_oauth2_omniauth_authorize_path %>
+            </a>
+          <% end %>
         </div>
         <h2 class="mt-4 mb-1 text-center">Welcome to YuhToo</h2>
         <p class="text-center"><em><strong>A Community For YouTube Automation</strong></em></p>
-        <% if @current_user.present? && @current_user&.payoutStatus[:lifeTime] == 0 %>
-          <a href="/membership" class="mt-2">
+        <% if session[:user_id].present? && @current_user&.payoutStatus[:lifeTime] == 0 %>
+          <a href="/<%= session[:user_id].present? ? 'membership' : 'sign-up' %>" class="mt-2">
             <div class="text-left " id="page_layout">
                     <div class="col-12">
                        <div class="card position-relative inner-page-bg bg-primary" style="height: 150px;">
                           <div class="inner-page-title">
                             <h3 class="text-white"><em><strong><u>Get Paid For Ideas</u></strong></em></h3>
                             <p class="text-white mb-0">See All Plans</p>
-                            <a href="/membership" class="btn btn-secondary-subtle">Get Started</a>
+                            <a href="/<%= session[:user_id].present? ? 'membership' : 'sign-up' %>" class="btn btn-secondary-subtle">Get Started</a>
                           </div>
                        </div>
                     </div>
@@ -428,10 +277,6 @@
   </div>
   
 
-  
-   
-  
-<% end %>
 
 
 <script>
