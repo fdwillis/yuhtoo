@@ -41,7 +41,6 @@ class IdeasController < ApplicationController
     end
 
     @transactions = Stripe::PaymentIntent.list().reject{|d|d['metadata']['ideaUUID']!=@idea&.uuid}
-    
     @totalAmount = @transactions.map{|d|d['metadata']['rawAmount'].to_f}.sum
 
     @funnel0 = LazyHighCharts::HighChart.new('pie') do |f|

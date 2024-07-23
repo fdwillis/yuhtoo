@@ -199,7 +199,9 @@
                              <tr>
                                 
                                 <th scope="col">Country</th>
-                                <th scope="col">Payout</th>
+                                <th scope="col">Ownership</th>
+                                <th scope="col">Forfeit</th>
+                                <th scope="col">Paid</th>
                                 <th scope="col">Fee</th>
                                 <th scope="col">Charge</th>
                                 <th scope="col">Invested</th>
@@ -218,6 +220,8 @@
 
                                   </td>
                                   <td scope='col'><%= number_to_percentage((transactionX['metadata']['rawAmount'].to_f/@totalAmount) * 100, precision: 2) %></td>
+                                  <td scope='col'><%= number_to_currency((transactionX['metadata']['forfeit'].to_f * 0.01), precision: 2) %></td>
+                                  <td scope='col'><%= number_to_currency((transactionX['metadata']['running'].to_f * 0.01), precision: 2) %></td>
 
                                   <td scope='col'><%= number_to_currency(((transactionX['amount'] * 0.01).to_f - transactionX['metadata']['rawAmount'].to_f),precision: 2) %></td>
                                   <td scope='col'><%= number_to_currency((transactionX['amount'] * 0.01), precision: 2) %></td>

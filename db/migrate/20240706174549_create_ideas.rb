@@ -15,6 +15,7 @@ class CreateIdeas < ActiveRecord::Migration[7.1]
       t.text :scripts
       t.text :transactions
       t.string :userID
+      t.string :dateFunded
       t.integer :fundingAmount, default: 100
       
       t.belongs_to :user, null: false, foreign_key: true

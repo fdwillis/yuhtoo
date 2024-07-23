@@ -13,6 +13,7 @@ class User < ApplicationRecord
     stripeCustomer = 0
     lifeTime = 0
     stripeAccount = 0
+    tier = 0
     
     if stripeCustomerID.present?
       allSessions = Stripe::Checkout::Session.list({customer: stripeCustomerID})
@@ -23,6 +24,7 @@ class User < ApplicationRecord
         if session0['data'].map{|d|d['description']}[0].downcase.include?('lifetime')
           stripeCustomer += 1
           lifeTime += 1
+          tier += Stripe::Product.retrieve(planX['product'])['metadata']['tier'].to_i
         end
       end
 
@@ -42,6 +44,7 @@ class User < ApplicationRecord
       allCustomerxPlans.each do |planX|
         if planX['active'] == true
           stripeCustomer += 1
+          tier += Stripe::Product.retrieve(planX['product'])['metadata']['tier'].to_i
         end
       end
     else
@@ -61,7 +64,7 @@ class User < ApplicationRecord
     end
 
 
-    return {lifeTime: lifeTime, stripeAccountID: stripeAccount, stripeCustomerID: stripeCustomer, commentCount: comments&.count >= 100 ? 1 : 0  }#.where(approved: true).count
+    return {tier: tier, lifeTime: lifeTime, stripeAccountID: stripeAccount, stripeCustomerID: stripeCustomer, commentCount: comments&.count >= 100 ? 1 : 0  }#.where(approved: true).count
   end
 
 
