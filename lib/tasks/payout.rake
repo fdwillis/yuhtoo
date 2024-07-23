@@ -11,7 +11,7 @@ namespace :process do
 			cleanedTops.each do |topUpX|
 				# if DateTime.now.to_i > DateTime.strptime(topUpX['expected_availability_date'].to_s,'%s').to_i + 1.day
 					transactions = Stripe::PaymentIntent.list()
-					
+
 			 		# budget
 			 		budget = transactions.reject{|d|d['metadata']['ideaUUID']!=topUpX['metadata']['ideaUUID']}.map{|d|d['metadata']['rawAmount'].to_i}.sum
 			 		# store payout total
@@ -30,6 +30,8 @@ namespace :process do
 			 		yuhTooCut = (payoutAmount * 0.30).to_i
 
 			 		ineligible = 0
+
+			 		eligiblePay = 0
 			 		
 				 		# payout each transaction by user bucket & its ownership
 						transactions.auto_paging_each do |transactionX|
@@ -49,11 +51,11 @@ namespace :process do
 									sideXAccount = Stripe::Account.retrieve(customerFound['metadata']['side'])
 
 									if sideXAccount['capabilities']['transfers'] == 'active'
-										# transferWent = Stripe::Transfer.create({
-										#   amount: (stripeAmountToTransfer.to_i),
-										#   currency: 'usd',
-										#   destination: customerFound['metadata']['side'],
-										# })
+										transferWent = Stripe::Transfer.create({
+										  amount: (stripeAmountToTransfer.to_i),
+										  currency: 'usd',
+										  destination: customerFound['metadata']['side'],
+										})
 
 										puts "Paid #{(stripeAmountToTransfer.to_i)}"
 
@@ -66,6 +68,7 @@ namespace :process do
 											Stripe::PaymentIntent.update(transactionX['id'], {metadata: {running: (stripeAmountToTransfer.to_i)}})
 											puts "Payout #{transactionX['id']}"
 										end
+										eligiblePay += stripeAmountToTransfer
 									else
 										if paymentXForMeta['metadata']['forfeit'].present?
 											Stripe::PaymentIntent.update(transactionX['id'], {metadata: {forfeit: paymentXForMeta['metadata']['forfeit'].to_i + (stripeAmountToTransfer.to_i).to_i}})
@@ -77,17 +80,19 @@ namespace :process do
 
 										ineligible += stripeAmountToTransfer
 
-							 			puts "No Payout Account - Ineligible - #{stripeAmountToTransfer} - Payout #{topUpX['amount']}"
+							 			puts "No Payout Account - Ineligible - #{stripeAmountToTransfer}"
 									end
 						 		elsif yuhTooUserxpayoutStatus[:commentCount] == 1 && yuhTooUserxpayoutStatus[:stripeAccountID] == 1 && !tier.nil?
 						 			if yuhTooUserxpayoutStatus[:stripeCustomerID] == 1 || yuhTooUserxpayoutStatus[:lifeTime] == 1
 								 		#pay above percentage to customer based on their tier of membership & ONLY IF CURRENT STATUS IS ACTIVE
-								 		# keep running total on payment intent in new metadata
 								 		# transferWent = Stripe::Transfer.create({
 										#   amount: (stripeAmountToTransfer.to_i),
 										#   currency: 'usd',
 										#   destination: customerFound['metadata']['side'],
 										# })
+										puts "Paid #{(stripeAmountToTransfer.to_i)}"
+
+								 		# keep running total on payment intent in new metadata
 										if paymentXForMeta['metadata']['running'].present?
 											Stripe::PaymentIntent.update(transactionX['id'], {metadata: {running: paymentXForMeta['metadata']['running'].to_i + (stripeAmountToTransfer.to_i).to_i}})
 											puts "Payout #{transactionX['id']}"
@@ -95,6 +100,7 @@ namespace :process do
 											Stripe::PaymentIntent.update(transactionX['id'], {metadata: {running: (stripeAmountToTransfer.to_i)}})
 											puts "Payout #{transactionX['id']}"
 										end
+										eligiblePay += stripeAmountToTransfer
 								 	else
 								 		if paymentXForMeta['metadata']['forfeit'].present?
 											Stripe::PaymentIntent.update(transactionX['id'], {metadata: {forfeit: paymentXForMeta['metadata']['forfeit'].to_i + (stripeAmountToTransfer.to_i).to_i}})
@@ -106,7 +112,7 @@ namespace :process do
 
 										ineligible += stripeAmountToTransfer
 
-							 			puts "Ineligible - #{stripeAmountToTransfer} - Payout #{topUpX['amount']}"
+							 			puts "Ineligible - #{stripeAmountToTransfer}"
 						 			end
 						 		else
 						 			if paymentXForMeta['metadata']['forfeit'].present?
@@ -118,16 +124,41 @@ namespace :process do
 									end
 									ineligible += stripeAmountToTransfer
 						 			#NOT PAID
-						 			puts "Ineligible - #{stripeAmountToTransfer} - Payout #{topUpX['amount']}"
+						 			puts "Ineligible - #{stripeAmountToTransfer}"
 						 		end 
 							end
 						end
 
 
-				 		# bonuses & perks amount to yuhtoo user connect account
-				 		# remainder creates a transaction back into business bank account where it was likely pulled
+				 	# 	# bonuses amount to yuhtoo user connect account
+				 	# 	transferyuhToo = Stripe::Transfer.create({
+						#   amount: bonuses,
+						#   currency: 'usd',
+						#   description: 'Bonuses'
+						#   destination: User&.first&.stripeAccountID,
+						# })
+
+				 	# 	ineligiblePlusCut = Stripe::Payout.create({
+						#   amount: yuhTooCut,
+						#   currency: 'usd',
+						#   description: 'YuhToo Payout'
+						# })
+
+				 	# 	# remainder creates a transaction back into business bank account where it was likely pulled
+						# ineligiblePlusCut = Stripe::Payout.create({
+						#   amount: ineligible,
+						#   currency: 'usd',
+						#   description: 'Ineligible Payout'
+						# })
+						# # remainder creates a transaction back into business bank account where it was likely pulled
+						# remainderCut = Stripe::Payout.create({
+						#   amount: (payoutAmount - (bonuses+yuhTooCut+ineligible+eligiblePay)),
+						#   currency: 'usd',
+						#   description: 'Remainder Payout'
+						# })
+
 				 		# update topup to be marked as paid
-				 		puts "Ineligible Total #{ineligible} - Payout #{topUpX['amount']} - Bonuses #{bonuses} - YuhTooCut #{yuhTooCut}"
+				 		puts "Payout #{topUpX['amount'].to_i} - YuhTooCut #{yuhTooCut.to_i} - Bonuses #{bonuses.to_i} - Eligible Total #{eligiblePay.to_i} - Ineligible Total #{ineligible.to_i} - Remainder #{(payoutAmount - (bonuses+yuhTooCut+ineligible+eligiblePay)).to_i} "
 						# Stripe::Topup.update(topUpX['id'], {metadata: {paid: 'true'}})
 
 				# end
