@@ -9,6 +9,8 @@
              <%= image_tag 'YuhToo.png', class: 'signin-img img-fluid rounded-3', style: 'height:180px;width:180px;' %>
            </a>
         </div>
+        <h2 class="text-center">Welcome to YuhToo</h2>
+        <p class="text-center"><em><strong>A Community For YouTube Automation</strong></em></p>
         <div class="row text-center">
           <% if session[:user_id].present? %>
             <a href="<%= destroy_user_session_path %>" class="d-flex justify-content-center align-items-center gap-2 iq-header-logo d-none d-lg-flex">                  
@@ -20,8 +22,7 @@
             </a>
           <% end %>
         </div>
-        <h2 class="mt-4 mb-1 text-center">Welcome to YuhToo</h2>
-        <p class="text-center"><em><strong>A Community For YouTube Automation</strong></em></p>
+        <p class="font-size-14 mt-2 text-center"><%= link_to "Terms", '/terms' %>&nbsp;-&nbsp;<%= link_to "Privacy", '/privacy' %></p>
         <% if session[:user_id].present? && @current_user&.payoutStatus[:lifeTime] == 0 %>
           <a href="/<%= session[:user_id].present? ? 'membership' : 'sign-up' %>" class="mt-2">
             <div class="text-left " id="page_layout">
