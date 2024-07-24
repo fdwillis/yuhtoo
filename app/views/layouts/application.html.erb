@@ -485,102 +485,100 @@
                                <a class="nav-link" id="aiguy32er-tab" data-bs-toggle="tab" href="#aiguy32er" role="tab" aria-controls="aiguy32er" aria-selected="true">AI Guy</a>
                             </li>
                          </ul>
-                         <% if request.original_url == ENV['demoURL'] || request.original_url == ENV['productionURL'] %>
-                           <div class="tab-content" id="experts87h">
-                              <div class="tab-pane fade" id="aiguy32er" role="tabpanel" aria-labelledby="aiguy32er-tab">
-                                <p>AI Guy</p>
-                                <div class="row">
-                                  <% if @library.present? %>
-                                    <% @library.each do |video| %>
-                                      <% if video&.creator == 'aiguy' %>
-                                        <div class="col-sm-4 social-post">
-                                          <div class="card card-block card-stretch card-height">
-                                                <div class="user-post mt-4">
-                                                   <div class="ratio ratio-16x9">
-                                                      <iframe src="<%= video.link %>" allowfullscreen=""></iframe>
-                                                   </div>
-                                                </div>
-                                                <div class="mt-4">
-                                                  <h5 class="mb-2"><%= video.title %></h5>
-                                                </div>
-                                          </div>
+                         <div class="tab-content" id="experts87h">
+                            <div class="tab-pane fade" id="aiguy32er" role="tabpanel" aria-labelledby="aiguy32er-tab">
+                              <p>AI Guy</p>
+                              <div class="row">
+                                <% if @library.present? %>
+                                  <% @library.each do |video| %>
+                                    <% if video&.creator == 'aiguy' %>
+                                      <div class="col-sm-4 social-post">
+                                        <div class="card card-block card-stretch card-height">
+                                              <div class="user-post mt-4">
+                                                 <div class="ratio ratio-16x9">
+                                                    <iframe src="<%= video.link %>" allowfullscreen=""></iframe>
+                                                 </div>
+                                              </div>
+                                              <div class="mt-4">
+                                                <h5 class="mb-2"><%= video.title %></h5>
+                                              </div>
                                         </div>
-                                      <% end %>
+                                      </div>
                                     <% end %>
                                   <% end %>
-                                </div>      
-                              </div>
-                              <div class="tab-pane fade active show" id="home" role="tabpanel" aria-labelledby="home-tab">
-                                <p>Modern Millie</p>
-                                <div class="row">
-                                  <% if @library.present? %>
-                                    <% @library.each do |video| %>
-                                      <% if video&.creator == 'millie' %>
-                                        <div class="col-sm-4 social-post">
-                                          <div class="card card-block card-stretch card-height">
-                                                <div class="user-post mt-4">
-                                                   <div class="ratio ratio-16x9">
-                                                      <iframe src="<%= video.link %>" allowfullscreen=""></iframe>
-                                                   </div>
-                                                </div>
-                                                <div class="mt-4">
-                                                  <h5 class="mb-2"><%= video.title %></h5>
-                                                </div>
-                                          </div>
+                                <% end %>
+                              </div>      
+                            </div>
+                            <div class="tab-pane fade active show" id="home" role="tabpanel" aria-labelledby="home-tab">
+                              <p>Modern Millie</p>
+                              <div class="row">
+                                <% if @library.present? %>
+                                  <% @library.each do |video| %>
+                                    <% if video&.creator == 'millie' %>
+                                      <div class="col-sm-4 social-post">
+                                        <div class="card card-block card-stretch card-height">
+                                              <div class="user-post mt-4">
+                                                 <div class="ratio ratio-16x9">
+                                                    <iframe src="<%= video.link %>" allowfullscreen=""></iframe>
+                                                 </div>
+                                              </div>
+                                              <div class="mt-4">
+                                                <h5 class="mb-2"><%= video.title %></h5>
+                                              </div>
                                         </div>
-                                      <% end %>
+                                      </div>
                                     <% end %>
                                   <% end %>
-                                </div>      
-                              </div>
-                              <div class="tab-pane fade" id="profile-one" role="tabpanel" aria-labelledby="profile-tab">
-                                <p>Marcus Jones</p>
-                                <div class="row">
-                                  <% if @library.present? %>
-                                    <% @library.each do |video| %>
-                                      <% if video&.creator == 'marcus' %>
-                                        <div class="col-sm-4 social-post">
-                                          <div class="card card-block card-stretch card-height">
-                                                <div class="user-post mt-4">
-                                                   <div class="ratio ratio-16x9">
-                                                      <iframe src="<%= video.link %>" allowfullscreen=""></iframe>
-                                                   </div>
-                                                </div>
-                                                <div class="mt-4">
-                                                  <h5 class="mb-2"><%= video.title %></h5>
-                                                </div>
-                                          </div>
+                                <% end %>
+                              </div>      
+                            </div>
+                            <div class="tab-pane fade" id="profile-one" role="tabpanel" aria-labelledby="profile-tab">
+                              <p>Marcus Jones</p>
+                              <div class="row">
+                                <% if @library.present? %>
+                                  <% @library.each do |video| %>
+                                    <% if video&.creator == 'marcus' %>
+                                      <div class="col-sm-4 social-post">
+                                        <div class="card card-block card-stretch card-height">
+                                              <div class="user-post mt-4">
+                                                 <div class="ratio ratio-16x9">
+                                                    <iframe src="<%= video.link %>" allowfullscreen=""></iframe>
+                                                 </div>
+                                              </div>
+                                              <div class="mt-4">
+                                                <h5 class="mb-2"><%= video.title %></h5>
+                                              </div>
                                         </div>
-                                      <% end %>
+                                      </div>
                                     <% end %>
                                   <% end %>
-                                </div>    
-                              </div>
-                              <div class="tab-pane fade " id="contact" role="tabpanel" aria-labelledby="contact-tab">
-                                <p>Make Money Matt</p>
-                                <div class="row">
-                                  <% if @library.present? %>
-                                    <% @library.each do |video| %>
-                                      <% if video&.creator == 'matt' %>
-                                        <div class="col-sm-4 social-post">
-                                          <div class="card card-block card-stretch card-height">
-                                                <div class="user-post mt-4">
-                                                   <div class="ratio ratio-16x9">
-                                                      <iframe src="<%= video.link %>" allowfullscreen=""></iframe>
-                                                   </div>
-                                                </div>
-                                                <div class="mt-4">
-                                                  <h5 class="mb-2"><%= video.title %></h5>
-                                                </div>
-                                          </div>
+                                <% end %>
+                              </div>    
+                            </div>
+                            <div class="tab-pane fade " id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                              <p>Make Money Matt</p>
+                              <div class="row">
+                                <% if @library.present? %>
+                                  <% @library.each do |video| %>
+                                    <% if video&.creator == 'matt' %>
+                                      <div class="col-sm-4 social-post">
+                                        <div class="card card-block card-stretch card-height">
+                                              <div class="user-post mt-4">
+                                                 <div class="ratio ratio-16x9">
+                                                    <iframe src="<%= video.link %>" allowfullscreen=""></iframe>
+                                                 </div>
+                                              </div>
+                                              <div class="mt-4">
+                                                <h5 class="mb-2"><%= video.title %></h5>
+                                              </div>
                                         </div>
-                                      <% end %>
+                                      </div>
                                     <% end %>
                                   <% end %>
-                                </div>    
-                              </div>
-                           </div>
-                         <% end %>
+                                <% end %>
+                              </div>    
+                            </div>
+                         </div>
 
                       </div>
                     </div>
