@@ -1,87 +1,38 @@
+<div class="container-fluid">
+   <div class="row">
+      <div class="col-12">
+         <div class="sign-in-from text-center">
+            <a class="d-inline-flex align-items-center justify-content-center">
+              <%= image_tag 'YuhToo.png', class: 'signin-img img-fluid rounded-3', style: 'height:180px;width:180px;' %>
+            </a>
+            <h2 class="logo-title font-size-30" data-setting="app_name"><a href="/">YuhToo</a></h2>
+            <p class="font-size-24">Terms &amp; Conditions</p>
+						These Terms and Conditions ("Terms") are here to explain how YuhToo works and what you agree to when you use it.
 
-
-
-
-
-
-   <section class="sign-in-page">
-      <div class="container-fluid">
-         <div class="row">
-            <div class="col-md-6 overflow-hidden position-relative">
-               <div class="bg-primary w-100 h-100 position-absolute top-0 bottom-0 start-0 end-0"></div>
-               <div class="container-inside z-1">
-                  <div class="main-circle circle-small"></div>
-                  <div class="main-circle circle-medium"></div>
-                  <div class="main-circle circle-large"></div>
-                  <div class="main-circle circle-xlarge"></div>
-                  <div class="main-circle circle-xxlarge"></div>
-               </div>
-               <div class="sign-in-detail container-inside-top">
-                  <div class="swiper swiper-general overflow-hidden swiper-container-initialized swiper-container-horizontal swiper-container-pointer-events" data-slide="1" data-laptop="1" data-tab="1" data-mobile="1" data-mobile-sm="1" data-autoplay="true" data-loop="true" data-navigation="true" data-pagination="true" data-space="16">
-
-                      
-                       <ul class="swiper-wrapper list-inline m-0 p-0 " id="swiper-wrapper-14f936baf77c71b2" aria-live="off" style="transform: translate3d(-1144px, 0px, 0px); transition-duration: 50000ms !important;">
-                          <li class="swiper-slide swiper-slide-active" role="group" style="width: 556px; margin-right: 16px;">
-                             <h2 class="mt-5 text-white fw-semibold">Strength In Numbers</h2>
-                             <p class="mt-2 font-size-16 text-white mb-0">Whether you post trending video ideas or upload your own assets, both count towards our automated monitization process. Your activities are tracked &amp; earn you a share of the revenue.</p>
-                          </li>
-                          <li class="swiper-slide" role="group" style="width: 581px; margin-right: 16px;">
-                             <h2 class="mt-5 text-white fw-semibold">Novice 😳</h2>
-                             <p class="mt-2 font-size-16 text-white mb-0">You are new to content creation, YouTube, or automation.</p>
-                          </li>
-                          <li class="swiper-slide" role="group" style="width: 581px; margin-right: 16px;">
-                             <h2 class="mt-5 text-white fw-semibold">Explorer 🧐</h2>
-                             <p class="mt-2 font-size-16 text-white mb-0">You know about YouTube &amp; content creation...but automating it?</p>
-                          </li>
-                          <li class="swiper-slide" role="group" style="width: 581px; margin-right: 16px;">
-                             <h2 class="mt-5 text-white fw-semibold">Enthusiast 😎</h2>
-                             <p class="mt-2 font-size-16 text-white mb-0">You're already into YouTube Automation or making content!</p>
-                          </li>
-                          <li class="swiper-slide" role="group" style="width: 581px; margin-right: 16px;">
-                             <h2 class="mt-5 text-white fw-semibold">Creator 🤩</h2>
-                             <p class="mt-2 font-size-16 text-white mb-0">You're monetized on YouTube & scaling for revenue</p>
-                          </li>
-                      </ul>
-
-                    <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
-                  </div>
-
-               </div>
-            </div>
-            <div class="col-md-6">
-               <div class="sign-in-from text-center">
-                  <a class="d-inline-flex align-items-center justify-content-center">
-                    <%= image_tag 'YuhToo.png', class: 'signin-img img-fluid rounded-3', style: 'height:180px;width:180px;' %>
-                  </a>
-                  <h2 class="logo-title font-size-30" data-setting="app_name"><a href="/">YuhToo</a></h2>
-                  <p class="font-size-24">Terms &amp; Conditions</p>
-									These Terms and Conditions ("Terms") are here to explain how YuhToo works and what you agree to when you use it.
-
-									Signing Up
-									You need a YouTube account: To join YuhToo, you must sign up with your YouTube account.
-									What We Do with Your YouTube Data
-									Accessing your YouTube data: When you sign up, you let us see your YouTube data. This helps us check how you use YuhToo.
-									No sharing: We promise not to share your YouTube data with anyone else.
-									Using YuhToo
-									Respect others: Be kind and respectful to other members.
-									No bad stuff: Do not post harmful or inappropriate content.
-									Follow the rules: You must follow these Terms and YouTube's rules too.
-									Your Privacy
-									Keeping your data safe: We work hard to protect your information.
-									Cookies: We use cookies to make YuhToo better. By using YuhToo, you agree to this.
-									Changes to These Terms
-									Updates: We might change these Terms sometimes. If we do, we will let you know.
-									Ending Your Membership
-									Stop anytime: You can stop using YuhToo whenever you want.
-									We can too: We can end your membership if you break these rules.
-									Contact Us
-									Questions: If you have any questions, you can email me at fdwillis7@icloud.com.
-                  <p class="font-size-10"><%= link_to "Continue with Google", user_google_oauth2_omniauth_authorize_path %></p>
-                  <p class="text-center"><%= link_to image_tag('googlelogo.png'), user_google_oauth2_omniauth_authorize_path %></p>
-                  <p class="font-size-10"><%= link_to "Privacy", '/privacy' %></p>
-                  <p class="font-size-10"><%= link_to "Terms", '/terms' %></p>
-               </div>
-            </div>
+						Signing Up
+						You need a YouTube account: To join YuhToo, you must sign up with your YouTube account.
+						What We Do with Your YouTube Data
+						Accessing your YouTube data: When you sign up, you let us see your YouTube data. This helps us check how you use YuhToo.
+						No sharing: We promise not to share your YouTube data with anyone else.
+						Using YuhToo
+						Respect others: Be kind and respectful to other members.
+						No bad stuff: Do not post harmful or inappropriate content.
+						Follow the rules: You must follow these Terms and YouTube's rules too.
+						Your Privacy
+						Keeping your data safe: We work hard to protect your information.
+						Cookies: We use cookies to make YuhToo better. By using YuhToo, you agree to this.
+						Changes to These Terms
+						Updates: We might change these Terms sometimes. If we do, we will let you know.
+						Ending Your Membership
+						Stop anytime: You can stop using YuhToo whenever you want.
+						We can too: We can end your membership if you break these rules.
+						Contact Us
+						Questions: If you have any questions, you can email me at fdwillis7@icloud.com.
+            <p class="font-size-10"><%= link_to "Continue with Google", user_google_oauth2_omniauth_authorize_path %></p>
+            <p class="text-center"><%= link_to image_tag('googlelogo.png'), user_google_oauth2_omniauth_authorize_path %></p>
+            <p class="font-size-10"><%= link_to "Privacy", '/privacy' %></p>
+            <p class="font-size-10"><%= link_to "Terms", '/terms' %></p>
          </div>
       </div>
-   </section>
+   </div>
+</div>
