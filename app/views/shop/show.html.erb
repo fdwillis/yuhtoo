@@ -1,0 +1,52 @@
+<% if @cartsession.present? %>
+  <div class="row">
+   <div class="col-6">
+      <a href="<%= @cartsession.present? ? @cartsession['url'] : nil %>"  class="bg-dark float-right text-white fw-600 text-uppercase font-xsss border-dark border rounded-3 border-size-md d-inline-block w-100 p-3 text-center ls-3">Proceed To Checkout</a>
+   </div>
+   <div class="col-6">
+      <a href="/shop"  class="bg-primary float-right text-white fw-600 text-uppercase font-xsss border-primary border rounded-3 border-size-md d-inline-block w-100 p-3 text-center ls-3">Shop</a>
+   </div>
+  </div>
+<% else %>
+  <a href="/shop"  class="bg-primary float-right text-white fw-600 text-uppercase font-xsss border-primary border rounded-3 border-size-md d-inline-block w-100 p-3 text-center ls-3">Shop</a>
+<% end %>
+<div class="row">
+  <div class="col-xl-12 mt-3">
+    <div class="row text-left">
+      <div class="col-lg-5 offset-lg-1 mb-4">
+        <img src="<%= @product['images'][0] %>" alt="product-image" class="w-100 mt-0 mb-0">        
+      </div>
+      <div class="col-lg-6  col-md-12 pad-top-lg-200 pad-bottom-lg-100 pad-top-100 pad-bottom-75 ps-md--5">
+        <h2 class="fw-700 text-auto display3-size lh-3 porduct-title display2-md-size"><%= @product['name'].titleize %></h2>
+<!--         <%= @product %> -->
+        <h6 class="display1-size fw-700 text-current ls-2 mb-2"><span class="font-xl">$</span><%= number_with_precision(Stripe::Price.retrieve(@product['default_price'])['unit_amount'] * 0.01, precision: 2) %> <span class="font-xs text-auto" style="text-decoration: line-through;"><%= number_to_currency(1.3349 * (Stripe::Price.retrieve(@product['default_price'])['unit_amount'] * 0.01), precision: 2) %></span></h6>
+        <div class="clearfix"></div>
+        <!-- <p class="font-xsss fw-400 text-auto lh-30 pe-5 mt-3 me-5"></p> -->
+        <div class="clearfix"></div>
+            <%= form_for :addToCart, url: addToCart_path do |f| %>
+          <div class="product-action flex-row align-items-center">
+              <div class="select me-3">
+                <%= f.select :size, Stripe::Price.list({product: "prod_#{params['id']}"})['data'].map{|d| [d['metadata']['size'], d['id']]}, class: 'quantity-input text-auto'%>
+
+              </div>
+              <div class="quantity me-3">
+                <%= f.number_field :quantity, class: 'quantity-input text-auto', min: 1, required: true, placeholder: 'Quantity' %>
+                <%= f.hidden_field :stripeProduct, value: params['id'] %>
+              </div>
+
+              <%= f.submit "Add To Cart", class: 'add-to-cart bg-dark text-white fw-700 ps-lg-5 pe-lg-5 text-uppercase font-xssss float-left border-dark border rounded-3 border-size-md d-inline-block mt-0 p-3 text-center ls-3'%>
+          </div>
+            <% end %>
+        <div class="clearfix"></div>
+        <!-- <ul class="product-feature-list mt-5">
+          <li class="w-50 lh-32 font-xsss text-auto fw-500 float-left"><b class="text-auto"> Category : </b>Furniture</li>
+          <li class="w-50 lh-32 font-xsss text-auto fw-500 float-left">Straight fit</li>
+          <li class="w-50 lh-32 font-xsss text-auto fw-500 float-left"><b class="text-auto">SKU : </b> REF. LA-107</li>
+          <li class="w-50 lh-32 font-xsss text-auto fw-500 float-left">Dry clean</li>
+          <li class="w-50 lh-32 font-xsss text-auto fw-500 float-left"><b class="text-auto">Tags : </b>Design, Toys</li>
+          <li class="w-50 lh-32 font-xsss text-auto fw-500 float-left">Cutton shirt</li>
+        </ul> -->
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+<div class="row">
+   <div class="col-lg-12 mb-3">
+      <div class="card p-lg-5 p-4 bg-primary-gradiant rounded-3 shadow-xss bg-pattern border-0 overflow-hidden">
+         <h2 class="text-center display2-size display2-md-size fw-700 mb-0 mt-0 text-left">Thank You</h2>
+         <span class="w-100 p-3 mt-3 font-xsss text-center bg-current rounded-3 text-uppercase fw-600 ls-3">Order Received</span>    
+         <span class="w-100 p-3 mt-3 font-xsss text-center bg-current rounded-3 text-uppercase fw-600 ls-3">Shipping To: <%= @sessionStripe['shipping_details']['address']['line1'] %> <%= @sessionStripe['shipping_details']['address']['city'] %> <%= @sessionStripe['shipping_details']['address']['postal_code'] %> <%= @sessionStripe['shipping_details']['address']['country'] %></span>    
+      </div>
+   </div>
+</div>
+
+<div class="row">
+  <div class="col-6">
+    <a href="/shop"  class="bg-dark float-right text-white fw-600 text-uppercase font-xsss border-dark border rounded-3 border-size-md d-inline-block w-100 p-3 text-center ls-3">Shop</a>
+  </div>
+  <div class="col-6">
+
+    <a href="/"  class="bg-primary float-right text-white fw-600 text-uppercase font-xsss border-primary border rounded-3 border-size-md d-inline-block w-100 p-3 text-center ls-3">Home</a>
+  </div>
+</div>

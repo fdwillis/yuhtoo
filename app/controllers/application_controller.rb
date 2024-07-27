@@ -35,10 +35,6 @@ class ApplicationController < ActionController::Base
 		@library = Library.all.shuffle
 		@alert = Alert.all.shuffle
 
-		
-
-
-
 		if current_user&.stripeAccountID.present?
 			if Stripe::Account.retrieve(current_user&.stripeAccountID)['payouts_enabled']
 				@stripeAccountX = Stripe::Account.create_login_link(current_user&.stripeAccountID)

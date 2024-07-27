@@ -8,6 +8,8 @@ gem 'google_sign_in'
 
 gem 'figaro'
 
+gem 'oj'
+
 gem 'lazy_high_charts'
 
 gem 'country_select'

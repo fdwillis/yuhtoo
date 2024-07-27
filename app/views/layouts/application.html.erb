@@ -147,7 +147,7 @@
                        </div>
                       </div>
 
-                      <% unless request.original_url.include?('ideas') || request.original_url.include?('feed') || request.original_url.include?('/terms') || request.original_url.include?('/privacy') || request.original_url.include?('/comments') %>
+                      <% unless request.original_url.include?('ideas') || request.original_url.include?('feed') || request.original_url.include?('/terms') || request.original_url.include?('/privacy') || request.original_url.include?('/comments') || request.original_url.include?('/shop') || request.original_url.include?('/cart')  || request.original_url.include?('/checkout') %>
                       <div class="row">
                           <div class="col-lg-3 col-md-6 mt-5">
 
@@ -274,7 +274,7 @@
                        <div class="card">
                           <div class="card-body pt-0">
                             <ul class="iq-timeline ms-1">
-                              <% unless request.original_url.include?('/ideas') || request.original_url.include?('/feed') || request.original_url.include?('/terms') || request.original_url.include?('/privacy') || request.original_url.include?('/comments') %>
+                              <% unless request.original_url.include?('/ideas') || request.original_url.include?('/feed') || request.original_url.include?('/terms') || request.original_url.include?('/privacy') || request.original_url.include?('/comments')  || request.original_url.include?('/shop') || request.original_url.include?('/cart')  || request.original_url.include?('/checkout') %>
                                 <% @history.each do |item| %>
                                  
                                   <li>
@@ -1088,7 +1088,7 @@
          </div>
       </div>
     </div>
-
+   <% unless request.original_url.include?('ideas') || request.original_url.include?('feed') || request.original_url.include?('/terms') || request.original_url.include?('/privacy') || request.original_url.include?('/comments') || request.original_url.include?('/shop') || request.original_url.include?('/cart')  || request.original_url.include?('/checkout') %>
     <div class="modal fade" id="viewFeed" tabindex="-1" aria-labelledby="viewFeedLabel" style="display: none;" aria-hidden="true">
       <div class="modal-dialog modal-fullscreen modal-dialog-scrollable">
         <div class="modal-content">
@@ -1111,7 +1111,7 @@
          </div>
       </div>
     </div>
-
+    <% end %>
     
 
     <div class="offcanvas offcanvas-end on-rtl start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptionsx" aria-labelledby="offcanvasWithBothOptionsLabel">

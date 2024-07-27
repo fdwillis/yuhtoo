@@ -26,6 +26,7 @@ class IdeasController < ApplicationController
   def index
     @ideas = Idea.find_each.sort_by(&:created_at).reverse
     @library = Library.find_each.sort_by(&:created_at).shuffle
+    @niches = Niche.all.shuffle
   end
 
   # GET /ideas/1 or /ideas/1.json

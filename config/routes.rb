@@ -21,6 +21,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   resources :ideas
+  resources :shop
 
   get 'reaction/:id/:comment/:uuid', to: 'ideas#reaction'
   get 'unreaction/:id/:uuid', to: 'ideas#unreaction'
@@ -33,8 +34,14 @@ Rails.application.routes.draw do
   get 'terms', to: 'application#terms'
   get 'feed', to: 'application#feed'
   get 'reload-feed' => 'application#reload'
+
+  get 'cart' => 'shop#cart'
+  get 'checkout' => 'shop#checkout'
+  post 'add-to-cart' => 'shop#addToCart', as: :addToCart
+
   
   get 'login', to: 'logins#new'
   get 'login/create', to: 'logins#create', as: :create_login
   get 'google_sign_in/callback', to: 'logins#callback', as: :callback_login
+
 end
