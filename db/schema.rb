@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_19_165945) do
+ActiveRecord::Schema[7.1].define(version: 2024_09_04_154152) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -22,6 +22,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_19_165945) do
     t.integer "user_id"
     t.string "seenBy"
     t.string "alertType"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "chatrooms", force: :cascade do |t|
+    t.string "name"
+    t.string "slug"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -61,11 +68,22 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_19_165945) do
     t.text "scripts"
     t.text "transactions"
     t.string "userID"
+    t.string "dateFunded"
     t.integer "fundingAmount", default: 100
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_ideas_on_user_id"
+  end
+
+  create_table "instantmessages", force: :cascade do |t|
+    t.text "body"
+    t.bigint "user_id", null: false
+    t.bigint "chatroom_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["chatroom_id"], name: "index_instantmessages_on_chatroom_id"
+    t.index ["user_id"], name: "index_instantmessages_on_user_id"
   end
 
   create_table "libraries", force: :cascade do |t|
@@ -81,6 +99,19 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_19_165945) do
     t.text "keywords"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "projects", force: :cascade do |t|
+    t.string "uuid"
+    t.string "description"
+    t.text "attachments"
+    t.text "videos"
+    t.boolean "public"
+    t.string "title"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_projects_on_user_id"
   end
 
   create_table "replies", force: :cascade do |t|
@@ -121,6 +152,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_19_165945) do
   add_foreign_key "comments", "ideas"
   add_foreign_key "comments", "users"
   add_foreign_key "ideas", "users"
+  add_foreign_key "instantmessages", "chatrooms"
+  add_foreign_key "instantmessages", "users"
+  add_foreign_key "projects", "users"
   add_foreign_key "replies", "comments"
   add_foreign_key "replies", "users"
 end
