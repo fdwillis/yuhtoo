@@ -10,6 +10,8 @@ gem 'figaro'
 
 gem 'oj'
 
+gem 'down'
+
 gem 'lazy_high_charts'
 
 gem 'country_select'
@@ -17,6 +19,8 @@ gem 'country_select'
 gem 'awesome_print'
 
 gem 'stripe'
+
+gem 'zlib'
 
 gem 'redcarpet'
 

@@ -1,15 +1,42 @@
 <% if @idea.videos.present? %>
 	<% @idea.videos.split(',').each do |file| %>
-			<%= cl_video_tag(file, 
-		  loop: true, controls: true,
-		  gravity: "auto",
-		  transformation: [
-		    height: 360, width: 480, crop: "pad",
-		    quality: 100, duration: "20"],
-		  fallback_content: "Your browser does not support HTML5 video tags." ) %>
-		  <%= cl_video_tag(file, aspect_ratio: "3:4", gravity: "auto:face", height: 300, crop: "auto")%>
+      <%= cl_video_tag(file, loop: true, controls: true,
+      gravity: "auto",transformation: [
+  {aspect_ratio: "0.5", gravity: "auto", width: 364, crop: "fill"},
+  {quality: "auto"},
+  {fetch_format: "auto"}
+  ]) %>
+
+
+      <%= link_to "download", download_path(file: file.html_safe, path: cl_video_path(file.html_safe, loop: true, controls: true,
+      gravity: "auto",transformation: [
+  {aspect_ratio: "0.5", gravity: "auto", width: 364, crop: "fill"},
+  {quality: "auto"},
+  {fetch_format: "auto"}
+  ])) %>
 	<% end %>
 <% end %>
+
+<% if @idea.attachments.present? %>
+  <% @idea.attachments.split(',').each do |file| %>
+      <%= cl_image_tag(file, effect: "background_removal") %>
+      <%= cl_image_tag(file, transformation: [
+  {effect: "background_removal"},
+  {aspect_ratio: "1.5", width: 200, crop: "fill"},
+  {fetch_format: "auto"}
+  ]) %>
+
+  <%= cl_image_tag(file, transformation: [ {effect: "enhance"}]) %>
+
+  <%= link_to "download", download_path(file: file.html_safe, path: cl_image_path(file.html_safe, loop: true, controls: true,
+      gravity: "auto",transformation: [
+  {aspect_ratio: "1.5", gravity: "auto", width: 364, crop: "fill"},
+  {quality: "auto"},
+  {fetch_format: "auto"}
+  ])) %>
+  <% end %>
+<% end %>
+
 <div class="col-12">
          <div class="card">
             <div class="card-body p-0">

@@ -2,7 +2,6 @@ Rails.application.routes.draw do
   resources :comments
   resources :transactions
   
-  root "application#index"
   devise_for :users, controllers: {sessions: 'application', omniauth_callbacks: 'users/omniauth_callbacks' }
 
   authenticated :user do
@@ -23,6 +22,7 @@ Rails.application.routes.draw do
   resources :ideas
   resources :shop
 
+  get 'download', to: 'ideas#download'
   get 'reaction/:id/:comment/:uuid', to: 'ideas#reaction'
   get 'unreaction/:id/:uuid', to: 'ideas#unreaction'
   get 'like/:id/:uuid', to: 'ideas#like'

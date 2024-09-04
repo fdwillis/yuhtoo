@@ -122,6 +122,8 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    down (5.4.2)
+      addressable (~> 2.8)
     drb (2.2.1)
     erubi (1.13.0)
     faraday (2.9.2)
@@ -366,6 +368,7 @@ GEM
     yt (0.33.4)
       activesupport
     zeitwerk (2.6.16)
+    zlib (3.1.1)
 
 PLATFORMS
   aarch64-linux
@@ -384,6 +387,7 @@ DEPENDENCIES
   country_select
   debug
   devise
+  down
   ffi (< 1.17.0)
   figaro
   font-awesome-rails
@@ -411,6 +415,7 @@ DEPENDENCIES
   tzinfo-data
   web-console
   yt
+  zlib
 
 RUBY VERSION
    ruby 3.0.2p107

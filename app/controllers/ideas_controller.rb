@@ -24,7 +24,7 @@ class IdeasController < ApplicationController
 
   # GET /ideas or /ideas.json
   def index
-    @ideas = Idea.find_each.sort_by(&:created_at).reverse
+    @ideas = current_user&.accessPin.include?('admin') ? Idea.find_each.sort_by(&:created_at).reverse : current_user&.ideas.sort_by(&:created_at)
     @library = Library.find_each.sort_by(&:created_at).shuffle
     @niches = Niche.all.shuffle
   end
@@ -96,63 +96,91 @@ class IdeasController < ApplicationController
     end
   end
 
+  def download
+    # open('image.png', 'wb') do |file|
+    #   file << open('http://example.com/image.png').read
+    # end
+
+    # URI.open(params['file']) {|f|
+    #   debugger
+    #   f.each_line {|line| open(params['path']).read}
+    # }
+
+    # File.write params['file'], open(params['path']).read
+
+    # image_url = params['path']
+
+
+    IO.copy_stream(URI.open(params['path']), "#{params['file'].split('/')[1]}.png")
+    # IO.copy_stream(URI.open(params['path']), "#{params['file'].split('/')[1]}.mov")
+
+
+    flash[:notice] = "#{params['file'].split('/')[1]}.mov downloaded"
+    redirect_to request.referrer
+  end
+
   # POST /ideas or /ideas.json
   def create
-    
+    begin
+      @idea = @current_user.ideas.create(idea_params)
 
-    @idea = @current_user.ideas.create(idea_params)
+      
 
-    
+      if params[:idea][:attachments].present?
 
-    respond_to do |format|
-      if @idea.save
-        format.html { redirect_to '/feed', notice: "Idea posted to The Feed" }
-        format.json { render :show, status: :created, location: @idea }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @idea.errors, status: :unprocessable_entity }
-      end
-    end
+        imageFiles = ''
+        videoFiles = ''
+        xTags = ''
 
-    if params[:idea][:attachments].present?
-
-      imageFiles = ''
-      videoFiles = ''
-      xTags = ''
-
-      if params[:idea][:attachments].reject(&:blank?).present?
-        params[:idea][:attachments].reject(&:blank?).each do |file|
-          if file.content_type.include?('image')
-            uploader = ImageUploader.new
-            imageFilex = file.tempfile
-            @couldinaryImagex = Cloudinary::Uploader.upload(imageFilex, {detection: "coco", categorization: "google_tagging", auto_tagging: 0.6, folder: 'yuhtoo-guest-images'})
-            imageFiles.prepend("#{@couldinaryImagex['public_id']},")
-            xTags << "#{@couldinaryImagex['tags'].join(',')}&"
+        if params[:idea][:attachments].reject(&:blank?).present?
+          params[:idea][:attachments].reject(&:blank?).each do |file|
+            if file.content_type.include?('image')
+              uploader = ImageUploader.new
+              imageFilex = file.tempfile
+              @couldinaryImagex = Cloudinary::Uploader.upload(imageFilex, {detection: "coco", categorization: "google_tagging", auto_tagging: 0.1, folder: 'yuhtoo-guest-images'})
+              imageFiles.prepend("#{@couldinaryImagex['public_id']},")
+              xTags << "#{@couldinaryImagex['tags'].join(',')}&"
+            end
+          
+            if file.content_type.include?('video')
+              uploader = ImageUploader.new
+              videoFilex = file.tempfile
+              @couldinaryVideox = Cloudinary::Uploader.upload(videoFilex, detection: "coco",resource_type: "video", categorization: "google_video_tagging", auto_tagging: 0.1, folder: 'yuhtoo-guest-videos')
+              videoFiles.prepend("#{@couldinaryVideox['public_id']},")
+              xTags << "#{@couldinaryVideox['tags'].join(',')}&"
+            end
           end
-        
-          if file.content_type.include?('video')
-            uploader = ImageUploader.new
-            videoFilex = file.tempfile
-            @couldinaryVideox = Cloudinary::Uploader.upload(videoFilex, detection: "coco",resource_type: "video", categorization: "google_tagging", auto_tagging: 0.6, folder: 'yuhtoo-guest-videos')
-            videoFiles.prepend("#{@couldinaryVideox['public_id']},")
-            xTags << "#{@couldinaryVideox['tags'].join(',')}&"
-          end
+
         end
-
       end
+
+      if videoFiles.present?
+        @idea.update(videos: videoFiles)
+      end
+
+      if imageFiles.present?
+        @idea.update(attachments: imageFiles)
+      end
+
+      if xTags.present?
+        @idea.update(tags: xTags)
+      end
+      respond_to do |format|
+        if @idea.save
+          format.html { redirect_to '/feed', notice: "Idea posted to The Feed" }
+          format.json { render :show, status: :created, location: @idea }
+        else
+          format.html { render :new, status: :unprocessable_entity }
+          format.json { render json: @idea.errors, status: :unprocessable_entity }
+        end
+      end
+    rescue Exception => e
+      flash[:error] = e.message
+      redirect_to '/'
+      return
     end
 
-    if videoFiles.present?
-      @idea.update(videos: videoFiles)
-    end
-
-    if imageFiles.present?
-      @idea.update(attachments: imageFiles)
-    end
-
-    if xTags.present?
-      @idea.update(tags: xTags)
-    end
+    
   end
 
   # PATCH/PUT /ideas/1 or /ideas/1.json

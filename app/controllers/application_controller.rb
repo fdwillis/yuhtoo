@@ -89,15 +89,18 @@ class ApplicationController < ActionController::Base
 	end
 
 	def index
-		current_user
-		feed
-		if  @current_user&.stripeCustomerID.present?
-			@stripeCustomerPortal = Stripe::BillingPortal::Session.create({
-			  customer: @current_user&.stripeCustomerID,
-			  return_url: Rails.env.development? ? ENV['demoURL'] : ENV['productionURL'],
-			})
+		if @current_user&.present?
+			feed
+			if  @current_user&.stripeCustomerID.present?
+				@stripeCustomerPortal = Stripe::BillingPortal::Session.create({
+				  customer: @current_user&.stripeCustomerID,
+				  return_url: Rails.env.development? ? ENV['demoURL'] : ENV['productionURL'],
+				})
+			end
+			@payoutInfo = @current_user.present? ? @current_user.payoutStatus : {stripeAccountID: 0, stripeCustomerID: 0, commentCount: 0  }
+		else
+			render layout: 'frontend'
 		end
-		@payoutInfo = @current_user.present? ? @current_user.payoutStatus : {stripeAccountID: 0, stripeCustomerID: 0, commentCount: 0  }
 	end
 
 	def membership
