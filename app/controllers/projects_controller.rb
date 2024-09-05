@@ -62,7 +62,6 @@ class ProjectsController < ApplicationController
   end
 
   def create
-  	debugger
   	newProject = @current_user&.projects.create(title: project_params[:title])
 
   	if newProject.save

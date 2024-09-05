@@ -102,7 +102,6 @@ class IdeasController < ApplicationController
     # end
 
     # URI.open(params['file']) {|f|
-    #   debugger
     #   f.each_line {|line| open(params['path']).read}
     # }
 
