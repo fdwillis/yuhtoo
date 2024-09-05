@@ -2,7 +2,7 @@ class ProjectsController < ApplicationController
   before_action :set_project, only: %i[show upload]
 
   def index
-  	@projects = session[:user_id].present? && @project&.user == @current_user ? @current_user&.projects : session[:user_id].present? && @current_user&.accessPin.include?('admin') ? Project.all.reject(&:blank?) : nil
+  	@projects = session[:user_id].present? ? @current_user&.projects : session[:user_id].present? && @current_user&.accessPin.include?('admin') ? Project.all.reject(&:blank?) : nil
   end
 
   def show
