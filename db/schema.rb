@@ -106,6 +106,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_04_154152) do
     t.string "description"
     t.text "attachments"
     t.text "videos"
+    t.text "tags"
     t.boolean "public"
     t.string "title"
     t.bigint "user_id", null: false

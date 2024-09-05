@@ -72,10 +72,10 @@ class ApplicationController < ActionController::Base
 
 		history = []
 
-		userIdeas = @current_user&.ideas
+		userIdeas = @current_user&.projects
 		if userIdeas.present?
 			userIdeas.each do |ideaX|
-				history << {date: ideaX&.created_at, highlight: 'Your idea', message: ' posted to the feed' , linkURL: "/ideas/#{ideaX&.id}" }
+				history << {date: ideaX&.created_at, highlight: 'Your Project', message: ' posted' , linkURL: "/projects/#{ideaX&.id}" }
 			end
 		end
 

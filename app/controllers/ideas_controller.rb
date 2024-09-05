@@ -110,12 +110,13 @@ class IdeasController < ApplicationController
 
     # image_url = params['path']
 
+    fileName = "#{params['file'].split('/')[1]}#{ params['file'].include?('video') ? ".mov" : ".png"}"
 
-    IO.copy_stream(URI.open(params['path']), "#{params['file'].split('/')[1]}.png")
+    IO.copy_stream(URI.open(params['path']), fileName)
     # IO.copy_stream(URI.open(params['path']), "#{params['file'].split('/')[1]}.mov")
 
 
-    flash[:notice] = "#{params['file'].split('/')[1]}.mov downloaded"
+    flash[:notice] = "#{fileName} downloaded to your device"
     redirect_to request.referrer
   end
 
@@ -139,7 +140,7 @@ class IdeasController < ApplicationController
               imageFilex = file.tempfile
               @couldinaryImagex = Cloudinary::Uploader.upload(imageFilex, {detection: "coco", categorization: "google_tagging", auto_tagging: 0.1, folder: 'yuhtoo-guest-images'})
               imageFiles.prepend("#{@couldinaryImagex['public_id']},")
-              xTags << "#{@couldinaryImagex['tags'].join(',')}&"
+              xTags << "#{@couldinaryImagex['tags'].join(',')},"
             end
           
             if file.content_type.include?('video')
@@ -147,7 +148,7 @@ class IdeasController < ApplicationController
               videoFilex = file.tempfile
               @couldinaryVideox = Cloudinary::Uploader.upload(videoFilex, detection: "coco",resource_type: "video", categorization: "google_video_tagging", auto_tagging: 0.1, folder: 'yuhtoo-guest-videos')
               videoFiles.prepend("#{@couldinaryVideox['public_id']},")
-              xTags << "#{@couldinaryVideox['tags'].join(',')}&"
+              xTags << "#{@couldinaryVideox['tags'].join(',')},"
             end
           end
 

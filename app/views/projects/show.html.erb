@@ -1,0 +1,71 @@
+
+<div class="card position-relative inner-page-bg bg-primary" style="height: 150px;">
+  <div class="inner-page-title">
+     <h3 class="text-white">Project: <%= @project.title %></h3>
+     <p class="text-white mb-0">Upload images &amp; videos then let AI take over</p>
+  </div>
+</div>
+<nav aria-label="breadcrumb">
+   <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="/">Home</a></li>
+      <li class="breadcrumb-item"><a href="<%= projects_path %>">Projects</a></li>
+      <li class="breadcrumb-item active" aria-current="page"><%= @project&.title&.titleize %></li>
+   </ol>
+</nav>
+
+<% if session[:user_id].present? && @project&.user == current_user %>
+	<%= form_for :project, :url => { :controller => 'projects', :action => "upload", id: @project&.id } do |f| %>
+	<!--     <%= f.file_field :attachments, id:"file-input", multiple: true %> -->
+		<div class="row">
+			
+	    <div class="col-8">
+	      <%= f.file_field :attachments, required: true, multiple: true, style: "height: 50px;margin-top:0;",  :accept => '.mov,.mp4 '%>
+	      <%= f.hidden_field :uuid, value: SecureRandom.uuid[0..11] %>
+	    </div>
+
+	    <div class="col-4">
+	    	<% if session[:user_id]&.present? %>
+	        <%= f.submit 'Upload', style: "height: 50px;background-color:grey" %>
+	      <% else %>
+	        <%= link_to image_tag('googlelogo.png'), user_google_oauth2_omniauth_authorize_path %>
+	      <% end %>
+	    </div>
+		</div>
+	<% end %>
+<% end %>
+<div class="row social-post-container">
+  <% if @project.videos.present? %>
+    <% @project.videos.split(',').each do |file| %>
+      <div class="col-4">
+         <div class="card mb-3">
+            <div class="card-body">
+               <!-- <h4 class="card-title">Click download</h4> -->
+               <!-- <p class="card-text">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. </p> -->
+               <%= link_to "DOWNLOAD", download_path(file: file.html_safe, path: cl_video_path(file.html_safe, loop: true, controls: true,
+        gravity: "auto",transformation: [
+    {aspect_ratio: "0.5", gravity: "auto", width: 364, crop: "fill"},
+    {quality: "auto"},
+    {fetch_format: "auto"}
+    ])), class: 'btn btn-primary' %>
+            </div>
+              <%= cl_video_tag(file, loop: true, controls: true,
+        gravity: "auto",transformation: [
+    {aspect_ratio: "0.5", gravity: "auto", width: 364, crop: "fill"},
+    {quality: "auto"},
+    {fetch_format: "auto"}
+    ]) %>
+         </div>
+      </div>
+        
+
+
+        
+    <% end %>
+  <% end %>
+
+
+  <% if @project.attachments.present? %>
+    <% @project.attachments.split(',').each do |file| %>
+      <div class="col-4">
+        <div class="card mb-3">
+   

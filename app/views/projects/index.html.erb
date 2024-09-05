@@ -1,0 +1,48 @@
+<div class="card position-relative inner-page-bg bg-primary" style="height: 150px;">
+  <div class="inner-page-title">
+     <h3 class="text-white">Projects</h3>
+     <p class="text-white mb-0">Upload images &amp; videos then let AI take over</p>
+  </div>
+</div>
+<nav aria-label="breadcrumb">
+   <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="/">Home</a></li>
+      <li class="breadcrumb-item active">Projects</li>
+   </ol>
+</nav>
+<%= form_for :project, :url => { :controller => 'projects', :action => "create" } do |f| %>
+<!--     <%= f.file_field :attachments, id:"file-input", multiple: true %> -->
+	<div class="row">
+		
+    <div class="col-8 mb-4" rows="5" id="exampleFormControlTextarea1">
+      <%= f.text_field :title, required: true, class: 'form-control rounded px-0', placeholder: " New Project Title...", style: "height: 50px;", readonly: false %>
+      <%= f.hidden_field :uuid, value: SecureRandom.uuid[0..11] %>
+      
+    </div>
+
+    <div class="col-4">
+    	<% if session[:user_id]&.present? %>
+        <%= f.submit 'Create', style: "height: 50px;background-color:grey" %>
+      <% else %>
+        <%= link_to image_tag('googlelogo.png'), user_google_oauth2_omniauth_authorize_path %>
+      <% end %>
+    </div>
+	</div>
+<% end %>
+
+
+<% if @projects.present? %>
+		<div class="row" style="height: 50px;">
+	<% @projects.each do |project| %>
+			<div class="col-12">
+			   <div class="card mb-3">
+			      <div class="card-body">
+			         <h4 class="card-title"><%= project&.title %></h4>
+			         <p class="card-text">created <%= time_ago_in_words(project&.created_at) %> ago</p>
+			         <a href="/projects/<%= project&.id %>" class="btn btn-primary">View</a>
+			      </div>
+			   </div>
+			</div>
+	<% end %>
+		</div>
+<% end %>

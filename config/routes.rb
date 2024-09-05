@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :comments
+  resources :projects
   resources :transactions
   
   devise_for :users, controllers: {sessions: 'application', omniauth_callbacks: 'users/omniauth_callbacks' }
@@ -21,6 +22,7 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   resources :ideas
   resources :shop
+  post 'projects/:id/upload', to: 'projects#upload', as: :upload
 
   get 'download', to: 'ideas#download'
   get 'reaction/:id/:comment/:uuid', to: 'ideas#reaction'

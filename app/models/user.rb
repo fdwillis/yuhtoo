@@ -5,6 +5,7 @@ class User < ApplicationRecord
   has_many :comments
   has_many :replies
   has_many :ideas, dependent: :destroy
+  has_many :projects, dependent: :destroy
 
   FLAGS = ISO3166::Country.countries.map { |c| [c.emoji_flag,c.alpha2, c.iso_short_name, c.currency_code] }
 
