@@ -68,4 +68,13 @@
     <% @project.attachments.split(',').each do |file| %>
       <div class="col-4">
         <div class="card mb-3">
-   
+            <div class="card-body">
+              <%= link_to "DOWNLOAD", download_path(file: file.html_safe, path: cl_image_path(file.html_safe, effect: 'background_removal')), class: 'btn btn-primary' %>
+              <%= cl_image_tag(file, effect: "background_removal") %>
+
+            </div>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</div>

@@ -31,6 +31,7 @@ Rails.application.routes.draw do
   get 'unlike/:id/:uuid', to: 'ideas#unlike'
   get 'feed', to: 'ideas#index'
 
+  get 'services', to: 'application#services'
   get 'membership', to: 'application#membership'
   get 'privacy', to: 'application#privacy'
   get 'terms', to: 'application#terms'

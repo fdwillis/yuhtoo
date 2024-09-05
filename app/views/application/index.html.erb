@@ -10,7 +10,7 @@
            </a>
         </div>
         <h2 class="text-center">Welcome to YuhToo</h2>
-        <p class="text-center"><em><strong>A Community For YouTube Automation</strong></em></p>
+        <p class="text-center"><em><strong>A YouTube Community</strong></em></p>
         <div class="row text-center">
           <% if session[:user_id].present? %>
             <a href="<%= destroy_user_session_path %>" class="d-flex justify-content-center align-items-center gap-2 iq-header-logo d-none d-lg-flex">                  
@@ -23,21 +23,19 @@
           <% end %>
         </div>
         <p class="font-size-14 mt-2 text-center"><%= link_to "Terms", '/terms' %>&nbsp;-&nbsp;<%= link_to "Privacy", '/privacy' %></p>
-        <% if !session[:user_id].present? || @current_user.payoutStatus[:tier] == 0 %>
-          <a href="/membership" class="mt-2">
+          <a href="/services" class="mt-2">
             <div class="text-left " id="page_layout">
                     <div class="col-12">
                        <div class="card position-relative inner-page-bg bg-primary" style="height: 150px;">
                           <div class="inner-page-title">
-                            <h3 class="text-white"><em><strong><u>Get Paid For Ideas</u></strong></em></h3>
-                            <p class="text-white mb-0">See All Plans</p>
-                            <a href="/membership" class="btn btn-secondary-subtle">Get Started</a>
+                            <h3 class="text-white"><em><strong><u>We film edit and make content for you</u></strong></em></h3>
+                            <p class="text-white mb-0">See All Packages</p>
+                            <a href="/services" class="btn btn-secondary-subtle">Get Started</a>
                           </div>
                        </div>
                     </div>
             </div>
           </a>
-        <% end %>
       </div>
     </div>
   </div>
@@ -48,7 +46,7 @@
 
         
         <li class="col-lg-3 col-md-6">
-          <a class="nav-link" type="button" href="/projects">
+          <a class="nav-link" type="button" href="/#">
                   
 
                 
@@ -60,7 +58,7 @@
                             <h3>&nbsp;Projects</h3>
                             <!-- <small class="text-success ms-3">+ 57</small> -->
                         </div>
-                        <span>Content Managed By AI</span>
+                        <span>Content Managed By AI - Coming Soon</span>
                       
                     </div>
                 </div>
